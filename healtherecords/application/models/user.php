@@ -2,11 +2,11 @@
 
 class User extends CI_Model
 {
-	function login()
+	public function login()
 	{
 		//find matching user in dabase and check password
 		$this->db->where('Username',$this->input->post('username'));
-		$this->db->where('Password',$this->input->post('password'));
+		$this->db->where('Password',md5($this->input->post('password')));
 		
 		//store result of database query
 		$query = $this->db->get('userinfo');
@@ -22,5 +22,77 @@ class User extends CI_Model
 		{
 			return false;
 		}
+	}
+	
+	
+	//store sign up data temporarily
+	public function add_temp($link)
+	{
+		//store form data as an array to pass to db
+		$temp = array('username' => $this->input->post('username'),
+				//use md5 hash to store password
+				'password' => md5($this->input->post('password')),
+				'email' => $this->input->post('email'),
+				'link' => $link);
+		//insert data into db
+		$query = $this->db->insert('temp_users',$temp);
+		//check if a problem was encountered trying to insert temp user data
+		if ($query)
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
+	
+	//check link sent to new user's email
+	public function valid_link($link)
+	{
+		//access temp_users table and look for link value
+		$this->db->where('link',$link);
+		$query = $this->db->get('temp_users');
+		
+		//check if a match was found
+		if ($query->num_rows()==1)
+		{
+			return true;
+		}
+		else return false;
+	}
+	
+	
+	//make a temp user a permanent user
+	public function new_user($link)
+	{
+		//find link value in temp_users table
+		$this->db->where('link',$link);
+		$temp = $this->db->get('temp_users');
+		
+		if ($temp)
+		{
+			//store row corresponding to link value
+			$row = $temp->row();
+			//store row values in array
+			$userinfo = array(
+					'username' => $row->username,
+					'password' => $row->password,
+					'email' => $row->email,
+					);
+			//insert user from temp_users table into userinfo table
+			$user_added = $this->db->insert('userinfo',$userinfo);
+		}
+		
+		//check if successfully added
+		if ($user_added)
+		{
+			//delete corresponding entry from temp_users table
+			$this->db->where('link',$link);
+			$this->db->delete('temp_users');
+			return true;
+		}
+		else return false;
 	}
 }

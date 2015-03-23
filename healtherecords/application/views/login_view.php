@@ -12,7 +12,7 @@
 
 	<div id="body">
 		<?php 
-		echo form_open('main/verify');
+		echo form_open('main/verify_login');
 		
 		echo validation_errors();
 		

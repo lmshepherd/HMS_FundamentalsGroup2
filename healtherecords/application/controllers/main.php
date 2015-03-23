@@ -4,19 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends CI_Controller 
 {
-
-	//default
+	//default page
 	public function index()
 	{
 		$this->load->view('login_view');
 	}
 	
+	
 	//verify correct login form input format
-	public function verify()
+	public function verify_login()
 	{
 		//set form rules to ensure login fields are not empty
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('username','Username','required|callback_check_credentials');
+		$this->form_validation->set_rules('username','Username','required|callback_verify_userinfo');
 		$this->form_validation->set_rules('password','Password','required');
 		
 		//if login form entries pass validation test
@@ -36,8 +36,9 @@ class Main extends CI_Controller
 		}
 	}
 	
+	
 	//calls user function to check username and password in database
-	public function check_credentials()
+	public function verify_userinfo()
 	{
 		//load the user model
 		$this->load->model('user');
@@ -46,11 +47,9 @@ class Main extends CI_Controller
 		{
 			return true;
 		}
-		else 
-		{
-			return false;
-		}
+		else return false;
 	}
+	
 	
 	//attempt to access user homepage
 	public function home()
@@ -59,17 +58,20 @@ class Main extends CI_Controller
 	}
 	
 	
+	//user clicks a logout button
 	public function logout()
 	{
 		$this->session->sess_destroy();
 		redirect('main');
 	}
 	
+	
 	//user clicked new user button from login
 	public function new_user()
 	{
 		$this->load->view('signup_view');
 	}
+	
 	
 	//verify signup form information
 	public function verify_signup()
@@ -88,11 +90,11 @@ class Main extends CI_Controller
 		//change message shown when username is already taken
 		$this->form_validation->set_message('is_unique','That username is already in use.');
 		
-		//check if validation has passed
+		//check if form has valid entries
 		if ($this->form_validation->run())
 		{
-			//generate a random new user key
-			$key = md5(uniqid());
+			//generate a random new user key to send as a link
+			$link = md5(uniqid());
 			
 			//set up email address for healtherecords20@gmail.com account
 			$config=Array(
@@ -114,11 +116,24 @@ class Main extends CI_Controller
 			
 			//set up contents of email message
 			$msg="<p>Follow the link to confirm registration: </p>";
-			$msg.="<p><a href='".base_url()."index.php/main/user_confirmation/$key'>Click Here!</a></p>";
+			//when user navigates to the link, the user_confirmation function is called
+			$msg.="<p><a href='".base_url()."index.php/main/user_confirmation/$link'>Click Here!</a></p>";
 			$this->email->message($msg);
 			
-			//send the email
-			$this->email->send();
+			//load user model to add new user to temp db table
+			$this->load->model('user');
+			
+			//add user key to temp db
+			if ($this->user->add_temp($link))
+			{
+				//send the email
+				if ($this->email->send())
+				{
+					$this->load->view('email_sent_view');
+				}
+				else echo 'Email could not be sent.';
+			}
+			else echo 'User could not be created.';
 			
 		}
 		else //form validation failed
@@ -126,7 +141,26 @@ class Main extends CI_Controller
 			//reload signup page
 			$this->load->view('signup_view');
 		}
+	}
+	
+	
+	//user visits confirmation link
+	public function user_confirmation($link)
+	{
+		//load user model
+		$this->load->model('user');
 		
-		
+		//send link to valid_link user function
+		if ($this->user->valid_link($link))
+		{
+			//link is valid, try creating new user
+			if($this->user->new_user($link))
+			{
+				//user created, send to registration completion page to enter info
+				$this->load->view('registration_view');
+			}
+			else echo 'Error creating new user.';
+		}
+		else echo 'Invalid link.';
 	}
 }
