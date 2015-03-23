@@ -8,36 +8,37 @@
 <body>
 
 <div id="container">
-	<h1>Health E-Records Login</h1>
+	<h1>Health E-Records New User Signup</h1>
 
 	<div id="body">
 		<?php 
-		echo form_open('main/verify');
+		echo form_open('main/verify_signup');
 		
 		echo validation_errors();
 		
 		echo "<p>Username: ";
-		echo form_input('username');
+		echo form_input('username',$this->input->post('username'));
 		echo "</p>";
 		
 		echo "<p>Password: ";
 		echo form_password('password');
 		echo "</p>";
 		
-		echo "<p>";
-		echo form_submit('login_submit', 'Login');
+		echo "<p>Confirm Password: ";
+		echo form_password('cpassword');
 		echo "</p>";
 		
-		echo form_close();
+		echo "<p>Email: ";
+		echo form_input('email',$this->input->post('email'));
+		echo "</p>";
 		
-		echo form_open('main/new_user');
-
 		echo "<p>";
-		echo form_submit('signup_submit', 'Sign Up');
+		echo form_submit('signup_submit', 'Sign Up!');
 		echo "</p>";
 		
 		echo form_close();
 		?>
+	
 	</div>
 
 </div>

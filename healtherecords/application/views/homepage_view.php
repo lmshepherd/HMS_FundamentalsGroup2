@@ -10,6 +10,10 @@
 <div id="container">
 	
 	<h1>Welcome to Health E-Records, <?php echo $this->session->userdata('username'); ?></h1>
+	
+	<a href = '<?php 
+		echo base_url(),"index.php/main/logout"
+	?>'>Logout</a>
 
 </div>
 
