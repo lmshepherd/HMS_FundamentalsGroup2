@@ -32,6 +32,16 @@
 		echo form_input('email',$this->input->post('email'));
 		echo "</p>";
 		
+		//store dropdown box options as an array
+		$role_options = array('patient'=>'Patient',
+				'nurse'=>'Nurse',
+				'doctor'=>'Doctor',
+				'admin'=>'Admin');
+		echo "<p>Role: ";
+		//create dropdown box, default option patient
+		echo form_dropdown('role',$role_options,'patient');
+		echo "</p>";
+		
 		echo "<p>";
 		echo form_submit('signup_submit', 'Sign Up!');
 		echo "</p>";

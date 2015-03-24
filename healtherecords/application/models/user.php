@@ -33,7 +33,8 @@ class User extends CI_Model
 				//use md5 hash to store password
 				'password' => md5($this->input->post('password')),
 				'email' => $this->input->post('email'),
-				'link' => $link);
+				'link' => $link,
+				'role' => $this->input->post('role'));
 		//insert data into db
 		$query = $this->db->insert('temp_users',$temp);
 		//check if a problem was encountered trying to insert temp user data
@@ -80,7 +81,7 @@ class User extends CI_Model
 					'username' => $row->username,
 					'password' => $row->password,
 					'email' => $row->email,
-					);
+					'role' => $row->role);
 			//insert user from temp_users table into userinfo table
 			$user_added = $this->db->insert('userinfo',$userinfo);
 		}
@@ -88,9 +89,9 @@ class User extends CI_Model
 		//check if successfully added
 		if ($user_added)
 		{
-			//delete corresponding entry from temp_users table
+			/*delete corresponding entry from temp_users table
 			$this->db->where('link',$link);
-			$this->db->delete('temp_users');
+			$this->db->delete('temp_users');*/
 			return true;
 		}
 		else return false;
