@@ -99,7 +99,27 @@ class User extends CI_Model
 			$this->db->delete('temp_users');*/
 			return true;
 		}
-		else return false;
+		else return false;	
+	}
+	
+	
+	//user clicks complete registration button on registration page
+	public function complete_new_user($username)
+	{
+		//store form data as an array to pass to db
+		$temp1 = array('firstname' => $this->input->post('firstname'),
+				'lastname' => $this->input->post('lastname'),
+				'dob' => $this->input->post('dob'),
+				'homephone' => $this->input->post('homephone'),
+				'workphone' => $this->input->post('workphone'));
+		//insert data into db
+		$query = $this->db->insert('userinfo',$temp1);
+		
+		//find id and role value in userinfo table
+		$this->db->where('username',$username);
+	
+		
+		
 	}
 	
 	

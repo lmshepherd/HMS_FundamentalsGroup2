@@ -16,7 +16,7 @@ $role = $this->session->userdata('role');
 	<p>Please fill in your information:</p>
 	<div id="body">
 		<?php 
-		echo form_open();
+		echo form_open('main/complete_registration($this->session->userdata("username")');
 		
 		echo validation_errors();
 		
@@ -50,7 +50,7 @@ $role = $this->session->userdata('role');
 			//$this->load->view('admin_reg_view');
 		
 		echo "<p>";
-		echo form_submit('info_submit', 'Submit');
+		echo form_submit('info_submit', 'Complete Registration!');
 		echo "</p>";
 		
 		echo form_close();

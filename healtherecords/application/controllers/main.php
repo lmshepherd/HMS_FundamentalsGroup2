@@ -162,4 +162,12 @@ class Main extends CI_Controller
 		}
 		else echo 'Invalid link.';
 	}
+	
+	//user clicks complete registration button on registration page
+	public function complete_registration($username)
+	{
+		//load user model
+		$this->load->model('user');
+		$this->user->complete_new_user($username);
+	}
 }
