@@ -25,6 +25,9 @@ class Main extends CI_Controller
 			$sessiondata = array('username' => $this->input->post('username'), 'is_logged_in' => 1);
 			//create session with session data
 			$this->session->set_userdata($sessiondata);
+			
+			$role=$this->session->userdata('role');
+			
 			//run homepage function of main controller
 			redirect('main/home');
 		}

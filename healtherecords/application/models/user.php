@@ -169,11 +169,11 @@ class User extends CI_Model
 			$query = $this->db->insert('doctors',$temp);
 		}
 		
-		/*if($query2){
+		if($query){
 			return true;	
 		}
 		else return false;
-		*/
+		
 	}
 	
 	
