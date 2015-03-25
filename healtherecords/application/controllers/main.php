@@ -175,6 +175,9 @@ class Main extends CI_Controller
 		$this->load->model('user');
 		//if db was updated
 		if($this->user->complete_new_user()){
+			//delete corresponding entry from temp_users table
+			$this->db->where('link',$this->session->userdata('link'));
+			$this->db->delete('temp_users');
 			$this->load->view('homepage_view');
 		}else echo 'Uh-Oh, we could not submit your data.';
 	}

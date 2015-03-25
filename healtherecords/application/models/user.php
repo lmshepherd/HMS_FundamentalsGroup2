@@ -77,26 +77,18 @@ class User extends CI_Model
 			//store row corresponding to link value
 			$row = $query->row();
 			//store row values in array
-			$userinfo = array(
+			/*$userinfo = array(
 					'username' => $row->username,
 					'password' => $row->password,
 					'email' => $row->email,
 					'role' => $row->role);
 			//insert user from temp_users table into userinfo table
-			$user_added = $this->db->insert('userinfo',$userinfo);
+			$user_added = $this->db->insert('userinfo',$userinfo);*/
 			
 			//save session data in an array
-			$sessiondata = array('username' => $row->username, 'role' => $row->role, 'is_logged_in' => 1);
+			$sessiondata = array('username' => $row->username, 'role' => $row->role, 'link' => $link, 'is_logged_in' => 1);
 			//create session with session data
 			$this->session->set_userdata($sessiondata);
-		}
-		
-		//check if successfully added
-		if ($user_added)
-		{
-			//delete corresponding entry from temp_users table
-			/*$this->db->where('link',$link);
-			$this->db->delete('temp_users');*/
 			return true;
 		}
 		else return false;	
@@ -106,6 +98,23 @@ class User extends CI_Model
 	//user clicks complete registration button on registration page
 	public function complete_new_user()
 	{
+		$this->db->where('link',$this->session->userdata('link'));
+		$query = $this->db->get('temp_users');
+		
+		if ($query)
+		{
+			//store row corresponding to link value
+			$row = $query->row();
+			//store row values in array
+			$userinfo = array(
+			'username' => $row->username,
+					'password' => $row->password,
+					'email' => $row->email,
+					'role' => $row->role);
+			//insert user from temp_users table into userinfo table
+			$user_added = $this->db->insert('userinfo',$userinfo);
+		}
+		
 		$username = $this->session->userdata("username");
 		$role = $this->session->userdata('role');
 		
