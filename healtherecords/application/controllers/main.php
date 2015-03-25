@@ -170,7 +170,8 @@ class Main extends CI_Controller
 	public function complete_registration()
 	{
 		//TODO: form validation for registration page
-		
+		$this->load->model('validation');
+		$this->validation->reg_validation();
 		//load user model
 		$this->load->model('user');
 		//if db was updated
