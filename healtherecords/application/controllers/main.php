@@ -171,7 +171,35 @@ class Main extends CI_Controller
 	{
 		//TODO: form validation for registration page
 		$this->load->model('validation');
-		$this->validation->reg_validation();
+		if((!$this->validation->reg_validation()))
+		{
+			$this->load->view("registration_view");
+			return;
+		}
+		if($this->session->userdata('role')=='patient')
+		{
+			if((!$this->validation->patient_reg_validation()))
+			{
+				$this->load->view("registration_view");
+				return;
+			}
+		}
+		else if($this->session->userdata('role')=='doctor')
+		{
+			if((!$this->validation->doctor_reg_validation()))
+			{
+				$this->load->view("registration_view");
+				return;
+			}
+		}
+		else if($this->session->userdata('role')=='nurse')
+		{
+			if((!$this->validation->nurse_reg_validation()))
+			{
+				$this->load->view("registration_view");
+				return;
+			}
+		}
 		//load user model
 		$this->load->model('user');
 		//if db was updated
