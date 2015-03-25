@@ -53,10 +53,10 @@ echo "<p>record: ";
 echo form_input('record');
 echo "</p>";
 
-echo "<p>Address Line 2: ";
+echo "<p>Treatments: ";
 echo form_input('treatments');
 echo "</p>";
 
-echo "<p>City: ";
+echo "<p>Allergies: ";
 echo form_input('allergies');
 echo "</p>";

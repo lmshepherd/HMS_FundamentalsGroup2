@@ -25,11 +25,12 @@ $role = $this->session->userdata('role');
 		echo "</p>";
 		
 		echo "<p>Last Name: ";
-		echo form_password('lastname');
+		echo form_input('lastname');
 		echo "</p>";
 		
 		echo "<p>Date of Birth: ";
 		echo form_input('dob');
+		echo " Please use format YYYY-MM-DD";
 		echo "</p>";
 		
 		echo "<p>Home Phone: ";

@@ -113,12 +113,41 @@ class User extends CI_Model
 				'homephone' => $this->input->post('homephone'),
 				'workphone' => $this->input->post('workphone'));
 		//insert data into db
-		$query = $this->db->insert('userinfo',$temp1);
+		$query = $this->db->update('userinfo',$temp1);
 		
 		//find id and role value in userinfo table
 		$this->db->where('username',$username);
-	
+		//$temp = $this->db->get('userinfo');
 		
+		//get role
+		//$role = $this->session->userdata('role');
+		
+		//test if patient and load patient data
+		//if($role=='patient'){
+			$ptemp = array(
+					'gender' => $this->input->post('gender'),
+					'maritalstatus' => $this->input->post('maritalstatus'),
+					'addressline1' => $this->input->post('addressline1'),
+					'addressline2' => $this->input->post('addressline2'),
+					'city' => $this->input->post('city'),
+					'zipcode' => $this->input->post('zipcode'),
+					'ecname' => $this->input->post('ecname'),
+					'ecphone' => $this->input->post('ecphone'),
+					'insurancestart' => $this->input->post('insurancestart'),
+					'insuranceend' => $this->input->post('insuranceend'),
+					'insuranceprovider' => $this->input->post('insuranceprovider'),
+					'record' => $this->input->post('record'),
+					'treatments' => $this->input->post('treatments'),
+					'allergies' => $this->input->post('allergies')
+			);
+			
+			$query2 = $this->db->insert('patient2',$ptemp);
+		//}
+		
+		if($query2){
+			return true;	
+		}
+		else return false;
 		
 	}
 	
