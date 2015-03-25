@@ -175,7 +175,7 @@ class Main extends CI_Controller
 		$this->load->model('user');
 		//if db was updated
 		if($this->user->complete_new_user()){
-			$this->load->view('patienthomepage_view');
+			$this->load->view('homepage_view');
 		}else echo 'Uh-Oh, we could not submit your data.';
 	}
 }
