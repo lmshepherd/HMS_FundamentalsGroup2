@@ -2,6 +2,8 @@
 //$this->load->model('user');
 //$role = $this->user->get_role();
 $role = $this->session->userdata('role');
+//$username = $this->session->userdata('username');
+//$args = array('role' => $role, 'username' => $username);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,7 @@ $role = $this->session->userdata('role');
 	<p>Please fill in your information:</p>
 	<div id="body">
 		<?php 
-		echo form_open('main/complete_registration($this->session->userdata("username")');
+		echo form_open('main/complete_registration');
 		
 		echo validation_errors();
 		

@@ -1,6 +1,7 @@
 <?php
+$gender_options=array('m'=>'Male','f'=>'Female');
 echo "<p>Gender: ";
-echo form_input('gender');
+echo form_dropdown('gender', $gender_options,'m');
 echo "</p>";
 
 //store dropdown box options as an array
@@ -39,10 +40,12 @@ echo "</p>";
 
 echo "<p>Insurance Start: ";
 echo form_input('insurancestart');
+echo " Please use format YYYY-MM-DD";
 echo "</p>";
 
 echo "<p>Insurance End: ";
 echo form_input('insuranceend');
+echo " Please use format YYYY-MM-DD";
 echo "</p>";
 
 echo "<p>Insurance Provider: ";

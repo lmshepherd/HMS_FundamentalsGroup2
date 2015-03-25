@@ -70,12 +70,12 @@ class User extends CI_Model
 	{
 		//find link value in temp_users table
 		$this->db->where('link',$link);
-		$temp = $this->db->get('temp_users');
+		$query = $this->db->get('temp_users');
 		
-		if ($temp)
+		if ($query)
 		{
 			//store row corresponding to link value
-			$row = $temp->row();
+			$row = $query->row();
 			//store row values in array
 			$userinfo = array(
 					'username' => $row->username,
@@ -104,52 +104,76 @@ class User extends CI_Model
 	
 	
 	//user clicks complete registration button on registration page
-	public function complete_new_user($username)
+	public function complete_new_user()
 	{
-		//find id and role value in userinfo table
+		$username = $this->session->userdata("username");
+		$role = $this->session->userdata('role');
+		
+		//store common form data as an array to pass to userinfo table
+		$temp = array('firstname' => $this->input->post('firstname'),
+				'lastname' => $this->input->post('lastname'),
+				'dob' => $this->input->post('dob'),
+				'homephone' => $this->input->post('homephone'),
+				'workphone' => $this->input->post('workphone'));
+		//insert data into db
 		$this->db->where('username',$username);
-		$temp = $this->db->get('userinfo');
+		$query = $this->db->update('userinfo',$temp);
 		
-		//if user is in userinfo table, grab role and id
-		if($temp){
-			$role=$temp->role;
-			$idtemp=$temp->id;
+		//get corresponding user id number
+		$this->db->select('id');
+		$this->db->where('username',$username);
+		$query = $this->db->get('userinfo');
+		$row = $query->row();
+		$id = $row->id;
 		
-			//store form data as an array to pass to db
-			$temp1 = array('firstname' => $this->input->post('firstname'),
-					'lastname' => $this->input->post('lastname'),
-					'dob' => $this->input->post('dob'),
-					'homephone' => $this->input->post('homephone'),
-					'workphone' => $this->input->post('workphone'));
-			//insert data into db
-			$query = $this->db->update('userinfo',$temp1,$idtemp);
-			
-			//test if patient and load patient data
-			if($role=='patient'){
-				$ptemp = array('id'=>$idtemp,
-						'gender' => $this->input->post('gender'),
-						'maritalstatus' => $this->input->post('maritalstatus'),
-						'addressline1' => $this->input->post('addressline1'),
-						'addressline2' => $this->input->post('addressline2'),
-						'city' => $this->input->post('city'),
-						'zipcode' => $this->input->post('zipcode'),
-						'ecname' => $this->input->post('ecname'),
-						'ecphone' => $this->input->post('ecphone'),
-						'insurancestart' => $this->input->post('insurancestart'),
-						'insuranceend' => $this->input->post('insuranceend'),
-						'insuranceprovider' => $this->input->post('insuranceprovider'),
-						'record' => $this->input->post('record'),
-						'treatments' => $this->input->post('treatments'),
-						'allergies' => $this->input->post('allergies')
-				);
-				$query2 = $this->db->insert('patient2',$ptemp);
-			}
+		//test if patient and load patient data
+		if($role=='patient')
+		{
+			$temp = array(
+					'id' => $id,
+					'gender' => $this->input->post('gender'),
+					'maritalstatus' => $this->input->post('maritalstatus'),
+					'addressline1' => $this->input->post('addressline1'),
+					'addressline2' => $this->input->post('addressline2'),
+					'city' => $this->input->post('city'),
+					'zipcode' => $this->input->post('zipcode'),
+					'ecname' => $this->input->post('ecname'),
+					'ecphone' => $this->input->post('ecphone'),
+					'insurancestart' => $this->input->post('insurancestart'),
+					'insuranceend' => $this->input->post('insuranceend'),
+					'insuranceprovider' => $this->input->post('insuranceprovider'),
+					'record' => $this->input->post('record'),
+					'treatments' => $this->input->post('treatments'),
+					'allergies' => $this->input->post('allergies'));
+			//insert info into patients database
+			$query = $this->db->insert('patients',$temp);
 		}
-		if($query2 && $query){
+		else if($role=='nurse')
+		{
+			$temp = array(
+					'id' => $id,
+					'specialization' => $this->input->post('specialization'),
+					'availability' => $this->input->post('availability'),
+					'department' => $this->input->post('department'));
+			//insert info into patients database
+			$query = $this->db->insert('nurses',$temp);
+		}
+		else if($role=='doctor')
+		{
+			$temp = array(
+					'id' => $id,
+					'specialization' => $this->input->post('specialization'),
+					'availability' => $this->input->post('availability'),
+					'experience' => $this->input->post('experience'));
+			//insert info into patients database
+			$query = $this->db->insert('doctors',$temp);
+		}
+		
+		/*if($query2){
 			return true;	
 		}
 		else return false;
-		
+		*/
 	}
 	
 	

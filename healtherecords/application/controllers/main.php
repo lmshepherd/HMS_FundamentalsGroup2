@@ -5,7 +5,7 @@ class Main extends CI_Controller
 {
 	//default page
 	public function index()
-	{
+	{	
 		$this->load->view('login_view');
 	}
 	
@@ -164,15 +164,15 @@ class Main extends CI_Controller
 	}
 	
 	//user clicks complete registration button on registration page
-	public function complete_registration($username)
+	public function complete_registration()
 	{
+		//TODO: form validation for registration page
+		
 		//load user model
 		$this->load->model('user');
 		//if db was updated
-		if($this->user->complete_new_user($username)){
-			if($this->load->view('patienthomepage_view')){
-				
-			}else echo 'lalala';
+		if($this->user->complete_new_user()){
+			$this->load->view('patienthomepage_view');
 		}else echo 'Uh-Oh, we could not submit your data.';
 	}
 }
