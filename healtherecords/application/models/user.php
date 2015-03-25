@@ -106,45 +106,46 @@ class User extends CI_Model
 	//user clicks complete registration button on registration page
 	public function complete_new_user($username)
 	{
-		//store form data as an array to pass to db
-		$temp1 = array('firstname' => $this->input->post('firstname'),
-				'lastname' => $this->input->post('lastname'),
-				'dob' => $this->input->post('dob'),
-				'homephone' => $this->input->post('homephone'),
-				'workphone' => $this->input->post('workphone'));
-		//insert data into db
-		$query = $this->db->update('userinfo',$temp1);
-		
 		//find id and role value in userinfo table
 		$this->db->where('username',$username);
-		//$temp = $this->db->get('userinfo');
+		$temp = $this->db->get('userinfo');
 		
-		//get role
-		//$role = $this->session->userdata('role');
+		//if user is in userinfo table, grab role and id
+		if($temp){
+			$role=$temp->role;
+			$idtemp=$temp->id;
 		
-		//test if patient and load patient data
-		//if($role=='patient'){
-			$ptemp = array(
-					'gender' => $this->input->post('gender'),
-					'maritalstatus' => $this->input->post('maritalstatus'),
-					'addressline1' => $this->input->post('addressline1'),
-					'addressline2' => $this->input->post('addressline2'),
-					'city' => $this->input->post('city'),
-					'zipcode' => $this->input->post('zipcode'),
-					'ecname' => $this->input->post('ecname'),
-					'ecphone' => $this->input->post('ecphone'),
-					'insurancestart' => $this->input->post('insurancestart'),
-					'insuranceend' => $this->input->post('insuranceend'),
-					'insuranceprovider' => $this->input->post('insuranceprovider'),
-					'record' => $this->input->post('record'),
-					'treatments' => $this->input->post('treatments'),
-					'allergies' => $this->input->post('allergies')
-			);
+			//store form data as an array to pass to db
+			$temp1 = array('firstname' => $this->input->post('firstname'),
+					'lastname' => $this->input->post('lastname'),
+					'dob' => $this->input->post('dob'),
+					'homephone' => $this->input->post('homephone'),
+					'workphone' => $this->input->post('workphone'));
+			//insert data into db
+			$query = $this->db->update('userinfo',$temp1,$idtemp);
 			
-			$query2 = $this->db->insert('patient2',$ptemp);
-		//}
-		
-		if($query2){
+			//test if patient and load patient data
+			if($role=='patient'){
+				$ptemp = array('id'=>$idtemp,
+						'gender' => $this->input->post('gender'),
+						'maritalstatus' => $this->input->post('maritalstatus'),
+						'addressline1' => $this->input->post('addressline1'),
+						'addressline2' => $this->input->post('addressline2'),
+						'city' => $this->input->post('city'),
+						'zipcode' => $this->input->post('zipcode'),
+						'ecname' => $this->input->post('ecname'),
+						'ecphone' => $this->input->post('ecphone'),
+						'insurancestart' => $this->input->post('insurancestart'),
+						'insuranceend' => $this->input->post('insuranceend'),
+						'insuranceprovider' => $this->input->post('insuranceprovider'),
+						'record' => $this->input->post('record'),
+						'treatments' => $this->input->post('treatments'),
+						'allergies' => $this->input->post('allergies')
+				);
+				$query2 = $this->db->insert('patient2',$ptemp);
+			}
+		}
+		if($query2 && $query){
 			return true;	
 		}
 		else return false;
