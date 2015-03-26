@@ -7,7 +7,7 @@ $role = $this->session->userdata('role');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><link rel="stylesheet" href="Generic.css" />
 	<meta charset="utf-8">
 	<title>Health E-Records New User Info</title>
 </head>
