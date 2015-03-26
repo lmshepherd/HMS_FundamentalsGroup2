@@ -23,24 +23,24 @@ $role = $this->session->userdata('role');
 		echo validation_errors();
 		
 		echo "<p>First Name: ";
-		echo form_input('firstname');
+		echo form_input('firstname',$this->input->post('firstname'));
 		echo "</p>";
 		
 		echo "<p>Last Name: ";
-		echo form_input('lastname');
+		echo form_input('lastname',$this->input->post('lastname'));
 		echo "</p>";
 		
 		echo "<p>Date of Birth: ";
-		echo form_input('dob');
+		echo form_input('dob',$this->input->post('dob'));
 		echo " Please use format YYYY-MM-DD";
 		echo "</p>";
 		
 		echo "<p>Home Phone: ";
-		echo form_input('homephone');
+		echo form_input('homephone',$this->input->post('homephone'));
 		echo "</p>";
 		
 		echo "<p>Work Phone: ";
-		echo form_input('workphone');
+		echo form_input('workphone',$this->input->post('workphone'));
 		echo "</p>";
 
 		if($role=='patient')

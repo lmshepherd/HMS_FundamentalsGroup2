@@ -17,7 +17,7 @@
 		echo validation_errors();
 		
 		echo "<p>Username: ";
-		echo form_input('username');
+		echo form_input('username',$this->input->post('username'));
 		echo "</p>";
 		
 		echo "<p>Password: ";
