@@ -36,6 +36,7 @@ echo "</p>";
 
 echo "<p>Emergency Contact Phone: ";
 echo form_input('ecphone',$this->input->post('ecphone'));
+echo " Please use format XXX-XXX-XXXX";
 echo "</p>";
 
 echo "<p>Insurance Start: ";

@@ -37,10 +37,12 @@ $role = $this->session->userdata('role');
 		
 		echo "<p>Home Phone: ";
 		echo form_input('homephone',$this->input->post('homephone'));
+		echo " Please use format XXX-XXX-XXXX";
 		echo "</p>";
 		
 		echo "<p>Work Phone: ";
 		echo form_input('workphone',$this->input->post('workphone'));
+		echo " Please use format XXX-XXX-XXXX";
 		echo "</p>";
 
 		if($role=='patient')

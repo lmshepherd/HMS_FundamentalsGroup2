@@ -191,9 +191,9 @@ class User extends CI_Model
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('firstname','First Name','required|trim');
 		$this->form_validation->set_rules('lastname','Last Name','required|trim');
-		$this->form_validation->set_rules('dob','Date of Birth','required|trim');
-		$this->form_validation->set_rules('homephone','Home Phone','required|trim');
-		$this->form_validation->set_rules('workphone','Work Phone','required|trim');
+		$this->form_validation->set_rules('dob','Date of Birth','required|trim|regex_match[/^[0-9]{4}-[0-9]{2}-[0-9]{2}/]');
+		$this->form_validation->set_rules('homephone','Home Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+		$this->form_validation->set_rules('workphone','Work Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
 	
 		if($this->form_validation->run())
 			return true;
@@ -212,9 +212,9 @@ class User extends CI_Model
 		$this->form_validation->set_rules('city','City','required|trim');
 		$this->form_validation->set_rules('zipcode','Zipcode','required|trim');
 		$this->form_validation->set_rules('ecname','Emergency Contact Name','required|trim');
-		$this->form_validation->set_rules('ecphone','Emergency Contact Phone','required|trim');
-		$this->form_validation->set_rules('insurancestart','Insurance Start','required|trim');
-		$this->form_validation->set_rules('insuranceend','Insurance End','required|trim');
+		$this->form_validation->set_rules('ecphone','Emergency Contact Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+		$this->form_validation->set_rules('insurancestart','Insurance Start','required|trim|regex_match[/^[0-9]{4}-[0-9]{2}-[0-9]{2}/]');
+		$this->form_validation->set_rules('insuranceend','Insurance End','required|trim|regex_match[/^[0-9]{4}-[0-9]{2}-[0-9]{2}/]');
 		$this->form_validation->set_rules('insuranceprovider','Insurance Provider','required|trim');
 		$this->form_validation->set_rules('record','Medical Record','required|trim');
 		$this->form_validation->set_rules('treatments','Treatments','required|trim');
@@ -223,7 +223,6 @@ class User extends CI_Model
 		if($this->form_validation->run())
 			return true;
 		else return false;
-	
 	}
 	
 	public function doctor_reg_validation()
@@ -237,7 +236,6 @@ class User extends CI_Model
 		if($this->form_validation->run())
 			return true;
 		else return false;
-	
 	}
 	
 	public function nurse_reg_validation()
@@ -251,6 +249,14 @@ class User extends CI_Model
 		if($this->form_validation->run())
 			return true;
 		else return false;
-	
 	}
+	/*
+	public function check_if_phone($number)
+	{
+		if(preg_match('/^[0-9]{3}-[0-9]{3}-[0-9]{4}/',$number))
+		{
+			return true;
+		}
+		else return false;
+	}*/
 }
