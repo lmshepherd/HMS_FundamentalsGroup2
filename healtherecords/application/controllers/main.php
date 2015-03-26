@@ -169,32 +169,37 @@ class Main extends CI_Controller
 	//user clicks complete registration button on registration page
 	public function complete_registration()
 	{
-		//TODO: form validation for registration page
-		$this->load->model('validation');
-		if((!$this->validation->reg_validation()))
+		//form validation for registration page
+		$this->load->model('user');
+		$role=$this->session->userdata('role');
+		
+		//$this->load->model('validation');
+		
+		if((!$this->user->reg_validation()))
 		{
 			$this->load->view("registration_view");
 			return;
 		}
-		if($this->session->userdata('role')=='patient')
+		
+		if($role=='patient')
 		{
-			if((!$this->validation->patient_reg_validation()))
+			if((!$this->user->patient_reg_validation()))
 			{
 				$this->load->view("registration_view");
 				return;
 			}
 		}
-		else if($this->session->userdata('role')=='doctor')
+		else if($role=='doctor')
 		{
-			if((!$this->validation->doctor_reg_validation()))
+			if((!$this->user->doctor_reg_validation()))
 			{
 				$this->load->view("registration_view");
 				return;
 			}
 		}
-		else if($this->session->userdata('role')=='nurse')
+		else if($role=='nurse')
 		{
-			if((!$this->validation->nurse_reg_validation()))
+			if((!$this->user->nurse_reg_validation()))
 			{
 				$this->load->view("registration_view");
 				return;

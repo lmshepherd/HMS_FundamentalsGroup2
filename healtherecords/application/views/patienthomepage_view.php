@@ -12,7 +12,12 @@ $query = $this->db->get('patients');
 $row = $query->row();
 
 echo '<p>Gender: ';
-echo $row->gender;
+if($row->gender == 'm'){
+	echo 'Male';
+}
+else{
+	echo 'Female';
+}
 echo '</p>';
 
 echo '<p>Marital Status: ';
