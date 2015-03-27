@@ -21,7 +21,15 @@ $role = $row->role;
 	<h1>Welcome to Health E-Records, <?php echo $row->firstname; ?></h1>
 	
 	<?php 
-	echo '<p>User Information: </p>';
+	echo '<p>'; 
+	if ($row->role=='patient')
+		echo 'Patient';
+	else if ($row->role=='nurse')
+		echo 'Nurse';
+	else if ($row->role=='doctor')
+		echo 'Doctor';
+	else echo 'Admin';
+	echo ' Information: </p>';
 	
 	echo '<p>Name: ';
 	echo $row->firstname;
