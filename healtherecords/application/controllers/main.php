@@ -247,4 +247,10 @@ class Main extends CI_Controller
 		}else echo 'Uh-Oh, we could not submit your data.';
 	}
 	
+	//patient clicks the "view medical record" link on the home page
+	public function view_medicalRecord()
+	{
+		$this->load->view('medicalRecordReadOnly_view');
+	}
+	
 }
