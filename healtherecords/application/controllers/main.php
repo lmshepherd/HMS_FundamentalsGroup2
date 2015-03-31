@@ -215,4 +215,36 @@ class Main extends CI_Controller
 			$this->load->view('homepage_view');
 		}else echo 'Uh-Oh, we could not submit your data.';
 	}
+	
+	//patient clicks the "complete medical record" link on the home page
+	public function complete_medicalRecord()
+	{
+		//form validation for registration page
+		$this->load->model('user');
+		$role=$this->session->userdata('role');
+	
+		//$this->load->model('validation');
+	
+		if((!$this->user->medicalRecord_validation()))
+		{
+			$this->load->view("medicalRecord_view");
+			return;
+		}
+	
+		if($role=='patient')
+		{
+			if((!$this->user->medicalRecord_validation()))
+			{
+				$this->load->view("medicalRecord_view");
+				return;
+			}
+		}
+		//load user model
+		$this->load->model('user');
+		//if db was updated
+		if($this->user->complete_medicalRecord()){
+			$this->load->view('patienthomepage_view');
+		}else echo 'Uh-Oh, we could not submit your data.';
+	}
+	
 }

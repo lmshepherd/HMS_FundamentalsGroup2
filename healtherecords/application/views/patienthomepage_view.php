@@ -71,4 +71,12 @@ echo '</p>';
 echo '<p>Allergies: ';
 echo $row->allergies;
 echo '</p>';
+
+echo form_open('main/complete_medicalRecord');
+
+echo "<p>";
+echo form_submit('medicalRecord_submit', 'Fill out Medical Record');
+echo "</p>";
+
+echo form_close();
 ?>

@@ -185,6 +185,49 @@ class User extends CI_Model
 		
 	}
 	
+	//user clicks complete registration button on registration page
+	public function complete_medicalRecord()
+	{
+		$this->db->where('link',$this->session->userdata('link'));
+		$query = $this->db->get('medical_record');
+	
+		//$id = $this->session->userdata('id');
+		$role = $this->session->userdata('role');
+		
+		//NOT SURE IF THIS WORKS
+		//$this->input->post($id);
+	
+		/*//get corresponding user id number
+		$this->db->select('id');
+		$this->db->where('username',$username);
+		$query = $this->db->get('userinfo');
+		$row = $query->row();
+		$id = $row->id;*/
+	
+		//test if patient and load patient data
+		if($role=='patient')
+		{
+			$temp = array(
+					'height' => $height,
+					'weight' => $this->input->post('weight'),
+					'surgery' => $this->input->post('surgery'),
+					'family' => $this->input->post('family'),
+					'religion' => $this->input->post('religion'),
+					'career' => $this->input->post('career'),
+					'alcohol' => $this->input->post('alcohol'),
+					'smoker' => $this->input->post('smoker'),
+					'other' => $this->input->post('other'));
+			//insert info into patients database
+			$query = $this->db->insert('medical_record',$temp);
+		}
+	
+		if($query){
+			return true;
+		}
+		else return false;
+	
+	}
+	
 	public function reg_validation()
 	{
 		//load form validation functions
@@ -250,13 +293,20 @@ class User extends CI_Model
 			return true;
 		else return false;
 	}
-	/*
-	public function check_if_phone($number)
+	
+	public function medicalRecord_validation()
 	{
-		if(preg_match('/^[0-9]{3}-[0-9]{3}-[0-9]{4}/',$number))
-		{
+		//load form validation functions
+		$this->load->library('form_validation');
+		/*$this->form_validation->set_rules('firstname','First Name','required|trim');
+		$this->form_validation->set_rules('lastname','Last Name','required|trim');
+		$this->form_validation->set_rules('dob','Date of Birth','required|trim|regex_match[/^[0-9]{4}-[0-9]{2}-[0-9]{2}/]');
+		$this->form_validation->set_rules('homephone','Home Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+		$this->form_validation->set_rules('workphone','Work Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');*/
+	
+		if($this->form_validation->run())
 			return true;
-		}
 		else return false;
-	}*/
+	
+	}
 }
