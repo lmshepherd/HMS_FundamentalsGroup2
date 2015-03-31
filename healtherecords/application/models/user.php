@@ -188,27 +188,16 @@ class User extends CI_Model
 	//user clicks complete registration button on registration page
 	public function complete_medicalRecord()
 	{
-		$this->db->where('link',$this->session->userdata('link'));
-		$query = $this->db->get('medical_record');
-	
-		//$id = $this->session->userdata('id');
-		$role = $this->session->userdata('role');
+		$id = $this->session->userdata('id');
 		
-		//NOT SURE IF THIS WORKS
-		//$this->input->post($id);
-	
-		/*//get corresponding user id number
-		$this->db->select('id');
-		$this->db->where('username',$username);
-		$query = $this->db->get('userinfo');
-		$row = $query->row();
-		$id = $row->id;*/
+		//$query = $this->db->get('medical_record');
+		$query = $this->db->insert('medical_record',$id);
 	
 		//test if patient and load patient data
 		if($role=='patient')
 		{
 			$temp = array(
-					'height' => $height,
+					'height' => $this->input->post('height'),
 					'weight' => $this->input->post('weight'),
 					'surgery' => $this->input->post('surgery'),
 					'family' => $this->input->post('family'),
@@ -218,7 +207,8 @@ class User extends CI_Model
 					'smoker' => $this->input->post('smoker'),
 					'other' => $this->input->post('other'));
 			//insert info into patients database
-			$query = $this->db->insert('medical_record',$temp);
+			$this->db->where('id', $id);
+			$query = $this->db->update('medical_record',$temp);
 		}
 	
 		if($query){

@@ -51,8 +51,6 @@ $role = $this->session->userdata('role');
 			$this->load->view('nurse_reg_view');
 		else if($role=='doctor')
 			$this->load->view('doctor_reg_view');
-		//else if($role=='admin')
-			//$this->load->view('admin_reg_view');
 		
 		echo "<p>";
 		echo form_submit('info_submit', 'Complete Registration!');
