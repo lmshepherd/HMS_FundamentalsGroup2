@@ -221,24 +221,14 @@ class Main extends CI_Controller
 	{
 		//form validation for registration page
 		$this->load->model('user');
-		$role=$this->session->userdata('role');
-	
-		//$this->load->model('validation');
+		$username=$this->session->userdata('username');
 	
 		if((!$this->user->medicalRecord_validation()))
 		{
 			$this->load->view("medicalRecord_view");
 			return;
 		}
-	
-		if($role=='patient')
-		{
-			if((!$this->user->medicalRecord_validation()))
-			{
-				$this->load->view("medicalRecord_view");
-				return;
-			}
-		}
+		
 		//load user model
 		$this->load->model('user');
 		//if db was updated

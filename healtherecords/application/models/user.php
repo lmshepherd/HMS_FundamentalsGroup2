@@ -188,28 +188,24 @@ class User extends CI_Model
 	//user clicks complete registration button on registration page
 	public function complete_medicalRecord()
 	{
-		$id = $this->session->userdata('id');
-		
+		$username = $this->session->userdata('username');
 		//$query = $this->db->get('medical_record');
-		$query = $this->db->insert('medical_record',$id);
+		$query = $this->db->insert('medical_record',$username);
 	
-		//test if patient and load patient data
-		if($role=='patient')
-		{
-			$temp = array(
-					'height' => $this->input->post('height'),
-					'weight' => $this->input->post('weight'),
-					'surgery' => $this->input->post('surgery'),
-					'family' => $this->input->post('family'),
-					'religion' => $this->input->post('religion'),
-					'career' => $this->input->post('career'),
-					'alcohol' => $this->input->post('alcohol'),
-					'smoker' => $this->input->post('smoker'),
-					'other' => $this->input->post('other'));
-			//insert info into patients database
-			$this->db->where('id', $id);
-			$query = $this->db->update('medical_record',$temp);
-		}
+		$temp = array(
+				'height' => $this->input->post('height'),
+				'weight' => $this->input->post('weight'),
+				'surgery' => $this->input->post('surgery'),
+				'family' => $this->input->post('family'),
+				'religion' => $this->input->post('religion'),
+				'career' => $this->input->post('career'),
+				'alcohol' => $this->input->post('alcohol'),
+				'smoker' => $this->input->post('smoker'),
+				'other' => $this->input->post('other'));
+			
+		//insert info into patients database
+		$this->db->where('username', $username);
+		$query = $this->db->update('medical_record',$temp);
 	
 		if($query){
 			return true;
