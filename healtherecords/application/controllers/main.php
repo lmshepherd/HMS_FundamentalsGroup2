@@ -216,7 +216,7 @@ class Main extends CI_Controller
 		}else echo 'Uh-Oh, we could not submit your data.';
 	}
 	
-	//patient clicks the "complete medical record" link on the home page
+	//patient clicks the "fill out medical record" link on their home page
 	public function complete_medicalRecord()
 	{
 		//form validation for registration page
@@ -233,7 +233,7 @@ class Main extends CI_Controller
 		$this->load->model('user');
 		//if db was updated
 		if($this->user->complete_medicalRecord()){
-			$this->load->view('patienthomepage_view');
+			$this->load->view('homepage_view');
 		}else echo 'Uh-Oh, we could not submit your data.';
 	}
 	

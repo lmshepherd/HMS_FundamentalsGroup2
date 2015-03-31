@@ -188,9 +188,8 @@ class User extends CI_Model
 	//user clicks complete registration button on registration page
 	public function complete_medicalRecord()
 	{
-		$username = $this->session->userdata('username');
-		//$query = $this->db->get('medical_record');
-		$query = $this->db->insert('medical_record',$username);
+		//$username = $this->session->userdata('username');
+		//$this->db->where('username',$username);
 	
 		$temp = array(
 				'height' => $this->input->post('height'),
@@ -204,7 +203,7 @@ class User extends CI_Model
 				'other' => $this->input->post('other'));
 			
 		//insert info into patients database
-		$this->db->where('username', $username);
+		//$this->db->where('username', $username);
 		$query = $this->db->update('medical_record',$temp);
 	
 		if($query){
@@ -284,8 +283,8 @@ class User extends CI_Model
 	{
 		//load form validation functions
 		$this->load->library('form_validation');
-		/*$this->form_validation->set_rules('firstname','First Name','required|trim');
-		$this->form_validation->set_rules('lastname','Last Name','required|trim');
+		$this->form_validation->set_rules('weight','Weight','required|trim');
+		/*$this->form_validation->set_rules('lastname','Last Name','required|trim');
 		$this->form_validation->set_rules('dob','Date of Birth','required|trim|regex_match[/^[0-9]{4}-[0-9]{2}-[0-9]{2}/]');
 		$this->form_validation->set_rules('homephone','Home Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
 		$this->form_validation->set_rules('workphone','Work Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');*/
