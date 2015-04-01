@@ -69,6 +69,10 @@ $username = $this->session->userdata('username');
 	</div>
 	
 	<a href = '<?php 
+		echo base_url(),"index.php/main/home"
+		?>'>Back to Home</a>
+	
+	<a href = '<?php 
 		echo base_url(),"index.php/main"
 		?>'>Back to Login</a>
 </div>
