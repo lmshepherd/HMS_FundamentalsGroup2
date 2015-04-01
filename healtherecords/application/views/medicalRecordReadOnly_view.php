@@ -1,7 +1,11 @@
 <?php 
 $username = $this->session->userdata('username');
-
 $this->db->where('username',$username);
+$query = $this->db->get('userinfo');
+$row = $query->row();
+
+$id = $row->id;
+$this->db->where('id',$id);
 $query = $this->db->get('medical_record');
 $row = $query->row();
 ?>

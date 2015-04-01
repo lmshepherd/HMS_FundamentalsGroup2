@@ -156,6 +156,10 @@ class User extends CI_Model
 					'allergies' => $this->input->post('allergies'));
 			//insert info into patients database
 			$query = $this->db->insert('patients',$temp);
+			
+			$temp = array(
+				'id' => $id);
+			$query = $this->db->insert('medical_record',$temp);
 		}
 		else if($role=='nurse')
 		{
