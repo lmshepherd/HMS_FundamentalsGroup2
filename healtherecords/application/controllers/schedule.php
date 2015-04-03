@@ -13,15 +13,27 @@ class Schedule extends CI_Controller
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('sunstart','Sunday Start Time','callback_check_times');
-		/*$this->form_validation->set_rules('monstart','Monsday Start Time','less_than[monend]');
-		$this->form_validation->set_rules('tuestart','Tuesday Start Time','less_than[tueend]');
-		$this->form_validation->set_rules('wedstart','Wednesday Start Time','less_than[wedend]');
-		$this->form_validation->set_rules('thustart','Thursday Start Time','less_than[thuend]');
-		$this->form_validation->set_rules('fristart','Friday Start Time','less_than[friend]');
-		$this->form_validation->set_rules('satstart','Saturday Start Time','less_than[satend]');*/
+
 		
 		if ($this->form_validation->run())
 		{
+			$username = $this->session->userdata('username');
+			//get id from userinfo table
+			$this->db->where('username',$username);
+			$query = $this->db->get('userinfo');
+			$row = $query->row();
+			
+			$temp = array('id' => $row->id,
+					'sunstart' => $this->input->post('sunstart'),'sunend' => $this->input->post('sunend'),
+					'monstart' => $this->input->post('monstart'),'monend' => $this->input->post('monend'),
+					'tuestart' => $this->input->post('tuestart'),'tueend' => $this->input->post('tueend'),
+					'wedstart' => $this->input->post('wedstart'),'wedend' => $this->input->post('wedend'),
+					'thustart' => $this->input->post('thustart'),'thuend' => $this->input->post('thuend'),
+					'fristart' => $this->input->post('fristart'),'friend' => $this->input->post('friend'),
+					'satstart' => $this->input->post('satstart'),'satend' => $this->input->post('satend'));
+				
+			$query = $this->db->update('schedule',$temp);
+			
 			$this->load->view('homepage_view');
 		}
 		else $this->load->view('schedule_view');
