@@ -17,7 +17,7 @@ $time_options = array('0'=>'12:00am',
 		'17'=>'5:00pm','18'=>'6:00pm',
 		'19'=>'7:00pm','20'=>'8:00pm',
 		'21'=>'9:00pm','22'=>'10:00pm',
-		'23'=>'11:00pm');
+		'23'=>'11:00pm','23'=>'11:59pm','25'=>'none');
 $this->table->set_heading('','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 $this->table->add_row('Start time:',
 		form_dropdown('sunstart',$time_options,'9'),
