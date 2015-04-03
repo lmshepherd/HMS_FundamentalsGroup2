@@ -22,11 +22,31 @@
 				type: "POST",
 				//update html inside doctor_list div to be what is returned
 				success: function(data){
+					//update doctor list div
 					$("#doctor_list").html(data);
+					//clear doctor schedule div
+					$("#doctor_schedule").html("");
 				}
 			});
 		});
 	});
+
+	function select_doctor(button) 
+	{
+		$.ajax({
+			//run doctor_availability function of appointment controller
+			url:"<?php echo base_url();?>index.php/appointment/doctor_availability",
+			//set data value of POST to button clicked
+			data: {id: $(button).attr('id')},
+			type: "POST",
+			//update html inside doctor_schedule div to be what is returned
+			success: function(data){
+				$("#doctor_schedule").html(data);
+			}
+		});
+		 
+		//return false;
+	};
 	</script>
 	
 </head>
@@ -49,8 +69,13 @@
 	echo "</p>";
 	?>
 	
+	<?php $attributes = array('id'=>'doctor_form');
+	echo form_open('',$attributes); 
+	?>
 	<div id="doctor_list" ></div>
-	<div id="result"></div>
+	<?php echo form_close(); ?>
+	
+	<div id="doctor_schedule"></div>
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/home"

@@ -112,7 +112,7 @@ class Main extends CI_Controller
 			$this->load->library('email',$config);
 			$this->email->set_newline("\r\n");
 			//set up email to be sent
-			$this->email->from('admin@healtherecords.com','Chuck');
+			$this->email->from('admin@healtherecords.com','Health E-Records Registration');
 			$this->email->to($this->input->post('email'));
 			$this->email->subject('Confirm your Health E-Records account!');
 			

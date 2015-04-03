@@ -177,7 +177,8 @@ class User extends CI_Model
 					'id' => $id,
 					'specialization' => $this->input->post('specialization'),
 					'availability' => $this->input->post('availability'),
-					'experience' => $this->input->post('experience'));
+					'experience' => $this->input->post('experience'),
+					'gender' => $this->input->post('gender'));
 			//insert info into patients database
 			$query = $this->db->insert('doctors',$temp);
 		}
