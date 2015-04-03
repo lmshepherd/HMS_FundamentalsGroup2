@@ -21,3 +21,9 @@ echo '</p>';
 echo '<p>Availability: ';
 echo $row->availability;
 echo '</p>';
+
+echo form_open('schedule/change_schedule');
+echo "<p>";
+echo form_submit('schedule_submit', 'Change Schedule');
+echo "</p>";
+echo form_close();

@@ -21,6 +21,7 @@ class Main extends CI_Controller
 		//if login form entries pass validation test
 		if ($this->form_validation->run())
 		{
+			
 			//save session data in an array
 			$sessiondata = array('username' => $this->input->post('username'), 'is_logged_in' => 1);
 			//create session with session data

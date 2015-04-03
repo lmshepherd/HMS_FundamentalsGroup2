@@ -166,7 +166,7 @@ class User extends CI_Model
 			$temp = array(
 					'id' => $id,
 					'specialization' => $this->input->post('specialization'),
-					'availability' => $this->input->post('availability'),
+					//'availability' => $this->input->post('availability'),
 					'department' => $this->input->post('department'));
 			//insert info into patients database
 			$query = $this->db->insert('nurses',$temp);
@@ -176,11 +176,26 @@ class User extends CI_Model
 			$temp = array(
 					'id' => $id,
 					'specialization' => $this->input->post('specialization'),
-					'availability' => $this->input->post('availability'),
+					//'availability' => $this->input->post('availability'),
 					'experience' => $this->input->post('experience'),
 					'gender' => $this->input->post('gender'));
+			
 			//insert info into patients database
 			$query = $this->db->insert('doctors',$temp);
+		}
+		
+		if ($role=='doctor' || $role=='nurse')
+		{
+			$temp2 = array('id' => $id,
+					'sunstart' => $this->input->post('sunstart'),'sunend' => $this->input->post('sunend'),
+					'monstart' => $this->input->post('monstart'),'monend' => $this->input->post('monend'),
+					'tuestart' => $this->input->post('tuestart'),'tueend' => $this->input->post('tueend'),
+					'wedstart' => $this->input->post('wedstart'),'wedend' => $this->input->post('wedend'),
+					'thustart' => $this->input->post('thustart'),'thuend' => $this->input->post('thuend'),
+					'fristart' => $this->input->post('fristart'),'friend' => $this->input->post('friend'),
+					'satstart' => $this->input->post('satstart'),'satend' => $this->input->post('satend'));
+			
+			$query2 = $this->db->insert('schedule',$temp2);
 		}
 		
 		if($query){
@@ -264,7 +279,7 @@ class User extends CI_Model
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('specialization','Specialization','required|trim');
 		$this->form_validation->set_rules('experience','Experience','required|trim');
-		$this->form_validation->set_rules('availability','Availability','required|trim');
+		//$this->form_validation->set_rules('availability','Availability','required|trim');
 	
 		if($this->form_validation->run())
 			return true;
