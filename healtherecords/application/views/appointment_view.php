@@ -15,9 +15,12 @@
 		//send post when specialty dropdown value changes
 		$("#spec").change(function(){
 			$.ajax({
+				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_specialization",
+				//set data value of POST to value selected in dropdown box
 				data: {specialization: $(this).val()},
 				type: "POST",
+				//update html inside doctor_list div to be what is returned
 				success: function(data){
 					$("#doctor_list").html(data);
 				}
