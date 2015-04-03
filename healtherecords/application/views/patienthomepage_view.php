@@ -88,4 +88,10 @@ echo "</p>";
 
 echo form_close();
 
+echo form_open('appointment/make_appointment');
+echo "<p>";
+echo form_submit('appointment_submit', 'Make an Appointment');
+echo "</p>";
+echo form_close();
+
 ?>
