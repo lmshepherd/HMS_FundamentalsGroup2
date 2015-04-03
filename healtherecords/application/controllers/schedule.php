@@ -23,7 +23,7 @@ class Schedule extends CI_Controller
 			$query = $this->db->get('userinfo');
 			$row = $query->row();
 			
-			$temp = array('id' => $row->id,
+			$temp = array(
 					'sunstart' => $this->input->post('sunstart'),'sunend' => $this->input->post('sunend'),
 					'monstart' => $this->input->post('monstart'),'monend' => $this->input->post('monend'),
 					'tuestart' => $this->input->post('tuestart'),'tueend' => $this->input->post('tueend'),
@@ -31,7 +31,7 @@ class Schedule extends CI_Controller
 					'thustart' => $this->input->post('thustart'),'thuend' => $this->input->post('thuend'),
 					'fristart' => $this->input->post('fristart'),'friend' => $this->input->post('friend'),
 					'satstart' => $this->input->post('satstart'),'satend' => $this->input->post('satend'));
-				
+			$this->db->where('id',$row->id);
 			$query = $this->db->update('schedule',$temp);
 			
 			$this->load->view('homepage_view');

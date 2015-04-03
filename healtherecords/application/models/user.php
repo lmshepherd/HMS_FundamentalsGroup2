@@ -165,7 +165,7 @@ class User extends CI_Model
 		{
 			$temp = array(
 					'id' => $id,
-					'specialization' => $this->input->post('specialization'),
+					//'specialization' => $this->input->post('specialization'),
 					//'availability' => $this->input->post('availability'),
 					'department' => $this->input->post('department'));
 			//insert info into patients database
@@ -290,9 +290,9 @@ class User extends CI_Model
 	{
 		//load form validation functions
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('specialization','Specialization','required|trim');
+		//$this->form_validation->set_rules('specialization','Specialization','required|trim');
 		$this->form_validation->set_rules('department','Department','required|trim');
-		$this->form_validation->set_rules('availability','Availability','required|trim');
+		//$this->form_validation->set_rules('availability','Availability','required|trim');
 	
 		if($this->form_validation->run())
 			return true;

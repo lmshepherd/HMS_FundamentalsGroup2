@@ -1,7 +1,8 @@
 <?php
+/*
 echo "<p>Specialization: ";
 echo form_input('specialization',$this->input->post('specialization'));
-echo "</p>";
+echo "</p>";*/
 
 echo "<p>Availability: ";
 $time_options = array('0'=>'12:00am',

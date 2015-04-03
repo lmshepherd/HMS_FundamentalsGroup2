@@ -17,13 +17,13 @@ echo '</p>';
 echo '<p>Experience: ';
 echo $row->experience;
 echo '</p>';
-
+/*
 echo '<p>Availability: ';
 echo $row->availability;
-echo '</p>';
+echo '</p>';*/
 
 echo form_open('schedule/change_schedule');
 echo "<p>";
-echo form_submit('schedule_submit', 'Change Schedule');
+echo form_submit('schedule_submit', 'View/Change Schedule');
 echo "</p>";
 echo form_close();
