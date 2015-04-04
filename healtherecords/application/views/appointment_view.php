@@ -4,11 +4,20 @@
 	<meta charset="utf-8">
 	<title>Health E-Records</title>
 	
+	<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/flick/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<!-- load jquery javascript ajax communication -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	
 	<script type="text/javascript">
+
+	$(document).ready (function() {
+	    $( "#datepicker" ).datepicker({
+			changeYear: true,
+			changeMonth: true,
+			minDate: new Date()
+		});
+	  }); 
 
 	//check that document is loaded
 	$(document).ready(function(){
@@ -76,6 +85,7 @@
 	<?php echo form_close(); ?>
 	
 	<div id="doctor_schedule"></div>
+	<input type="text" name="appointment" id="datepicker"><br>
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/home"
