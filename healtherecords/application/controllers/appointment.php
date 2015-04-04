@@ -65,7 +65,7 @@ class Appointment extends CI_Controller
     
     public function doctor_availability()
     {
-    	$this->load->library('calendar');
+    	//$this->load->library('calendar');
     	
     	//echo 'test';
     	$id = $this->input->post('id');
@@ -73,8 +73,10 @@ class Appointment extends CI_Controller
     	$this->db->where('id',$id);
     	$query = $this->db->get();
     	$row = $query->row();
-    	echo '<p>Availability for '.$row->firstname.' '.$row->lastname.':</p>';
-    	echo $this->calendar->generate();
+    	//echo '<p>Availability for '.$row->firstname.' '.$row->lastname.':</p>';
+    	echo "Appointment Date:"; 
+    	//echo '<input type="text" name="appointment" id="datepicker"><br>';
+    	//echo $this->calendar->generate();
     }
 	
 }
