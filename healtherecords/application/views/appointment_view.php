@@ -10,12 +10,18 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	
 	<script type="text/javascript">
-
+	
 	$(document).ready (function() {
 	    $( "#datepicker" ).datepicker({
 			changeYear: true,
 			changeMonth: true,
-			minDate: new Date()
+			minDate: new Date(),
+		    inline: true,
+		    dateFormat: 'yy-m-d',
+			onSelect: function(event, ui) {
+			    var date = $(this).datepicker('getDate');
+			    var dayOfWeek = date.getUTCDay();
+			}
 		});
 	  }); 
 
@@ -77,12 +83,6 @@
 		 
 		//return false;
 	};
-
-	$(".date").datepicker({
-		  onSelect: function(dateText) {
-		    alert("change");
-		  }
-		});
 	
 	</script>
 	
@@ -114,12 +114,6 @@
 	
 	<div id="doctor_schedule"></div>
 	<input type="text" class="date" name="appointment" id="datepicker"><br>
-	
-	<select id='time'>
-	<?php for($i = 1; $i <= 24; $i++): ?>
-    	<option value="<?= $i; ?>"><?= date("h.iA", strtotime("$i:00")); ?></option>
-	<?php endfor; ?>
-	</select>
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/home"
