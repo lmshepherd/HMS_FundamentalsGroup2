@@ -77,6 +77,13 @@
 		 
 		//return false;
 	};
+
+	$(".date").datepicker({
+		  onSelect: function(dateText) {
+		    alert("change");
+		  }
+		});
+	
 	</script>
 	
 </head>

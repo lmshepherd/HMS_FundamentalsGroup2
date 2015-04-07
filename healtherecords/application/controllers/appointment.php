@@ -116,12 +116,19 @@ class Appointment extends CI_Controller
     	
     	//echo 'test';
     	$id = $this->input->post('id');
-    	$this->db->from('userinfo');
+    	$this->db->from('schedule');
     	$this->db->where('id',$id);
     	$query = $this->db->get();
     	$row = $query->row();
-    	//echo '<p>Availability for '.$row->firstname.' '.$row->lastname.':</p>';
-    	echo "Appointment Date:<br>";
+    	echo '<p>Availability for start sunday: '.$row->sunstart.'</p>';
+    	
+    	$options = array();
+    	
+    	for($hours=$row->sunstart; $hours<$row->sunend; $hours++) // the interval for hours is '1'
+    		array_push($options,str_pad($hours,2,'0',STR_PAD_LEFT).':00');
+    	
+    	echo form_dropdown('shirts', $options);
+    	//echo "Appointment Date:<br>";
     	
     	//echo '<input type="text" name="appointment" id="datepicker"><br>';
     	//echo $this->calendar->generate();
