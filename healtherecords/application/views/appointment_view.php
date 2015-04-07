@@ -40,6 +40,27 @@
 		});
 	});
 
+	//check that document is loaded
+	$(document).ready(function(){
+		//send post when specialty dropdown value changes
+		$("#spec").change(function(){
+			$.ajax({
+				//run select_specialization function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/select_specialization",
+				//set data value of POST to value selected in dropdown box
+				data: {specialization: $(this).val()},
+				type: "POST",
+				//update html inside doctor_list div to be what is returned
+				success: function(data){
+					//update doctor list div
+					$("#doctor_list").html(data);
+					//clear doctor schedule div
+					$("#doctor_schedule").html("");
+				}
+			});
+		});
+	});
+
 	function select_doctor(button) 
 	{
 		$.ajax({
@@ -85,15 +106,21 @@
 	<?php echo form_close(); ?>
 	
 	<div id="doctor_schedule"></div>
-	<input type="text" name="appointment" id="datepicker"><br>
+	<input type="text" class="date" name="appointment" id="datepicker"><br>
+	
+	<select id='time'>
+	<?php for($i = 1; $i <= 24; $i++): ?>
+    	<option value="<?= $i; ?>"><?= date("h.iA", strtotime("$i:00")); ?></option>
+	<?php endfor; ?>
+	</select>
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/home"
-		?>'>Back to Home</a>
+		?>'><br>Back to Home</a>
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/logout"
-	?>'>Logout</a>
+	?>'><br>Logout</a>
 
 </div>
 
