@@ -124,10 +124,42 @@ class Appointment extends CI_Controller
     	
     	$options = array();
     	
-    	for($hours=$row->sunstart; $hours<$row->sunend; $hours++) // the interval for hours is '1'
+    	//HARDCODED RIGHT NOW. EVENTUALLY GET THIS NUMBER FROM DATEPICKER USER INPUT
+    	$day=4;
+    	
+    	if($day==0){
+    		$start=$row->sunstart;
+    		$end=$row->sunend;
+    	}
+    	else if($day==1){
+    		$start=$row->monstart;
+    		$end=$row->monend;
+    	}
+    	else if($day==2){
+    		$start=$row->tuestart;
+    		$end=$row->tueend;
+    	}
+    	else if($day==3){
+    		$start=$row->wedstart;
+    		$end=$row->wedend;
+    	}
+    	else if($day==4){
+    		$start=$row->thustart;
+    		$end=$row->thuend;
+    	}
+    	else if($day==5){
+    		$start=$row->fristart;
+    		$end=$row->friend;
+    	}
+    	else if($day==6){
+    		$start=$row->satstart;
+    		$end=$row->satend;
+    	}
+    	
+    	for($hours=$start; $hours<$end; $hours++) // the interval for hours is '1'
     		array_push($options,str_pad($hours,2,'0',STR_PAD_LEFT).':00');
     	
-    	echo form_dropdown('shirts', $options);
+    	echo form_dropdown('hours', $options);
     	//echo "Appointment Date:<br>";
     	
     	//echo '<input type="text" name="appointment" id="datepicker"><br>';
