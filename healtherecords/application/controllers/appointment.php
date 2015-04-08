@@ -73,7 +73,7 @@ class Appointment extends CI_Controller
     
     public function doctor_availability()
     {	
-    	$this->load->helper('date');
+    	//$this->load->helper('date');
     	
     	$year = $this->input->post('year')-100;
     	$month = $this->input->post('month')+1;
@@ -82,7 +82,7 @@ class Appointment extends CI_Controller
     	
     	$this->session->set_userdata('aptdate', $date);
     	
-    	$day = $this->input->post('dayOfWeek');
+    	$dayOfWeek = $this->input->post('dayOfWeek');
     	
     	$id = $this->session->userdata('selected_doctor');
     	$this->db->from('schedule');
@@ -92,46 +92,62 @@ class Appointment extends CI_Controller
     	
     	$options = array();
     		
-    	if($day==0){
+    	if($dayOfWeek==0){
     		echo '<p>Availability for Sunday: </p>';
     		$start=$row->sunstart;
     		$end=$row->sunend;
     	}
-    	else if($day==1){
+    	else if($dayOfWeek==1){
     		echo '<p>Availability for Monday: </p>';
     		$start=$row->monstart;
     		$end=$row->monend;
     	}
-    	else if($day==2){
+    	else if($dayOfWeek==2){
     		echo '<p>Availability for Tuesday: </p>';
     		$start=$row->tuestart;
     		$end=$row->tueend;
     	}
-    	else if($day==3){
+    	else if($dayOfWeek==3){
     		echo '<p>Availability for Wednesday: </p>';
     		$start=$row->wedstart;
     		$end=$row->wedend;
     	}
-    	else if($day==4){
+    	else if($dayOfWeek==4){
     		echo '<p>Availability for Thursday: </p>';
     		$start=$row->thustart;
     		$end=$row->thuend;
     	}
-    	else if($day==5){
+    	else if($dayOfWeek==5){
     		echo '<p>Availability for Friday: </p>';
     		$start=$row->fristart;
     		$end=$row->friend;
     	}
-    	else if($day==6){
+    	else if($dayOfWeek==6){
     		echo '<p>Availability for Saturday: </p>';
     		$start=$row->satstart;
     		$end=$row->satend;
     	}
     	
     	for($hours=$start; $hours<$end; $hours++) // the interval for hours is '1'
-    		array_push($options,str_pad($hours,2,'0',STR_PAD_LEFT).':00');
+    	{
+    		$options[$hours] = str_pad($hours,2,'0',STR_PAD_LEFT).':00';
+    		//array_push($options,$hours => str_pad($hours,2,'0',STR_PAD_LEFT).':00');
+    	}
     	
+    	
+    	echo form_open('appointment/appointment_submit');
+    	echo "<p>";
     	echo form_dropdown('hours', $options);
+    	echo "</p>";
+    	echo "<p>";
+    	echo form_submit('appointment_submit', 'Complete Appointment!');
+    	echo "</p>";
+    	echo "<p>";
+    	echo form_close();
+    	echo "</p>";
+    	
+    	
+    	
     	//echo "Appointment Date:<br>";
     	
     	//echo '<input type="text" name="appointment" id="datepicker"><br>';

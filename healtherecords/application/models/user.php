@@ -263,6 +263,7 @@ class User extends CI_Model
 				'date' => $date,
 				'hour' => $this->input->post('hours')
 		);
+		echo 'post output: '.$this->input->post('hours');
 		
 		
 		$docid = $this->session->userdata('selected_doctor');

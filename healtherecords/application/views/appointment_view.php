@@ -116,17 +116,7 @@
 	
 	<div id="doctor_schedule"></div>
 	
-	<?php 
-		echo "<p>";
-		echo form_open('appointment/appointment_submit');
-		echo "</p>";
-		echo "<p>";
-		echo form_submit('appointment_submit', 'Complete Appointment!');
-		echo "</p>";
-		echo "<p>";
-		echo form_close();
-		echo "</p>";
-	?>
+	
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/home"
