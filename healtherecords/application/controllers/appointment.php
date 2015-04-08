@@ -126,50 +126,49 @@ class Appointment extends CI_Controller
     	$month = $this->input->post('month')+1;
     	$day = $this->input->post('day');
     	$date = $year.'-'.$month.'-'.$day;
-    	echo $date.' ';
     	
-    	$dayOfWeek = $this->input->post('dayOfWeek');
-    	echo $dayOfWeek;
+    	$day = $this->input->post('dayOfWeek');
     	
-    	
-    	//echo 'test';
     	$id = $this->session->userdata('selected_doctor');
     	$this->db->from('schedule');
     	$this->db->where('id',$id);
     	$query = $this->db->get();
     	$row = $query->row();
-    	echo '<p>Availability for start sunday: </p>';
     	
     	$options = array();
-    	
-    	//HARDCODED RIGHT NOW. EVENTUALLY GET THIS NUMBER FROM DATEPICKER USER INPUT
-    	$day=4;
-    	
+    		
     	if($day==0){
+    		echo '<p>Availability for Sunday: </p>';
     		$start=$row->sunstart;
     		$end=$row->sunend;
     	}
     	else if($day==1){
+    		echo '<p>Availability for Monday: </p>';
     		$start=$row->monstart;
     		$end=$row->monend;
     	}
     	else if($day==2){
+    		echo '<p>Availability for Tuesday: </p>';
     		$start=$row->tuestart;
     		$end=$row->tueend;
     	}
     	else if($day==3){
+    		echo '<p>Availability for Wednesday: </p>';
     		$start=$row->wedstart;
     		$end=$row->wedend;
     	}
     	else if($day==4){
+    		echo '<p>Availability for Thursday: </p>';
     		$start=$row->thustart;
     		$end=$row->thuend;
     	}
     	else if($day==5){
+    		echo '<p>Availability for Friday: </p>';
     		$start=$row->fristart;
     		$end=$row->friend;
     	}
     	else if($day==6){
+    		echo '<p>Availability for Saturday: </p>';
     		$start=$row->satstart;
     		$end=$row->satend;
     	}
