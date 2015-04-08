@@ -63,6 +63,14 @@ class Appointment extends CI_Controller
     	}
     }
     
+    public function select_doctor()
+    {
+    	//get doctor id from post
+    	$id = $this->input->post('id');
+    	//store id of selected doctor in session data
+    	$this->session->set_userdata('selected_doctor', $id);
+    }
+    /*
     public function select_date()
     {
     	//get specialization from post
@@ -107,20 +115,34 @@ class Appointment extends CI_Controller
     		}
     		else echo '<p>No doctors with that specialty available.</p>';
     	}
-    }
+    }*/
     
     
     public function doctor_availability()
     {	
-    	//$this->load->library('calendar');
+    	$this->load->helper('date');
+    	
+    	$year = $this->input->post('year')-100;
+    	//echo $year.' ';
+    	$month = $this->input->post('month')+1;
+    	//echo $month.' ';
+    	$day = $this->input->post('day');
+    	//echo $day.' ';
+    	
+    	$date = $year.'-'.$month.'-'.$day;
+    	echo $date.' ';
+    	
+    	$dayOfWeek = $this->input->post('dayOfWeek');
+    	echo $dayOfWeek;
+    	
     	
     	//echo 'test';
-    	$id = $this->input->post('id');
+    	$id = $this->session->userdata('selected_doctor');
     	$this->db->from('schedule');
     	$this->db->where('id',$id);
     	$query = $this->db->get();
     	$row = $query->row();
-    	echo '<p>Availability for start sunday: '.$row->sunstart.'</p>';
+    	echo '<p>Availability for start sunday: </p>';
     	
     	$options = array();
     	

@@ -17,10 +17,25 @@
 			changeMonth: true,
 			minDate: new Date(),
 		    inline: true,
-		    dateFormat: 'yy-m-d',
+		    dateFormat: 'yy-mm-dd',
 			onSelect: function(event, ui) {
 			    var date = $(this).datepicker('getDate');
+			    var year = date.getYear();
+			    var month = date.getMonth();
+			    var day = date.getDate();
 			    var dayOfWeek = date.getUTCDay();
+			    $.ajax({
+					//run doctor_availability function of appointment controller
+					url:"<?php echo base_url();?>index.php/appointment/doctor_availability",
+					//set data value of POST to value selected in dropdown box
+					data: {year: year, month:month, day:day, dayOfWeek: dayOfWeek},
+					type: "POST",
+					//update html inside doctor_list div to be what is returned
+					success: function(data){
+						//update doctor list div
+						$("#doctor_schedule").html(data);
+					}
+				});
 			}
 		});
 	  }); 
@@ -49,19 +64,17 @@
 	//check that document is loaded
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
-		$("#spec").change(function(){
+		$("#datepicker").change(function(){
 			$.ajax({
 				//run select_specialization function of appointment controller
-				url:"<?php echo base_url();?>index.php/appointment/select_specialization",
+				url:"<?php echo base_url();?>index.php/appointment/doctor_availability",
 				//set data value of POST to value selected in dropdown box
-				data: {specialization: $(this).val()},
+				data: {date: $(this).val()},
 				type: "POST",
 				//update html inside doctor_list div to be what is returned
 				success: function(data){
 					//update doctor list div
-					$("#doctor_list").html(data);
-					//clear doctor schedule div
-					$("#doctor_schedule").html("");
+					$("#doctor_schedule").html(data);
 				}
 			});
 		});
@@ -71,13 +84,14 @@
 	{
 		$.ajax({
 			//run doctor_availability function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/doctor_availability",
+			url:"<?php echo base_url();?>index.php/appointment/select_doctor",
 			//set data value of POST to button clicked
 			data: {id: $(button).attr('id')},
 			type: "POST",
 			//update html inside doctor_schedule div to be what is returned
 			success: function(data){
 				$("#doctor_schedule").html(data);
+				$("#date_list").show();
 			}
 		});
 		 
@@ -112,8 +126,12 @@
 	<div id="doctor_list" ></div>
 	<?php echo form_close(); ?>
 	
-	<div id="doctor_schedule"></div>
+	<div id="date_list" style="display: none;">
+	<?php echo 'Date: ' ?>
 	<input type="text" class="date" name="appointment" id="datepicker"><br>
+	</div>
+	
+	<div id="doctor_schedule"></div>
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/home"

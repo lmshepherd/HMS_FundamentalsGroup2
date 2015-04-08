@@ -198,6 +198,20 @@ class User extends CI_Model
 			$query2 = $this->db->insert('schedule',$temp2);
 		}
 		
+		$this->load->dbforge();
+		$fields = array(
+					'patient_id' => array('type' => 'INT',
+									'constraint' => '12'),
+					'date' => array('type' => 'VARCHAR',
+									'constraint' => '10'),
+					'hour' => array('type' => 'INT',
+									'constraint' => '2')
+					);
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('patient_id', TRUE);
+		$table_name = $id.'_appts';
+		$this->dbforge->create_table($table_name);
+		
 		if($query){
 			return true;	
 		}
