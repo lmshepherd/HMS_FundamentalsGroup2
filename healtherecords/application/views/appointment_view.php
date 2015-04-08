@@ -61,24 +61,7 @@
 		});
 	});
 
-	//check that document is loaded
-	$(document).ready(function(){
-		//send post when specialty dropdown value changes
-		$("#datepicker").change(function(){
-			$.ajax({
-				//run select_specialization function of appointment controller
-				url:"<?php echo base_url();?>index.php/appointment/doctor_availability",
-				//set data value of POST to value selected in dropdown box
-				data: {date: $(this).val()},
-				type: "POST",
-				//update html inside doctor_list div to be what is returned
-				success: function(data){
-					//update doctor list div
-					$("#doctor_schedule").html(data);
-				}
-			});
-		});
-	});
+
 
 	function select_doctor(button) 
 	{
