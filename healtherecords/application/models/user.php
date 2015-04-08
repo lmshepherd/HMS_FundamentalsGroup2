@@ -247,6 +247,36 @@ class User extends CI_Model
 	
 	}
 	
+	public function apt_toDatabase(){
+		$date = $this->session->userdata('aptdate');
+		
+    	//grab user id from session
+    	$username = $this->session->userdata('username');
+    	$this->db->select('id');
+    	$this->db->where('username',$username);
+    	$query = $this->db->get('userinfo');
+    	$row = $query->row();
+    	$id = $row->id;
+    	
+    	
+		$temp = array('id' => $id,
+				'date' => $date,
+				'hour' => $this->input->post('hours')
+		);
+		
+		
+		$docid = $this->session->userdata('selected_doctor');
+		$table_name = $docid.'_appts';
+		
+		$query = $this->db->insert($table_name, $temp);
+		if($query){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	public function reg_validation()
 	{
 		//load form validation functions

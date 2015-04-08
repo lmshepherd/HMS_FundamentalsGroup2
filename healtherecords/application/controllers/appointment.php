@@ -80,6 +80,8 @@ class Appointment extends CI_Controller
     	$day = $this->input->post('day');
     	$date = $year.'-'.$month.'-'.$day;
     	
+    	$this->session->set_userdata('aptdate', $date);
+    	
     	$day = $this->input->post('dayOfWeek');
     	
     	$id = $this->session->userdata('selected_doctor');
@@ -136,4 +138,15 @@ class Appointment extends CI_Controller
     	//echo $this->calendar->generate();
     }
 	
+    public function appointment_submit(){
+   		$this->load->model('user');
+    	if($this->user->apt_toDatabase()){
+    		$this->load->view('appointment_submitted');
+    	}
+    	else{
+    		echo 'Appointment could not be submitted!';
+    	}
+    }
+    
+    
 }
