@@ -16,7 +16,6 @@
 	$hour = $this->input->post('hours');
 	$aptdate = $this->session->userdata('aptdate');
 	$docid = $this->session->userdata('selected_doctor');
-	//$table_name = $docid.'_appts';
 	$this->db->from('userinfo');
 	$this->db->where('id',$docid);
 	//$this->db->where('hour',$hour);

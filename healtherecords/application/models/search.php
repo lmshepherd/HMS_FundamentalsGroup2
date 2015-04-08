@@ -16,12 +16,12 @@ class Search extends CI_Model
 	{
 		//get session data for doctor and date
 		$aptdate = $this->session->userdata('aptdate');
-		$docid = $this->session->userdata('selected_doctor');
+		//$docid = $this->session->userdata('selected_doctor');
 		//setup table name to search
-		$table_name = $docid.'_appts';
+		//$table_name = $docid.'_appts';
 		
 		//get all appts for that doctor on that date
-		$this->db->from($table_name);
+		$this->db->from('appts');
 		$this->db->where('date',$aptdate);
 		$query = $this->db->get();
 		

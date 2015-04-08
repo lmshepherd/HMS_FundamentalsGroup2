@@ -197,7 +197,7 @@ class User extends CI_Model
 			
 			$query2 = $this->db->insert('schedule',$temp2);
 		}
-		
+		/*
 		$this->load->dbforge();
 		$fields = array(
 					'patient_id' => array('type' => 'INT',
@@ -214,7 +214,7 @@ class User extends CI_Model
 		$this->dbforge->add_key('appt_id', TRUE);
 		$table_name = $id.'_appts';
 		$this->dbforge->create_table($table_name);
-		
+		*/
 		if($query){
 			return true;	
 		}
@@ -261,18 +261,20 @@ class User extends CI_Model
     	$row = $query->row();
     	$id = $row->id;
     	
+    	$docid = $this->session->userdata('selected_doctor');
     	
 		$temp = array('patient_id' => $id,
+				'doctor_id' => $docid,
 				'date' => $date,
 				'hour' => $this->input->post('hours')
 		);
 		//echo 'post output: '.$this->input->post('hours');
 		
 		
-		$docid = $this->session->userdata('selected_doctor');
-		$table_name = $docid.'_appts';
+		//$docid = $this->session->userdata('selected_doctor');
+		//$table_name = $docid.'_appts';
 		
-		$query = $this->db->insert($table_name, $temp);
+		$query = $this->db->insert('appts', $temp);
 		if($query){
 			return true;
 		}
