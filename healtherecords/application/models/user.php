@@ -205,10 +205,13 @@ class User extends CI_Model
 					'date' => array('type' => 'VARCHAR',
 									'constraint' => '10'),
 					'hour' => array('type' => 'INT',
-									'constraint' => '2')
+									'constraint' => '2'),
+					'appt_id' => array('type' => 'INT',
+									'constraint' => '12',
+									'auto_increment' => TRUE)
 					);
 		$this->dbforge->add_field($fields);
-		$this->dbforge->add_key('patient_id', TRUE);
+		$this->dbforge->add_key('appt_id', TRUE);
 		$table_name = $id.'_appts';
 		$this->dbforge->create_table($table_name);
 		
@@ -263,7 +266,7 @@ class User extends CI_Model
 				'date' => $date,
 				'hour' => $this->input->post('hours')
 		);
-		echo 'post output: '.$this->input->post('hours');
+		//echo 'post output: '.$this->input->post('hours');
 		
 		
 		$docid = $this->session->userdata('selected_doctor');
