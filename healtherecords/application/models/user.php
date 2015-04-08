@@ -259,7 +259,7 @@ class User extends CI_Model
     	$id = $row->id;
     	
     	
-		$temp = array('id' => $id,
+		$temp = array('patient_id' => $id,
 				'date' => $date,
 				'hour' => $this->input->post('hours')
 		);
