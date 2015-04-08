@@ -41,12 +41,12 @@ class Schedule extends CI_Controller
 	
 	public function check_times()
 	{
-		if ($this->input->post('sunstart') >= $this->input->post('sunend') &&
-			$this->input->post('monstart') >= $this->input->post('monend') &&
-			$this->input->post('tuestart') >= $this->input->post('tueend') &&
-			$this->input->post('wedstart') >= $this->input->post('wedend') &&
-			$this->input->post('thustart') >= $this->input->post('thuend') &&
-			$this->input->post('fristart') >= $this->input->post('friend') &&
+		if ($this->input->post('sunstart') >= $this->input->post('sunend') ||
+			$this->input->post('monstart') >= $this->input->post('monend') ||
+			$this->input->post('tuestart') >= $this->input->post('tueend') ||
+			$this->input->post('wedstart') >= $this->input->post('wedend') ||
+			$this->input->post('thustart') >= $this->input->post('thuend') ||
+			$this->input->post('fristart') >= $this->input->post('friend') ||
 			$this->input->post('satstart') >= $this->input->post('satend'))
 		{
 			return false;

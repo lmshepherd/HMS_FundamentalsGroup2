@@ -34,4 +34,114 @@ class Search extends CI_Model
 		//no match found, time available
 		return true;
 	}
+	
+	public function get_appts()
+	{
+		$username = $this->session->userdata('username');
+		//get user id
+		$this->db->where('username',$username);
+		$query = $this->db->get('userinfo');
+		$row = $query->row();
+		$id = $row->id;
+		if ($row->role=='patient')
+			$this->get_appts_patient($id);
+		else if ($row->role=='doctor')
+			$this->get_appts_doctor($id);
+	}
+	
+	public function get_appts_patient($id)
+	{
+		
+		
+		//check appts where this user is the patient
+		$this->db->where('patient_id',$id);
+		$query = $this->db->get('appts');
+		$row = $query->row();
+		
+		//check that there is at least one result
+		if ($query->num_rows()>0)
+		{
+			//create table heading
+			$this->table->set_heading('Date','Time','Doctor');
+			 
+			//cycle through doctors of matching specialty
+			foreach ($query->result() as $row)
+			{
+				//get name from userinfo db
+				$this->db->from('userinfo');
+				$this->db->where('id',$row->doctor_id);
+				$query2 = $this->db->get();
+				$row2 = $query2->row();
+		
+				$time = $row->hour;
+				if ($time<12)
+					$ampm = 'am';
+				else $ampm = 'pm';
+				$time = $time%12;
+				if ($time==0)
+					$time=12;
+				
+				//add doctor to table
+				$this->table->add_row($row->date,
+						$time.' '.$ampm,
+						'Dr. '.$row2->firstname.' '.$row2->lastname,
+						//add a button to select doctor
+						'<input id="'.$row->doctor_id.'" type="button" value="Change Time" onclick="change_time(this)" />');
+			}
+			//generate the table
+			echo $this->table->generate();
+		}
+		else echo '<p>No appointments currently scheduled.</p>';
+	}
+	
+	public function get_appts_doctor($id)
+	{
+		/*
+		$username = $this->session->userdata('username');
+		//get user id
+		$this->db->where('username',$username);
+		$query = $this->db->get('userinfo');
+		$row = $query->row();
+		$id = $row->id;*/
+	
+		//check appts where this user is the patient
+		$this->db->where('doctor_id',$id);
+		$query = $this->db->get('appts');
+		$row = $query->row();
+	
+		//check that there is at least one result
+		if ($query->num_rows()>0)
+		{
+			//create table heading
+			$this->table->set_heading('Date','Time','Patient');
+	
+			//cycle through doctors of matching specialty
+			foreach ($query->result() as $row)
+			{
+				//get name from userinfo db
+				$this->db->from('userinfo');
+				$this->db->where('id',$row->patient_id);
+				$query2 = $this->db->get();
+				$row2 = $query2->row();
+	
+				$time = $row->hour;
+				if ($time<12)
+					$ampm = 'am';
+				else $ampm = 'pm';
+				$time = $time%12;
+				if ($time==0)
+					$time=12;
+	
+				//add doctor to table
+				$this->table->add_row($row->date,
+						$time.' '.$ampm,
+						$row2->firstname.' '.$row2->lastname,
+						//add a button to select doctor
+						'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
+			}
+			//generate the table
+			echo $this->table->generate();
+		}
+		else echo '<p>No appointments currently scheduled.</p>';
+	}
 }

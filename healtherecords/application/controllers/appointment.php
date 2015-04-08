@@ -12,6 +12,11 @@ class Appointment extends CI_Controller
     
     }
     
+    public function view_appointments()
+    {
+    	$this->load->view('see_appts_view');
+    }
+    
     public function make_appointment()
     {
     	$this->load->view('appointment_view');
@@ -169,6 +174,7 @@ class Appointment extends CI_Controller
     		echo 'Appointment could not be submitted!';
     	}
     	
+    	//clear date and doctor id from session data
     	$this->session->set_userdata('aptdate','');
     	$this->session->set_userdata('selected_doctor','');
     }

@@ -27,3 +27,9 @@ echo "<p>";
 echo form_submit('schedule_submit', 'View/Change Schedule');
 echo "</p>";
 echo form_close();
+
+echo form_open('appointment/view_appointments');
+echo "<p>";
+echo form_submit('appointment_submit', 'View Appointments');
+echo "</p>";
+echo form_close();
