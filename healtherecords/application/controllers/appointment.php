@@ -123,12 +123,8 @@ class Appointment extends CI_Controller
     	$this->load->helper('date');
     	
     	$year = $this->input->post('year')-100;
-    	//echo $year.' ';
     	$month = $this->input->post('month')+1;
-    	//echo $month.' ';
     	$day = $this->input->post('day');
-    	//echo $day.' ';
-    	
     	$date = $year.'-'.$month.'-'.$day;
     	echo $date.' ';
     	
