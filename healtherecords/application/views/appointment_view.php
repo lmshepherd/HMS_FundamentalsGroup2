@@ -110,6 +110,7 @@
 	<?php echo form_close(); ?>
 	
 	<div id="date_list" style="display: none;">
+	<br>
 	<?php echo 'Date: ' ?>
 	<input type="text" class="date" name="appointment" id="datepicker"><br>
 	</div>

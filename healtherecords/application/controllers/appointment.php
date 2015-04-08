@@ -128,23 +128,28 @@ class Appointment extends CI_Controller
     		$end=$row->satend;
     	}
     	
+    	$this->load->model('search');
     	for($hours=$start; $hours<$end; $hours++) // the interval for hours is '1'
     	{
-    		$options[$hours] = str_pad($hours,2,'0',STR_PAD_LEFT).':00';
+    		if($this->search->check_time($hours))
+    			$options[$hours] = str_pad($hours,2,'0',STR_PAD_LEFT).':00';
     		//array_push($options,$hours => str_pad($hours,2,'0',STR_PAD_LEFT).':00');
     	}
     	
-    	
-    	echo form_open('appointment/appointment_submit');
-    	echo "<p>";
-    	echo form_dropdown('hours', $options);
-    	echo "</p>";
-    	echo "<p>";
-    	echo form_submit('appointment_submit', 'Complete Appointment!');
-    	echo "</p>";
-    	echo "<p>";
-    	echo form_close();
-    	echo "</p>";
+    	if(!empty($options))
+    	{
+	    	echo form_open('appointment/appointment_submit');
+	    	echo "<p>";
+	    	echo form_dropdown('hours', $options);
+	    	echo "</p>";
+	    	echo "<p>";
+	    	echo form_submit('appointment_submit', 'Complete Appointment!');
+	    	echo "</p>";
+	    	echo "<p>";
+	    	echo form_close();
+	    	echo "</p>";
+    	}
+    	else echo 'No appointment times available for this date.';
     	
     	
     	
@@ -154,7 +159,8 @@ class Appointment extends CI_Controller
     	//echo $this->calendar->generate();
     }
 	
-    public function appointment_submit(){
+    public function appointment_submit()
+    {
    		$this->load->model('user');
     	if($this->user->apt_toDatabase()){
     		$this->load->view('appointment_submitted');
@@ -162,6 +168,9 @@ class Appointment extends CI_Controller
     	else{
     		echo 'Appointment could not be submitted!';
     	}
+    	
+    	$this->session->set_userdata('aptdate','');
+    	$this->session->set_userdata('selected_doctor','');
     }
     
     
