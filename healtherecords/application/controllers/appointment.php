@@ -253,7 +253,7 @@ class Appointment extends CI_Controller
     	$appt_id = $this->input->post('id');
     	$this->db->where('appt_id',$appt_id);
     	$this->db->delete('appts');
-    	echo 'here';
-    	$this->load->view('appointment_cancelled_view');
+    	//echo 'here';
+    	//$this->load->view('appointment_cancelled_view');
     }
 }
