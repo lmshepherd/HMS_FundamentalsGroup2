@@ -53,7 +53,7 @@ $row = $query->row();
 	{
 		$.ajax({
 			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/select_doctor",
+			url:"<?php echo base_url();?>index.php/appointment/change_appt_time",
 			//set data value of POST to button clicked
 			data: {id: $(button).attr('id')},
 			type: "POST",
@@ -63,8 +63,21 @@ $row = $query->row();
 				$("#date_list").show();
 			}
 		});
-		 
-		//return false;
+	};
+
+	function cancel_appt(button) 
+	{
+		$.ajax({
+			//run select_doctor function of appointment controller
+			url:"<?php echo base_url();?>index.php/appointment/cancel_appt",
+			//set data value of POST to button clicked
+			data: {id: $(button).attr('id')},
+			type: "POST"
+			,success: function(data){
+				alert("Appointment cancelled!");
+				location.reload();
+			}
+		});
 	};
 	
 	</script>

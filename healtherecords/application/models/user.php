@@ -302,7 +302,9 @@ class User extends CI_Model
 				'hour' => $this->input->post('hours')
 		);
 		
+			
 		$query = $this->db->insert('appts', $temp);
+		
 		if($query){
 			return true;
 		}

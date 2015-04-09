@@ -14,6 +14,7 @@ class Appointment extends CI_Controller
     
     public function view_appointments()
     {
+    	$this->session->set_userdata('make_or_change_appt','change');
     	$this->load->view('see_appts_view');
     
     }
@@ -24,6 +25,7 @@ class Appointment extends CI_Controller
     
     public function make_appointment()
     {
+    	$this->session->set_userdata('make_or_change_appt','make');
     	$this->load->view('appointment_view');
     }
     
@@ -79,6 +81,7 @@ class Appointment extends CI_Controller
     	$id = $this->input->post('id');
     	//store id of selected doctor in session data
     	$this->session->set_userdata('selected_doctor', $id);
+    	//$this->session->set_userdata('make_or_change_appt', 'make');
     }
     
     public function doctor_availability()
@@ -148,7 +151,10 @@ class Appointment extends CI_Controller
     	
     	if(!empty($options))
     	{
-	    	echo form_open('appointment/appointment_submit');
+    		if ($this->session->userdata('make_or_change_appt')=='make')
+	    		echo form_open('appointment/appointment_submit');
+    		else if ($this->session->userdata('make_or_change_appt')=='change')
+    			echo form_open('appointment/change_appt_submit');
 	    	echo "<p>";
 	    	echo form_dropdown('hours', $options);
 	    	echo "</p>";
@@ -191,5 +197,46 @@ class Appointment extends CI_Controller
     
     public function nurse_viewPatientRecord(){
     	$this->load->view('nurse_patientRecordView');
+    }
+    
+    public function change_appt_time()
+    {
+    	//get doctor id from post
+    	$appt_id = $this->input->post('id');
+    	$this->db->where('appt_id',$appt_id);
+    	$query = $this->db->get('appts');
+    	$row = $query->row();
+    	$docid = $row->doctor_id;
+    	//store id of selected doctor in session data
+    	$this->session->set_userdata('selected_doctor', $docid);
+    	$this->session->set_userdata('appt_id', $appt_id);
+    	//$this->session->set_userdata('make_or_change_appt', 'change');
+    }
+    
+    public function change_appt_submit()
+    {
+    	$appt = $this->session->userdata('appt_id');
+    	//$date = $this->session->userdata('aptdate');
+    	
+    	$temp = array('date' => $this->session->userdata('aptdate'),
+    			'hour' => $this->input->post('hours'));
+    	$this->db->where('appt_id',$appt);	
+    	$this->db->update('appts', $temp);
+    	
+    	$this->load->view('appointment_submitted');
+    	
+    	//clear date and doctor id from session data
+    	$this->session->unset_userdata('aptdate');
+    	$this->session->unset_userdata('selected_doctor');
+    	$this->session->unset_userdata('appt_id');
+    }
+    
+    public function cancel_appt()
+    {
+    	$appt_id = $this->input->post('id');
+    	$this->db->where('appt_id',$appt_id);
+    	$this->db->delete('appts');
+    	echo 'here';
+    	$this->load->view('appointment_cancelled_view');
     }
 }

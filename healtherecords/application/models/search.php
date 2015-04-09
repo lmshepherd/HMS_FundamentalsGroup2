@@ -85,8 +85,9 @@ class Search extends CI_Model
 				$this->table->add_row($row->date,
 						$time.' '.$ampm,
 						'Dr. '.$row2->firstname.' '.$row2->lastname,
-						//add a button to select doctor
-						'<input id="'.$row->doctor_id.'" type="button" value="Change Time" onclick="change_time(this)" />');
+						//add a button to select appt
+						'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
+						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />');
 			}
 			//generate the table
 			echo $this->table->generate();
