@@ -114,7 +114,7 @@ class Search extends CI_Model
 		{
 			//create table heading
 			$this->table->set_heading('Date','Time','Patient');
-	
+			
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
 			{
@@ -131,14 +131,19 @@ class Search extends CI_Model
 				$time = $time%12;
 				if ($time==0)
 					$time=12;
-	
+				echo form_open('appointment/doctor_viewPatientRecord');
 				//add doctor to table
 				$this->table->add_row($row->date,
 						$time.' '.$ampm,
 						$row2->firstname.' '.$row2->lastname,
+						'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>'
+						);
 						//add a button to select doctor
-						'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
+						//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
+
+				echo form_close();
 			}
+				
 			//generate the table
 			echo $this->table->generate();
 		}

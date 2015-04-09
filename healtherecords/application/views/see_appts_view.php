@@ -71,12 +71,14 @@ $row = $query->row();
 	
 <head>
 	<meta charset="utf-8">
-	<title>Health E-Records</title>
+	<title>Health E-Records</title>	
 </head>
 
 <body>
 
 <div id="container">
+
+	<h1>Patient Appointments</h1>
 
 	<?php 
 	$this->load->model('search');

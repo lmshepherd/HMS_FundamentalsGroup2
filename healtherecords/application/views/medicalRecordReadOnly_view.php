@@ -26,10 +26,12 @@ $row = $query->row();
 	if($row!=NULL){
 		echo '<p>Height: ';
 		echo $row->height;
+		echo " inches";
 		echo '</p>';
 		
 		echo '<p>Weight: ';
 		echo $row->weight;
+		echo " pounds";
 		echo '</p>';
 		
 		echo '<p>Surgery history: ';

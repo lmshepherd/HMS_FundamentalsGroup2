@@ -15,6 +15,11 @@ class Appointment extends CI_Controller
     public function view_appointments()
     {
     	$this->load->view('see_appts_view');
+    
+    }
+    
+    public function nurse_view_patients(){
+    	$this->load->view('see_nurseAppts_view');
     }
     
     public function make_appointment()
@@ -179,5 +184,12 @@ class Appointment extends CI_Controller
     	$this->session->set_userdata('selected_doctor','');
     }
     
+    public function doctor_viewPatientRecord(){
+    	$this->load->view('doctor_patientRecordView');
+    }
     
+    
+    public function nurse_viewPatientRecord(){
+    	$this->load->view('nurse_patientRecordView');
+    }
 }
