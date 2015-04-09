@@ -2,21 +2,63 @@
 <html lang="en">
 <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/flick/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<!-- load jquery javascript ajax communication -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	
 	<script type="text/javascript">
 	
 	$(document).ready (function() {
-		//send post when specialty dropdown value changes
+		if($("#sunstart").val()==-1){
+			$("#sunend").prop("disabled",true);}
+		else{$("#sunend").prop("disabled",false);}
+		if($("#monstart").val()==-1){
+			$("#monend").prop("disabled",true);}
+		else{$("#monend").prop("disabled",false);}
+		if($("#tuestart").val()==-1){
+			$("#tueend").prop("disabled",true);}
+		else{$("#tueend").prop("disabled",false);}
+		if($("#wedstart").val()==-1){
+			$("#wedend").prop("disabled",true);}
+		else{$("#wedend").prop("disabled",false);}
+		if($("#thustart").val()==-1){
+			$("#thuend").prop("disabled",true);}
+		else{$("#thuend").prop("disabled",false);}	
+		if($("#fristart").val()==-1){
+			$("#friend").prop("disabled",true);}
+		else{$("#friend").prop("disabled",false);}
+		if($("#satstart").val()==-1){
+			$("#satend").prop("disabled",true);}
+		else{$("#satend").prop("disabled",false);}	
+		
+		$("#sunstart").change(function(){
+			if($("#sunstart").val()==-1){
+				$("#sunend").prop("disabled",true);}
+			else{$("#sunend").prop("disabled",false);}});
+		$("#monstart").change(function(){
+			if($("#monstart").val()==-1){
+				$("#monend").prop("disabled",true);}
+			else{$("#monend").prop("disabled",false);}});
+		$("#tuestart").change(function(){
+			if($("#tuestart").val()==-1){
+				$("#tueend").prop("disabled",true);}
+			else{$("#tueend").prop("disabled",false);}});
+		$("#wedstart").change(function(){
+			if($("#wedstart").val()==-1){
+				$("#wedend").prop("disabled",true);}
+			else{$("#wedend").prop("disabled",false);}});
+		$("#thustart").change(function(){
+			if($("#thustart").val()==-1){
+				$("#thuend").prop("disabled",true);}
+			else{$("#thuend").prop("disabled",false);}});
+		$("#fristart").change(function(){
+			if($("#fristart").val()==-1){
+				$("#friend").prop("disabled",true);}
+			else{$("#friend").prop("disabled",false);}});
 		$("#satstart").change(function(){
-			//alert("test");
-			if($("#satstart").value=-1)
-			{
-				//$("#satend").val(-1);
-				$("#satend").prop("disabled",true);
-			}
-		});
+			if($("#satstart").val()==-1){
+				$("#satend").prop("disabled",true);}
+			else{$("#satend").prop("disabled",false);}});	
+		
 	}); 
 	</script>
 	
@@ -73,6 +115,8 @@
 				form_dropdown('fristart',$time_options,$row->fristart,'id="fristart"'),
 				form_dropdown('satstart',$time_options,$row->satstart,'id="satstart"')
 				);
+		//remove 'none' value from time_options array
+		unset($time_options[-1]);
 		$this->table->add_row('End time:',
 				form_dropdown('sunend',$time_options,$row->sunend,'id="sunend"'),
 				form_dropdown('monend',$time_options,$row->monend,'id="monend"'),
