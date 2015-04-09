@@ -29,24 +29,25 @@ $time_options = array('0'=>'12:00am',
 		'17'=>'5:00pm','18'=>'6:00pm',
 		'19'=>'7:00pm','20'=>'8:00pm',
 		'21'=>'9:00pm','22'=>'10:00pm',
-		'23'=>'11:00pm','23'=>'11:59pm','25'=>'none');
+		'23'=>'11:00pm','23'=>'11:59pm','-1'=>'none');
 $this->table->set_heading('','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 $this->table->add_row('Start time:',
-		form_dropdown('sunstart',$time_options,'9'),
-		form_dropdown('monstart',$time_options,'9'),
-		form_dropdown('tuestart',$time_options,'9'),
-		form_dropdown('wedstart',$time_options,'9'),
-		form_dropdown('thustart',$time_options,'9'),
-		form_dropdown('fristart',$time_options,'9'),
-		form_dropdown('satstart',$time_options,'9'));
+		form_dropdown('sunstart',$time_options,'9','id="sunstart"'),
+		form_dropdown('monstart',$time_options,'9','id="monstart"'),
+		form_dropdown('tuestart',$time_options,'9','id="tuestart"'),
+		form_dropdown('wedstart',$time_options,'9','id="wedstart"'),
+		form_dropdown('thustart',$time_options,'9','id="thustart"'),
+		form_dropdown('fristart',$time_options,'9','id="fristart"'),
+		form_dropdown('satstart',$time_options,'9','id="satstart"'));
+unset($time_options[-1]);
 $this->table->add_row('End time:',
-		form_dropdown('sunend',$time_options,'17'),
-		form_dropdown('monend',$time_options,'17'),
-		form_dropdown('tueend',$time_options,'17'),
-		form_dropdown('wedend',$time_options,'17'),
-		form_dropdown('thuend',$time_options,'17'),
-		form_dropdown('friend',$time_options,'17'),
-		form_dropdown('satend',$time_options,'17'));
+		form_dropdown('sunend',$time_options,'17','id="sunend"'),
+		form_dropdown('monend',$time_options,'17','id="monend"'),
+		form_dropdown('tueend',$time_options,'17','id="tueend"'),
+		form_dropdown('wedend',$time_options,'17','id="wedend"'),
+		form_dropdown('thuend',$time_options,'17','id="thuend"'),
+		form_dropdown('friend',$time_options,'17','id="friend"'),
+		form_dropdown('satend',$time_options,'17','id="satend"'));
 echo $this->table->generate();
 //echo form_input('availability',$this->input->post('availability'));
 echo "</p>";

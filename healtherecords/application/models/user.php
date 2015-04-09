@@ -195,6 +195,22 @@ class User extends CI_Model
 					'fristart' => $this->input->post('fristart'),'friend' => $this->input->post('friend'),
 					'satstart' => $this->input->post('satstart'),'satend' => $this->input->post('satend'));
 			
+			//set end values for day off
+			if($this->input->post('sunstart')==-1)
+				$temp2['sunend']=24;
+			if($this->input->post('monstart')==-1)
+				$temp2['monend']=24;
+			if($this->input->post('tuestart')==-1)
+				$temp2['tueend']=24;
+			if($this->input->post('wedstart')==-1)
+				$temp2['wedend']=24;
+			if($this->input->post('thustart')==-1)
+				$temp2['thuend']=24;
+			if($this->input->post('fristart')==-1)
+				$temp2['friend']=24;
+			if($this->input->post('satstart')==-1)
+				$temp2['satend']=24;
+			
 			$query2 = $this->db->insert('schedule',$temp2);
 		}
 		/*
