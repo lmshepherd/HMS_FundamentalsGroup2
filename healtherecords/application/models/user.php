@@ -263,16 +263,44 @@ class User extends CI_Model
     	
     	$docid = $this->session->userdata('selected_doctor');
     	
+		
+		
+		//grab doctor department
+		$this->db->select('specialization');
+		$this->db->where('id', $docid);
+		$query2 = $this->db->get('doctors');
+		$row2 = $query2->row();
+		$specialization = $row2->specialization;
+		
+		if($specialization == 'cardiologist'){
+			$department = 'cardiology';
+		}
+		else if($specialization == 'endocrinologist'){
+			$department = 'endocrinology';
+		}
+		else if($specialization == 'general'){
+			$department = 'general';
+		}
+		else if ($specialization == 'immunologist'){
+			$department = 'immunology';
+		}
+		else if ($specialization == 'neurologist'){
+			$department = 'neurology';
+		}
+		
+		$this->db->select('id');
+		$this->db->where('department', $department);
+		$query3 = $this->db->get('nurses');
+		$row3 = $query3->row();
+		$nurse_id = $row3->id;
+		
+		
 		$temp = array('patient_id' => $id,
 				'doctor_id' => $docid,
+				'nurse_id' =>$nurse_id,
 				'date' => $date,
 				'hour' => $this->input->post('hours')
 		);
-		//echo 'post output: '.$this->input->post('hours');
-		
-		
-		//$docid = $this->session->userdata('selected_doctor');
-		//$table_name = $docid.'_appts';
 		
 		$query = $this->db->insert('appts', $temp);
 		if($query){

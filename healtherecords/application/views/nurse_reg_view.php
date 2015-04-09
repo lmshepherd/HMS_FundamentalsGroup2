@@ -39,6 +39,13 @@ echo $this->table->generate();
 //echo form_input('availability',$this->input->post('availability'));
 echo "</p>";
 
+$department = array(''=>'Select Deparment',
+		'cardiology'=>'Cardiology',
+		'endocrinology'=>'Endocrinology',
+		'general'=>'General Patient Care',
+		'immunology'=>'Immunology',
+		'neurology'=>'Neurology');
+
 echo "<p>Department: ";
-echo form_input('department',$this->input->post('department'));
+echo form_dropdown('department',$department,'','id="spec"');
 echo "</p>";
