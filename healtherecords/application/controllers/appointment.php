@@ -144,8 +144,21 @@ class Appointment extends CI_Controller
     	$this->load->model('search');
     	for($hours=$start; $hours<$end; $hours++) // the interval for hours is '1'
     	{
+    		if ($hours>12)
+    		{
+    			$hours12 = $hours%12;
+				$ampm = 'pm';
+    		}
+    		else 
+    		{
+    			$hours12 = $hours;
+    			$ampm = 'am';
+    		}
+    		if ($hours12==0)
+    			$hours12 = $hours12 + 12;
+    		
     		if($this->search->check_time($hours))
-    			$options[$hours] = str_pad($hours,2,'0',STR_PAD_LEFT).':00';
+    			$options[$hours] = str_pad($hours12,2,'0',STR_PAD_LEFT).':00 '.$ampm;
     		//array_push($options,$hours => str_pad($hours,2,'0',STR_PAD_LEFT).':00');
     	}
     	

@@ -22,8 +22,21 @@
 	$query = $this->db->get();
 	$row = $query->row();
 	
+	
+	if ($hour>12)
+	{
+		$hour12 = $hour%12;
+		$ampm = 'pm';
+	}
+	else
+	{
+		$hour12 = $hour;
+		$ampm = 'am';
+	}
+	if ($hour12==0)
+		$hour12 = $hour12 + 12;
 	//echo 'Appointment confirmed for: '.$aptdate;
-	echo $aptdate.' at '.$hour.' with Dr. '.$row->lastname;
+	echo $aptdate.' at '.$hour12.' '.$ampm.' with Dr. '.$row->lastname;
 	?>
 
 	<br>

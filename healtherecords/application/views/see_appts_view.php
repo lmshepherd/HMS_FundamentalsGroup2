@@ -74,8 +74,8 @@ $row = $query->row();
 			data: {id: $(button).attr('id')},
 			type: "POST"
 			,success: function(data){
-				alert("Appointment cancelled!");
 				location.reload();
+				alert("Appointment cancelled!");
 			}
 		});
 	};
