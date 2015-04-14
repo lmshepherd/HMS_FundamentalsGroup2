@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<title>Health E-Records</title>
 </head>
 
@@ -60,7 +58,7 @@
 					'class' => 'btn-lrg',
 			);
 			
-			echo form_open('main/verify_login', $attributes);
+			echo form_open('main/verify_login',$attributes);
 		
 			echo validation_errors();
 			
