@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <div id="container">
 	    <header id="header"><h1>Health E-Records</h1></header>
         <div id="container">
 			<main id="center" class="column">
@@ -103,7 +102,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 
 </body>
 </html>
