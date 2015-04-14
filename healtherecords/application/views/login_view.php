@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<meta charset="utf-8">
 	<title>Health E-Records</title>
 </head>
@@ -12,6 +15,7 @@
 
 	<div id="body">
 		<?php 
+		echo base_url();
 		echo form_open('main/verify_login');
 		
 		echo validation_errors();
@@ -25,7 +29,8 @@
 		echo "</p>";
 		
 		echo "<p>";
-		echo form_submit('login_submit', 'Login');
+		$login = array('class' => 'btn-success', 'id' => 'login');
+		echo form_submit($login, 'login_submit', 'Login');
 		echo "</p>";
 		
 		echo form_close();
