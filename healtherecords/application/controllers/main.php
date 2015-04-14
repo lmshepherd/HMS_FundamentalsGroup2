@@ -15,6 +15,7 @@ class Main extends CI_Controller
 	{
 		//set form rules to ensure login fields are not empty
 		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('username','Username','required|callback_verify_userinfo');
 		$this->form_validation->set_rules('password','Password','required');
 		

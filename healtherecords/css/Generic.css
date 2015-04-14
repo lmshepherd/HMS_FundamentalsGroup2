@@ -108,3 +108,8 @@
 		#container .column {
 			padding-top: 1em;
 		}
+		
+		.error{
+			color:red;
+			font-size: x-small;
+		}
