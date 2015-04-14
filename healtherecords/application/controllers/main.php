@@ -82,6 +82,7 @@ class Main extends CI_Controller
 	{
 		//load form validation functions
 		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		//check username field and ensure uniqueness in database
 		$this->form_validation->set_rules('username','Username','required|trim|is_unique[userinfo.username]');
 		//check password field

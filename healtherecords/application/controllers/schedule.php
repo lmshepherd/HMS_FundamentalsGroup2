@@ -12,6 +12,7 @@ class Schedule extends CI_Controller
 	public function set_schedule()
 	{
 		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('sunstart','Sunday Start Time','callback_check_times');
 
 		$temp = array(
