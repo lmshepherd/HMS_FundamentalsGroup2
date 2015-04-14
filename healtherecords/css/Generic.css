@@ -1,13 +1,11 @@
 @CHARSET "UTF-8";
-
-		/* Layout */
 		body {
 			min-width: 630px;
 		}
 
 		#container {
-			padding-left: 200px;
-			padding-right: 220px;
+			padding-left: 240px;
+			padding-right: 180px;
 		}
 		
 		#container .column {
@@ -28,7 +26,7 @@
 		}
 		
 		#right {
-			width: 160px;
+			width: 180px;
 			padding: 0 10px;
 			margin-right: -100%;
 		}
