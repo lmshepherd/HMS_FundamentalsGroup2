@@ -5,7 +5,7 @@ $I->amOnPage('/');
 $I->see('login');
 $I->fillField('username', 'patient1');
 $I->fillField('password', 'asdf');
-$I->click('Login');
+$I->click('login_submit');
 $I->see('Patient Information');
 $I->click('View Medical Record');
 $I->see('Religion: Packer');
