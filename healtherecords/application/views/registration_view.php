@@ -71,6 +71,8 @@ $role = $this->session->userdata('role');
 	</script>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
 	<meta charset="utf-8">
 	<title>Health E-Records New User Info</title>
@@ -82,7 +84,9 @@ $role = $this->session->userdata('role');
 	<p>Please fill in your information:</p>
 	<div id="body">
 		<?php 
-		echo form_open('main/complete_registration');
+		$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
+		
+		echo form_open('main/complete_registration',$attributes);
 		
 		echo validation_errors();
 		

@@ -1,4 +1,6 @@
 <?php
+$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
+
 $username = $this->session->userdata('username');
 
 $this->db->where('username',$username);
@@ -43,7 +45,7 @@ $this->table->add_row('End time:',
 echo $this->table->generate();
 echo '</p>';*/
 
-echo form_open('schedule/change_schedule');
+echo form_open('schedule/change_schedule',attributes);
 echo "<p>";
 echo form_submit('schedule_submit', 'View/Change Schedule');
 echo "</p>";

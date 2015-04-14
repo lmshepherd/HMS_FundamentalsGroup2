@@ -13,6 +13,8 @@ $row = $query->row();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
 	<meta charset="utf-8">
 	<title>Health E-Records</title>
@@ -24,6 +26,8 @@ $row = $query->row();
 	
 	<h1>Here is your current medical record</h1>
 	<?php
+	$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
+	
 	if($row!=NULL){
 		echo '<p>Height: ';
 		echo $row->height;
@@ -63,7 +67,7 @@ $row = $query->row();
 		echo $row->other;
 		echo '</p>';
 		
-		echo form_open('main/complete_medicalRecord');
+		echo form_open('main/complete_medicalRecord', $attributes);
 		
 		echo "<p>";
 		echo form_submit('medicalRecord_submit', 'Update Your Medical Record');

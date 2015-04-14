@@ -1,5 +1,6 @@
 
 <?php 
+$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
 $username = $this->session->userdata('username');
 
 $this->db->where('username',$username);
@@ -72,7 +73,7 @@ echo '<p>Allergies: ';
 echo $row->allergies;
 echo '</p>';
 
-echo form_open('main/complete_medicalRecord');
+echo form_open('main/complete_medicalRecord',$attributes);
 echo "<p>";
 echo form_submit('medicalRecord_submit', 'Fill out Medical Record');
 echo "</p>";

@@ -63,6 +63,8 @@
 	</script>
 	
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
 	<meta charset="utf-8">
 	<title>Health E-Records</title>
@@ -75,6 +77,7 @@
 
 	<div id="body">
 		<?php 
+		$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
 		//get session username
 		$username = $this->session->userdata('username');
 		//get id from userinfo table
@@ -104,7 +107,7 @@
 		
 		echo validation_errors();
 		
-		echo form_open('schedule/set_schedule');
+		echo form_open('schedule/set_schedule',$attributes);
 		
 		$this->table->set_heading('','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 		$this->table->add_row('Start time:',
