@@ -71,6 +71,7 @@ $role = $this->session->userdata('role');
 	</script>
 
 <head>
+	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
 	<meta charset="utf-8">
 	<title>Health E-Records New User Info</title>
 </head>

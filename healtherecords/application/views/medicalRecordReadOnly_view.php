@@ -13,6 +13,7 @@ $row = $query->row();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
 	<meta charset="utf-8">
 	<title>Health E-Records</title>
 </head>

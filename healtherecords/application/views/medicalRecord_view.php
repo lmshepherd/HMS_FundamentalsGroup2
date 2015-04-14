@@ -8,6 +8,7 @@ $username = $this->session->userdata('username');
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<meta charset="utf-8">
@@ -18,10 +19,9 @@ $username = $this->session->userdata('username');
 <div id="container">
 	<h1>Health E-Records Medical Record</h1>
 	<p>Please fill in your information:</p>
-	<div id="body">
 		<?php 
 //***************This is an example of how to add attributes to a form!
-		$attributes = array('class' => 'form-group', 'role' => 'form');
+		$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
 		$data = array('class' => 'btn-lg', 'id' => 'submitMedicalRecord');
 		$height = array(
 				'name'        => 'height',
@@ -152,7 +152,6 @@ $username = $this->session->userdata('username');
 		
 		echo form_close();
 		?>
-	</div>
 	
 	<a href = '<?php 
 		echo base_url(),"index.php/main/home"
