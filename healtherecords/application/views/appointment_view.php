@@ -89,7 +89,7 @@
 </head>
 
 <body>
-
+<header id="header"><h1>Health E-Records: Schedule an Appointment</h1></header>
 <div id="container">
 	
 	<?php

@@ -16,8 +16,8 @@ $username = $this->session->userdata('username');
 </head>
 
 <body>
+<header id="header"><h1>Health E-Records: Medical Record</h1></header>
 <div id="container">
-	<h1>Health E-Records Medical Record</h1>
 	<p>Please fill in your information:</p>
 		<?php 
 //***************This is an example of how to add attributes to a form!

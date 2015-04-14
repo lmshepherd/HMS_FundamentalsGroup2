@@ -18,10 +18,8 @@ $role = $row->role;
 </head>
 
 <body>
-
+<header id="header"><h1>Welcom to Health E-Records</h1></header>
 <div id="container">
-	
-	<h1>Welcome to Health E-Records, <?php echo $row->firstname; ?></h1>
 	
 	<?php 
 	echo '<p>'; 

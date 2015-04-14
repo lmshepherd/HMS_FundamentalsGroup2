@@ -79,8 +79,8 @@ $role = $this->session->userdata('role');
 </head>
 
 <body>
+<header id="header"><h1>Health E-Records: New User Info</h1></header>
 <div id="container">
-	<h1>Health E-Records New User Info</h1>
 	<p>Please fill in your information:</p>
 	<div id="body">
 		<?php 

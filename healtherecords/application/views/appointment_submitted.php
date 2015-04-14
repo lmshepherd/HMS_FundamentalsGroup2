@@ -10,8 +10,8 @@
 </head>
 
 <body>
+<header id="header"><h1>Health E-Records Appointment Confirmation</h1></header>
 <div id="container">
-	<h1>Health E-Records Appointment Confirmation</h1>
 	<p>Your appointment has been made!</p>
 	<p>Appointment information: </p>
 

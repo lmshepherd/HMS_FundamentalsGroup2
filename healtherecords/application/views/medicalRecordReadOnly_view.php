@@ -21,10 +21,8 @@ $row = $query->row();
 </head>
 
 <body>
-
+<header id="header"><h1>Here is your current medical record</h1></header>
 <div id="container">
-	
-	<h1>Here is your current medical record</h1>
 	<?php
 	$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
 	

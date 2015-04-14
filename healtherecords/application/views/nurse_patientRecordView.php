@@ -38,10 +38,8 @@ $row3 = $query3->row();
 </head>
 
 <body>
-
+<header id="header"><h1>General Patient Information</h1></header>
 <div id="container">
-	
-	<h1> General Patient Information</h1>
 	<?php 
 		//read from userinfo table
 		echo '<p>Name: ';

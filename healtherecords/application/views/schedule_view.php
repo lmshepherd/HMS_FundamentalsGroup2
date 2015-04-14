@@ -71,9 +71,8 @@
 </head>
 
 <body>
-
+<header id="header"><h1>Health E-Records: Scheduling</h1></header>
 <div id="container">
-	<h1>Health E-Records Scheduling</h1>
 
 	<div id="body">
 		<?php 

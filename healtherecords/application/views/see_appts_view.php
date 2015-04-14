@@ -91,10 +91,8 @@ $row = $query->row();
 </head>
 
 <body>
-
+<header id="header"><h1>Health E-Records: My Appointments</h1></header>
 <div id="container">
-
-	<h1>Patient Appointments</h1>
 
 	<?php 
 	$this->load->model('search');
