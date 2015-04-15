@@ -27,15 +27,7 @@ $query3 = $this->db->get('patients');
 $row3 = $query3->row();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
-	<meta charset="utf-8">
-	<title>Health E-Records</title>
-</head>
+<?php $this->load->view('header');?>
 
 <body>
 <header id="header"><h1>General Patient Information</h1></header>

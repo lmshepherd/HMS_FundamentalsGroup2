@@ -27,14 +27,7 @@ $query3 = $this->db->get('patients');
 $row3 = $query3->row();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Health E-Records</title>
-</head>
-
-<body>
+<?php $this->load->view('header');?>
 <header id="header"><h1>Health E-Records: My Patients</h1></header>
 <div id="container">
 	

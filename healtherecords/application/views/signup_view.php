@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<title>Health E-Records</title>
-</head>
+<?php $this->load->view('header');?>
 
 <body>
     <header id="header"><h1>Health E-Records New User Signup</h1></header>

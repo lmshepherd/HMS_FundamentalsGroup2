@@ -5,15 +5,7 @@ $username = $this->session->userdata('username');
 //$username = $this->session->userdata('username');
 //$args = array('role' => $role, 'username' => $username);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<meta charset="utf-8">
-	<title>Health E-Records Medical Record</title>
-</head>
+<?php $this->load->view('header');?>
 
 <body>
 <header id="header"><h1>Health E-Records: Medical Record</h1></header>
