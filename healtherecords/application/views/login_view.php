@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<meta charset="utf-8">
-	<title>Health E-Records</title>
-</head>
-
+<?php $this->load->view('header');?>
 <body>
 	    <header id="header"><h1>Health E-Records</h1></header>
         <div id="container">
 			<main id="center" class="column">
 			<article>
 				<h1>Homepage</h1>
-				<p>This is where we can put the home page information for our HMS!<br><br><br>By Matt<br>Chuck<br>Laura<br><br><br>"I stood out in the open cold <br>To see the essence of the eclipse <br>Which was its perfect darkness. <br><br>I stood in the cold on the porch <br>And could not think of anything so perfect <br>As mans hope of light in the face of darkness."<br><br>-Richard Eberhart</p>
+				
+				<p>
+				<? echo base_url();?>This is where we can put the home page information for our HMS!<br><br><br>By Matt<br>Chuck<br>Laura<br><br><br>"I stood out in the open cold <br>To see the essence of the eclipse <br>Which was its perfect darkness. <br><br>I stood in the cold on the porch <br>And could not think of anything so perfect <br>As mans hope of light in the face of darkness."<br><br>-Richard Eberhart</p>
 			</article>								
 		    </main>
 		
@@ -84,6 +77,7 @@
 			
 			echo form_close();
 			?>
+			
 		
 		</div>
 	</div>
