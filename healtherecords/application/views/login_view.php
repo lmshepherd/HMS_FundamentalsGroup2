@@ -1,17 +1,15 @@
-<?php $this->load->view('header');?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<meta charset="utf-8">
+	<title>Health E-Records</title>
+</head>
 <body>
-	    <header id="header"><h1>Health E-Records</h1></header>
-        <div id="container">
-			<main id="center" class="column">
-			<article>
-				<h1>Homepage</h1>
-				
-				<p>
-				<? echo base_url();?>This is where we can put the home page information for our HMS!<br><br><br>By Matt<br>Chuck<br>Laura<br><br><br>"I stood out in the open cold <br>To see the essence of the eclipse <br>Which was its perfect darkness. <br><br>I stood in the cold on the porch <br>And could not think of anything so perfect <br>As mans hope of light in the face of darkness."<br><br>-Richard Eberhart</p>
-			</article>								
-		    </main>
-		
-			<nav id="left" class="column">
+	    <div id="header"><h1>Health E-Records</h1></div>
+			<div id="left" class="column">
 			    <h3>Patient Links</h3>
 			    <ul>
 				    <li><a href="http://projectsgeek.com/2013/08/hospital-management-system-mini-project-2.html">HMS Info</a></li>
@@ -28,7 +26,14 @@
 				    <li><a href="#">Link 4</a></li>
 				    <li><a href="#">Link 5</a></li>
 			    </ul>
-		    </nav>
+		    </div>
+			<div id="center" class="column">
+			<article>
+				<h1>Homepage</h1>
+				
+				<p>This is where we can put the home page information for our HMS!<br><br><br>By Matt<br>Chuck<br>Laura<br><br><br>"I stood out in the open cold <br>To see the essence of the eclipse <br>Which was its perfect darkness. <br><br>I stood in the cold on the porch <br>And could not think of anything so perfect <br>As mans hope of light in the face of darkness."<br><br>-Richard Eberhart</p>
+			</article>								
+		    </div>
 	
 		    <?php 
 			$attributes = array('class' => 'form-group', 'role' => 'form', 'id' =>'right', 'class' =>'column');
