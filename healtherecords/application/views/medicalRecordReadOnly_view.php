@@ -16,7 +16,7 @@ $row = $query->row();
 <header id="header"><h1>Here is your current medical record</h1></header>
 <div id="container">
 	<?php
-	$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
+	$attributes = array('class' => 'form-group', 'role' => 'form','id'=>'center', 'class'=>'column');
 	
 	if($row!=NULL){
 		echo '<p>Height: ';
