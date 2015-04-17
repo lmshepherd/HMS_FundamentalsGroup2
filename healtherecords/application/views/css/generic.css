@@ -2,6 +2,11 @@ body{
 	background-color: #00b2d0;
 }
 
+p{
+	font-color: #00b2d0;
+}
+
 div #right{
+	height:100%;
 	background-color: #00b2d0;
 }
