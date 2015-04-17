@@ -81,56 +81,77 @@ $role = $this->session->userdata('role');
 <body>
 <header id="header"><h1>Health E-Records: New User Info</h1></header>
 <div id="container">
-	<p>Please fill in your information:</p>
-	<div id="body">
-		<?php 
-		$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
+      <div class="row">
+        <div class="col-lg-4">
+     	    <ul>
+			    <li><a href="http://projectsgeek.com/2013/08/hospital-management-system-mini-project-2.html">HMS Info</a></li>
+			    <li><a href="#">Link 2</a></li>
+			    <li><a href="#">Link 3</a></li>
+			    <li><a href="#">Link 4</a></li>
+			    <li><a href="#">Link 5</a></li>
+		    </ul>
+		    <h3>Doctor Links</h3>
+		    <ul>
+			    <li><a href="#">Link 1</a></li>
+			    <li><a href="#">Link 2</a></li>
+		    	<li><a href="#">Link 3</a></li>
+			    <li><a href="#">Link 4</a></li>
+			    <li><a href="#">Link 5</a></li>
+			</ul>
+		</div>
+        <div class="col-lg-8">
+        	<p>Please fill in your information:</p>
+			<div id="body">
+				<?php 
+				$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
+				
+				echo form_open('main/complete_registration',$attributes);
+				
+				echo validation_errors();
+				
+				echo "<p>First Name: ";
+				echo form_input('firstname',$this->input->post('firstname'));
+				echo "</p>";
+				
+				echo "<p>Last Name: ";
+				echo form_input('lastname',$this->input->post('lastname'));
+				echo "</p>";
+				
+				echo "<p>Date of Birth: ";
+				echo form_input('dob',$this->input->post('dob'));
+				echo " Please use format YYYY-MM-DD";
+				echo "</p>";
+				
+				echo "<p>Home Phone: ";
+				echo form_input('homephone',$this->input->post('homephone'));
+				echo " Please use format XXX-XXX-XXXX";
+				echo "</p>";
+				
+				echo "<p>Work Phone: ";
+				echo form_input('workphone',$this->input->post('workphone'));
+				echo " Please use format XXX-XXX-XXXX";
+				echo "</p>";
 		
-		echo form_open('main/complete_registration',$attributes);
-		
-		echo validation_errors();
-		
-		echo "<p>First Name: ";
-		echo form_input('firstname',$this->input->post('firstname'));
-		echo "</p>";
-		
-		echo "<p>Last Name: ";
-		echo form_input('lastname',$this->input->post('lastname'));
-		echo "</p>";
-		
-		echo "<p>Date of Birth: ";
-		echo form_input('dob',$this->input->post('dob'));
-		echo " Please use format YYYY-MM-DD";
-		echo "</p>";
-		
-		echo "<p>Home Phone: ";
-		echo form_input('homephone',$this->input->post('homephone'));
-		echo " Please use format XXX-XXX-XXXX";
-		echo "</p>";
-		
-		echo "<p>Work Phone: ";
-		echo form_input('workphone',$this->input->post('workphone'));
-		echo " Please use format XXX-XXX-XXXX";
-		echo "</p>";
-
-		if($role=='patient')
-			$this->load->view('patient_reg_view');
-		else if($role=='nurse')
-			$this->load->view('nurse_reg_view');
-		else if($role=='doctor')
-			$this->load->view('doctor_reg_view');
-		
-		echo "<p>";
-		echo form_submit('info_submit', 'Complete Registration!');
-		echo "</p>";
-		
-		echo form_close();
-		?>
-	</div>
+				if($role=='patient')
+					$this->load->view('patient_reg_view');
+				else if($role=='nurse')
+					$this->load->view('nurse_reg_view');
+				else if($role=='doctor')
+					$this->load->view('doctor_reg_view');
+				
+				echo "<p>";
+				echo form_submit('info_submit', 'Complete Registration!');
+				echo "</p>";
+				
+				echo form_close();
+				?>
+			</div>
 	
-	<a href = '<?php 
-		echo base_url(),"index.php/main"
-		?>'>Back to Login</a>
+			<a href = '<?php 
+			echo base_url(),"index.php/main"
+			?>'>Back to Login</a>
+		</div>
+      </div>
 </div>
 </body>
 </html>

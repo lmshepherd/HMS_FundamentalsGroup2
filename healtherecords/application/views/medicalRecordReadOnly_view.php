@@ -15,65 +15,86 @@ $row = $query->row();
 <body>
 <header id="header"><h1>Here is your current medical record</h1></header>
 <div id="container">
-	<?php
-	$attributes = array('class' => 'form-group', 'role' => 'form','id'=>'center', 'class'=>'column');
+      <div class="row">
+        <div class="col-lg-4">
+     	    <ul>
+			    <li><a href="http://projectsgeek.com/2013/08/hospital-management-system-mini-project-2.html">HMS Info</a></li>
+			    <li><a href="#">Link 2</a></li>
+			    <li><a href="#">Link 3</a></li>
+			    <li><a href="#">Link 4</a></li>
+			    <li><a href="#">Link 5</a></li>
+		    </ul>
+		    <h3>Doctor Links</h3>
+		    <ul>
+			    <li><a href="#">Link 1</a></li>
+			    <li><a href="#">Link 2</a></li>
+		    	<li><a href="#">Link 3</a></li>
+			    <li><a href="#">Link 4</a></li>
+			    <li><a href="#">Link 5</a></li>
+			</ul>
+		</div>
+        <div class="col-lg-8">
+    	    <?php
+			$attributes = array('class' => 'form-group', 'role' => 'form','id'=>'center', 'class'=>'column');
+			
+			if($row!=NULL){
+				echo '<p>Height: ';
+				echo $row->height;
+				echo " inches";
+				echo '</p>';
+				
+				echo '<p>Weight: ';
+				echo $row->weight;
+				echo " pounds";
+				echo '</p>';
+				
+				echo '<p>Surgery history: ';
+				echo $row->surgery;
+				echo '</p>';
+				
+				echo '<p>Family history: ';
+				echo $row->family;
+				echo '</p>';
+				
+				echo '<p>Religion: ';
+				echo $row->religion;
+				echo '</p>';
+				
+				echo '<p>Career: ';
+				echo $row->career;
+				echo '</p>';
+				
+				echo '<p>Alcohol: ';
+				echo $row->alcohol;
+				echo '</p>';
+				
+				echo '<p>Smoking: ';
+				echo $row->smoker;
+				echo '</p>';
+				
+				echo '<p>Other notes: ';
+				echo $row->other;
+				echo '</p>';
+				
+				echo form_open('main/complete_medicalRecord', $attributes);
+				
+				echo "<p>";
+				echo form_submit('medicalRecord_submit', 'Update Your Medical Record');
+				echo "</p>";
+				
+				echo form_close();	
+		}
+		?>
 	
-	if($row!=NULL){
-		echo '<p>Height: ';
-		echo $row->height;
-		echo " inches";
-		echo '</p>';
+		<a href = '<?php 
+			echo base_url(),"index.php/main/home"
+			?>'>Back to Home</a>
 		
-		echo '<p>Weight: ';
-		echo $row->weight;
-		echo " pounds";
-		echo '</p>';
-		
-		echo '<p>Surgery history: ';
-		echo $row->surgery;
-		echo '</p>';
-		
-		echo '<p>Family history: ';
-		echo $row->family;
-		echo '</p>';
-		
-		echo '<p>Religion: ';
-		echo $row->religion;
-		echo '</p>';
-		
-		echo '<p>Career: ';
-		echo $row->career;
-		echo '</p>';
-		
-		echo '<p>Alcohol: ';
-		echo $row->alcohol;
-		echo '</p>';
-		
-		echo '<p>Smoking: ';
-		echo $row->smoker;
-		echo '</p>';
-		
-		echo '<p>Other notes: ';
-		echo $row->other;
-		echo '</p>';
-		
-		echo form_open('main/complete_medicalRecord', $attributes);
-		
-		echo "<p>";
-		echo form_submit('medicalRecord_submit', 'Update Your Medical Record');
-		echo "</p>";
-		
-		echo form_close();	
-	}
-	?>
-	
-	<a href = '<?php 
-		echo base_url(),"index.php/main/home"
-		?>'>Back to Home</a>
-	
-	<a href = '<?php 
-		echo base_url(),"index.php/main/logout"
-	?>'>Logout</a>
+		<a href = '<?php 
+			echo base_url(),"index.php/main/logout"
+		?>'>Logout</a>
+	</div>
+      </div>
 
 </div>
 

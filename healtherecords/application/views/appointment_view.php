@@ -91,44 +91,64 @@
 <body>
 <header id="header"><h1>Health E-Records: Schedule an Appointment</h1></header>
 <div id="container">
-	
-	<?php
-	//store dropdown box options as an array
-	$specialization = array(''=>'Select Specialization',
-			'cardiologist'=>'Cardiologist',
-			'endocrinologist'=>'Endocrinologist',
-			'general'=>'General Practitioner',
-			'immunologist'=>'Immunologist',
-			'neurologist'=>'Neurologist');
-	echo "<p>Specialization: ";
-	//create dropdown box
-	echo form_dropdown('specialization',$specialization,'','id="spec"');
-	echo "</p>";
-	?>
-	
-	<?php $attributes = array('id'=>'doctor_form');
-	echo form_open('',$attributes); 
-	?>
-	<div id="doctor_list" ></div>
-	<?php echo form_close(); ?>
-	
-	<div id="date_list" style="display: none;">
-	<br>
-	<?php echo 'Date: ' ?>
-	<input type="text" class="date" name="appointment" id="datepicker"><br>
+	      <div class="row">
+        <div class="col-lg-4">
+     	    <ul>
+			    <li><a href="http://projectsgeek.com/2013/08/hospital-management-system-mini-project-2.html">HMS Info</a></li>
+			    <li><a href="#">Link 2</a></li>
+			    <li><a href="#">Link 3</a></li>
+			    <li><a href="#">Link 4</a></li>
+			    <li><a href="#">Link 5</a></li>
+		    </ul>
+		    <h3>Doctor Links</h3>
+		    <ul>
+			    <li><a href="#">Link 1</a></li>
+			    <li><a href="#">Link 2</a></li>
+		    	<li><a href="#">Link 3</a></li>
+			    <li><a href="#">Link 4</a></li>
+			    <li><a href="#">Link 5</a></li>
+			</ul>
+		</div>
+        <div class="col-lg-8">
+		    <?php
+			//store dropdown box options as an array
+			$specialization = array(''=>'Select Specialization',
+					'cardiologist'=>'Cardiologist',
+					'endocrinologist'=>'Endocrinologist',
+					'general'=>'General Practitioner',
+					'immunologist'=>'Immunologist',
+					'neurologist'=>'Neurologist');
+			echo "<p>Specialization: ";
+			//create dropdown box
+			echo form_dropdown('specialization',$specialization,'','id="spec"');
+			echo "</p>";
+			?>
+			
+			<?php $attributes = array('id'=>'doctor_form');
+			echo form_open('',$attributes); 
+			?>
+			<div id="doctor_list" ></div>
+			<?php echo form_close(); ?>
+			
+			<div id="date_list" style="display: none;">
+			<br>
+			<?php echo 'Date: ' ?>
+			<input type="text" class="date" name="appointment" id="datepicker"><br>
+			</div>
+			
+			<div id="doctor_schedule"></div>
+			
+			
+			
+			<a href = '<?php 
+				echo base_url(),"index.php/main/home"
+				?>'><br>Back to Home</a>
+			
+			<a href = '<?php 
+				echo base_url(),"index.php/main/logout"
+			?>'><br>Logout</a>
 	</div>
-	
-	<div id="doctor_schedule"></div>
-	
-	
-	
-	<a href = '<?php 
-		echo base_url(),"index.php/main/home"
-		?>'><br>Back to Home</a>
-	
-	<a href = '<?php 
-		echo base_url(),"index.php/main/logout"
-	?>'><br>Logout</a>
+      </div>
 
 </div>
 

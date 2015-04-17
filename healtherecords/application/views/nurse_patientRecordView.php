@@ -30,7 +30,7 @@ $row3 = $query3->row();
 <?php $this->load->view('header');?>
 
 <body>
-<header id="header"><h1>General Patient Information</h1></header>
+<header id="header"><h1>View Patients</h1></header>
 <div id="container">
 	<?php 
 		//read from userinfo table
