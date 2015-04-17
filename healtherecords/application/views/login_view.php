@@ -1,4 +1,4 @@
-
+<?php $this->load->view('header');?>
 <body>
 	<div id="header"><h1>Health E-Records</h1></div>
 	    <div class="row">
