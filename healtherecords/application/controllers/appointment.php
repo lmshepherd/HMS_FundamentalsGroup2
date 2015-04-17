@@ -43,7 +43,7 @@ class Appointment extends CI_Controller
     		if ($query->num_rows()>0)
     		{
     			//create table heading
-    			$this->table->set_heading('Name','Gender','Experience', '');
+    			$this->table->set_heading('Name','Gender','Experience', 'Age');
     			//gender placeholder in case missing from database
     			$gender='';
     			
@@ -61,10 +61,12 @@ class Appointment extends CI_Controller
 		    		else if($row->gender=='f')
 		    			$gender='Female';
 		    		
+		    		$birthday=$row2->dob;
+		    		
 		    		//add doctor to table
 		    		$this->table->add_row($row2->firstname . ' ' . $row2->lastname,
 		    				$gender,
-		    				$row->experience.' years',
+		    				$row->experience.' years', $birthday,
 							//add a button to select doctor
 		    				'<input id="'.$row->id.'" type="button" value="Select" onclick="select_doctor(this)" />');
 		    	}
