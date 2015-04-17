@@ -29,6 +29,7 @@
 				<br>As mans hope of light in the face of darkness."<br><br>-Richard Eberhart</p>
 			</div>
 			<div class="col-lg-3" id='right'>
+			<h3>Login</h3>
 		        <?php 
 				$attributes = array('class' => 'col-lg-3');
 				$login = array(
