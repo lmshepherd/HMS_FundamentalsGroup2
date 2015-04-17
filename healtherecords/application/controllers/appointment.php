@@ -60,13 +60,17 @@ class Appointment extends CI_Controller
 		    			$gender='Male';
 		    		else if($row->gender=='f')
 		    			$gender='Female';
-		    		
+//**************		    		
+//THIS IS BROKEN RIGHT NOW	
+//**************	    		
 		    		$birthday=$row2->dob;
+		    		parse_str($birthday,$dateArray);
+		    		$birthYear=implode(array_slice($dateArray,0,3));
 		    		
 		    		//add doctor to table
 		    		$this->table->add_row($row2->firstname . ' ' . $row2->lastname,
 		    				$gender,
-		    				$row->experience.' years', $birthday,
+		    				$row->experience.' years', $birthYear,
 							//add a button to select doctor
 		    				'<input id="'.$row->id.'" type="button" value="Select" onclick="select_doctor(this)" />');
 		    	}
