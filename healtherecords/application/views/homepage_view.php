@@ -70,6 +70,8 @@ $role = $row->role;
 				$this->load->view('nursehomepage_view');
 			else if($role=='doctor')
 				$this->load->view('doctorhomepage_view');
+			else if($role=='admin')
+				$this->load->view('adminhomepage_view');
 			
 			?>
 			
