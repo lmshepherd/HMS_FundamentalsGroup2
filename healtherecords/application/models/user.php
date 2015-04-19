@@ -310,6 +310,7 @@ class User extends CI_Model
 		$row3 = $query3->row();
 		$nurse_id = $row3->id;
 		
+		
 		$temp = array('patient_id' => $id,
 				'doctor_id' => $docid,
 				'nurse_id' =>$nurse_id,

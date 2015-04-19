@@ -43,7 +43,7 @@ class Appointment extends CI_Controller
     		if ($query->num_rows()>0)
     		{
     			//create table heading
-    			$this->table->set_heading('Name','Gender','Experience', 'Age','');
+    			$this->table->set_heading('Name','Gender','Experience', 'Age');
     			//gender placeholder in case missing from database
     			$gender='';
     			
