@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+phpunit_config_file=/her/tests/phpunit.xml
+preload_script=/her/tests/bootstrap.php
+test_file_pattern=
+test_folders=/her/tests/classes
+testing_framework=PHPUnit
