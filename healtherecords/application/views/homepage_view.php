@@ -10,7 +10,7 @@ $role = $row->role;
 <?php $this->load->view('header');?>
 
 <body>
-<header id="header"><h1>Welcom to Health E-Records</h1></header>
+<header id="header"><h1>Welcome to Health E-Records</h1></header>
 <div id="container">
 	      <div class="row">
         <div class="col-lg-4">
