@@ -67,6 +67,7 @@ $row = $query->row();
 
 	function checkChecks(button) 
 	{
+		$("#bill").hide();
 	    if ($('.check:checked').length == $('.check').length) {
 			$("#bill").show();
 	    }
