@@ -65,6 +65,13 @@ $row = $query->row();
 		});
 	};
 
+	function checkChecks(button) 
+	{
+	    if ($('.check:checked').length == $('.check').length) {
+			$("#bill").show();
+	    }
+	};
+
 	function cancel_appt(button) 
 	{
 		$.ajax({
@@ -124,6 +131,15 @@ $row = $query->row();
 				</div>
 				
 				<div id="doctor_schedule"></div>
+				<div id="bill" style="display:none">
+					<?php 
+						echo form_open('bill/nurse_schedules');
+						echo "<p>";
+						echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
+						echo "</p>";
+						echo form_close();
+					?>
+				</div>
 				
 				<a href = '<?php 
 					echo base_url(),"index.php/main/home"

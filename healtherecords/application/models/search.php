@@ -45,14 +45,13 @@ class Search extends CI_Model
 		$id = $row->id;
 		if ($row->role=='patient')
 			$this->get_appts_patient($id);
-		else if ($row->role=='doctor')
+		else if ($row->role=='doctor'){
 			$this->get_appts_doctor($id);
+		}
 	}
 	
 	public function get_appts_patient($id)
-	{
-		
-		
+	{	
 		//check appts where this user is the patient
 		$this->db->where('patient_id',$id);
 		$query = $this->db->get('appts');
@@ -114,7 +113,7 @@ class Search extends CI_Model
 		if ($query->num_rows()>0)
 		{
 			//create table heading
-			$this->table->set_heading('Date','Time','Patient');
+			$this->table->set_heading('Date','Time','Patient','','','','Appointment Complete');
 			
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
@@ -139,11 +138,11 @@ class Search extends CI_Model
 						$row2->firstname.' '.$row2->lastname,
 						'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
 						'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
-						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
+						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />',
+						'<input id="'.$row->appt_id.'" type="checkbox" name="apointmentCompmlete" value="done" class="check" onclick="checkChecks(this)"/>'
 						);
 						//add a button to select doctor
 						//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
-
 				echo form_close();
 			}
 				

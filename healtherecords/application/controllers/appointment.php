@@ -286,6 +286,20 @@ class Appointment extends CI_Controller
     	//$this->session->set_userdata('make_or_change_appt', 'change');
     }
     
+    /*public function set_doctor_finish()
+    {
+    	//get doctor id from post
+    	$appt_id = $this->input->post('id');
+    	$this->db->where('appt_id',$appt_id);
+    	$query = $this->db->get('appts');
+    	$row = $query->row();
+    	$docid = $row->doctor_id;
+    	//store id of selected doctor in session data
+    	$this->session->set_userdata('selected_doctor', $docid);
+    	$this->session->set_userdata('appt_id', $appt_id);
+    	//$this->session->set_userdata('make_or_change_appt', 'change');
+    }*/
+    
     public function change_appt_submit()
     {
     	$appt = $this->session->userdata('appt_id');
