@@ -43,9 +43,7 @@ $role = $row->role;
 			echo ' Information: </p>';
 			
 			echo '<p>Name: ';
-			echo $row->firstname;
-			echo ' ';
-			echo $row->lastname;
+			echo $row->firstname.' '.$row->lastname;
 			echo '</p>';
 			
 			echo '<p>Email: ';
