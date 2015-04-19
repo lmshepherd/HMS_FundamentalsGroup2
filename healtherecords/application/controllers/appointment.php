@@ -246,6 +246,10 @@ class Appointment extends CI_Controller
     	$this->db->where('appt_id',$appt);	
     	$this->db->update('appts', $temp);
     	
+    	//send notification emails
+    	$this->load->model('notify');
+    	$this->notify->appt_change_notification($appt);
+    	
     	$this->load->view('appointment_submitted');
     	
     	//clear date and doctor id from session data

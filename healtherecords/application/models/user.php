@@ -315,7 +315,12 @@ class User extends CI_Model
 				'doctor_id' => $docid,
 				'nurse_id' =>$nurse_id,
 				'date' => $date,
-				'hour' => $this->input->post('hours')
+				'hour' => $this->input->post('hours'),
+				'doctor_finish' => FALSE,
+				'admin_process' => FALSE,
+				'treatment' => '',
+				'prescription' => '',
+				'paid' => FALSE
 		);
 		
 			
