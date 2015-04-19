@@ -249,7 +249,7 @@ class Appointment extends CI_Controller
     	//send notification emails
     	$this->load->model('notify');
     	$this->notify->appt_change_notification($appt);
-    	
+
     	$this->load->view('appointment_submitted');
     	
     	//clear date and doctor id from session data

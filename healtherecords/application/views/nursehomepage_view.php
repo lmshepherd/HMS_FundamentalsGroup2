@@ -45,7 +45,7 @@ $this->table->add_row('End time:',
 echo $this->table->generate();
 echo '</p>';*/
 
-echo form_open('schedule/change_schedule',attributes);
+echo form_open('schedule/change_schedule');
 echo "<p>";
 echo form_submit('schedule_submit', 'View/Change Schedule');
 echo "</p>";
