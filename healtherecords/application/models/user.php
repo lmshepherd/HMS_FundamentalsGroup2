@@ -310,29 +310,16 @@ class User extends CI_Model
 		$row3 = $query3->row();
 		$nurse_id = $row3->id;
 		
-		$doctor_finish = false;
-		$admin_process =false;
-		$treatment = 'filler';
-		$prescription = ' filler';
-		$paid = false;
 		$temp = array('patient_id' => $id,
 				'doctor_id' => $docid,
 				'nurse_id' =>$nurse_id,
 				'date' => $date,
 				'hour' => $this->input->post('hours'),
-<<<<<<< HEAD
 				'doctor_finish' => $doctor_finish,
 				'admin_process' => $admin_process,
 				'treatment' => $treatment,
 				'prescription' => $prescription,
 				'paid' => $paid
-=======
-				'doctor_finish' => FALSE,
-				'admin_process' => FALSE,
-				'treatment' => '',
-				'prescription' => '',
-				'paid' => FALSE
->>>>>>> refs/remotes/origin/CSS
 		);
 		
 			
