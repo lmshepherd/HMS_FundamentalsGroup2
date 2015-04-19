@@ -80,7 +80,7 @@ class Appointment extends CI_Controller
 		    			$age=$nowYear-$birthYear;
 		    		}
 		    		else if($nowMonth==$birthMonth){
-		    			if($birthDay<nowDay){
+		    			if($birthDay<$nowDay){
 		    				$age=$nowYear-$birthYear-1;
 		    			}
 		    			else{
