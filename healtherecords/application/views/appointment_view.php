@@ -47,7 +47,6 @@
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
 		$("#spec").change(function(){
-			alert('change');
 			$.ajax({
 				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_specialization",
