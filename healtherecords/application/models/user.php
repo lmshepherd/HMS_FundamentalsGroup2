@@ -256,7 +256,15 @@ class User extends CI_Model
 				'other' => $this->input->post('other'));
 			
 		//insert info into patients database
-		//$this->db->where('username', $username);
+		
+		$username = $this->session->userdata('username');
+		$this->db->where('username', $username);
+		$query2 = $this->db->get('userinfo');
+		$row2 =$query2->row();
+		$id=$row2->id;
+		
+		
+		$this->db->where('id',$id);
 		$query = $this->db->update('medical_record',$temp);
 	
 		if($query){
