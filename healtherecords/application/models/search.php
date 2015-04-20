@@ -190,7 +190,7 @@ class Search extends CI_Model
     				$row3 = $query3->row();
     				//array_push($patients,$row->patient_id);
     				if (!in_array($row3->firstname.' '.$row3->lastname, $patients)){	
-    					array_push($patients, $row3->firstname.' '.$row3->lastname);
+    					$patients[$row->patient_id]=$row3->firstname.' '.$row3->lastname;
     				}
     		}
     	}
