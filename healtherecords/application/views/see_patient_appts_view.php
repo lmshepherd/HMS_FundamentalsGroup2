@@ -111,37 +111,35 @@ $row = $query->row();
 			</ul>
 		</div>
         <div class="col-md-8">
-        
-                	<?php 
-        	
-				$this->load->model('search');
+
+           <?php 
+        		$this->load->model('search');
 				$this->search->get_appts();
-				?>
+			?>
 				
-				<div id="date_list" style="display: none;">
+			<div id="date_list" style="display: none;">
 				<br>
 				<?php echo 'Date: ' ?>
 				<input type="text" class="date" name="appointment" id="datepicker"><br>
-				</div>
+			</div>
 				
-				<div id="doctor_schedule"></div>
-				<div id="bill" style="display:none">
-					<?php 
-						echo form_open('bill/nurse_schedules');
-						echo "<p>";
-						echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
-						echo "</p>";
-						echo form_close();
-					?>
-
+			<div id="bill" style="display:none">
+				<?php 
+					echo form_open('bill/nurse_schedules');
+					echo "<p>";
+					echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
+					echo "</p>";
+					echo form_close();
+				?>
+			</div>
+			
+			<a href = '<?php 
+				echo base_url(),"index.php/main/home"
+			?>'>Back to Home</a>
 				
-				<a href = '<?php 
-					echo base_url(),"index.php/main/home"
-					?>'>Back to Home</a>
-				
-				<a href = '<?php 
-					echo base_url(),"index.php/main/logout"
-				?>'>Logout</a>
+			<a href = '<?php 
+				echo base_url(),"index.php/main/logout"
+			?>'>Logout</a>
 		</div>
 	</div>
 </div>

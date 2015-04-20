@@ -145,7 +145,30 @@ $row = $query->row();
 			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'','id="patients"')
 		?>
         
-        <div id = "byPatient" ></div>
+        <div id = "byPatient" style="display:none" >
+        <?php 
+        	
+				$this->load->model('search');
+				$this->search->get_appts();
+				?>
+				
+				<div id="date_list" style="display: none;">
+				<br>
+				<?php echo 'Date: ' ?>
+				<input type="text" class="date" name="appointment" id="datepicker"><br>
+				</div>
+				
+				<div id="doctor_schedule"></div>
+				<div id="bill" style="display:none">
+					<?php 
+						echo form_open('bill/nurse_schedules');
+						echo "<p>";
+						echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
+						echo "</p>";
+						echo form_close();
+					?>
+				</div>
+				</div>
 				
 				<a href = '<?php 
 					echo base_url(),"index.php/main/home"
