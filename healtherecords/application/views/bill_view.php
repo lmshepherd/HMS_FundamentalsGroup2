@@ -32,21 +32,18 @@ $query = $this->db->get('appts');
 	echo $row->lastname;
 	echo '</p>';
 	
+	//get insurance info
 	$this->db->where('id',$id);
 	$ins_query = $this->db->get('patients');
 	$ins_row = $ins_query->row();
-	//$ins_start_year = intval(substr($ins_row->insurancestart,0,4));
-	//$ins_start_month = intval(substr($ins_row->insurancestart,5,7));
-	//$ins_start_day = intval(substr($ins_row->insurancestart,8,10));
-	//$ins_end_year = intval(substr($ins_row->insuranceend,0,4));
-	//$ins_end_month = intval(substr($ins_row->insuranceend,5,7));
-	//$ins_end_day = intval(substr($ins_row->insuranceend,8,10));
 	
 	echo '<div class="col-lg-12">';
+	//configure table id
 	$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
 							'table_close' => '</table>');
 	$this->table->set_template($table_config);
 	$this->table->set_heading('Date ','Time ','Doctor ','Treatment ','Prescription ','Covered ','Bill ');
+	//billing variables
 	$count = 0;
 	$base_cost = 50;
 	$cost = 0;
@@ -82,12 +79,17 @@ $query = $this->db->get('appts');
 			//calculate cost based off of experience
 			$cost = $base_cost*((100+$row3->experience))/100;
 			
-			if (strtotime($row->date)>=strtotime($ins_row->insurancestart) &&
+			//check if appt covered by insurance
+			//echo '<p>'.'20'.$row->date.' '.$ins_row->insurancestart.' '.$ins_row->insuranceend.'</p>';
+			if (strtotime('20'.$row->date)>=strtotime($ins_row->insurancestart) &&
 				strtotime($row->date)<=strtotime($ins_row->insuranceend))
 			{
+				//$20 copay?
 				$cost = 20;
 				$covered = 'yes';
 			}
+			else 
+				$covered = 'no';
 			
 			//keep track of total cost
 			$total_cost += $cost;
