@@ -89,23 +89,23 @@ $row = $query->row();
 	};
 
 	//THIS WILL BE USED FOR THE PATIENT DROP DOWN FROM DOCTOR VIEW APPOINTMENTS
-	//it is not done... just copied for a template from #spec in appointment_view
-	//check that document is loaded
+	//Not registering a change for some reason?
 	$(document).ready(function(){
+		
 		//send post when specialty dropdown value changes
-		$("#byPatient").change(function(){
+		$("#patients").change(function(){
+			alert('hi');
+			$("#patientsList").show();
 			$.ajax({
 				//run select_specialization function of appointment controller
-				url:"<?php echo base_url();?>index.php/appointment/select_specialization",
+				url:"<?php echo base_url();?>index.php/appointment/select_patient",
 				//set data value of POST to value selected in dropdown box
-				data: {specialization: $(this).val()},
+				data: {patient: $(this).val()},
 				type: "POST",
 				//update html inside doctor_list div to be what is returned
 				success: function(data){
 					//update doctor list div
-					$("#doctor_list").html(data);
-					//clear doctor schedule div
-					$("#doctor_schedule").html("");
+					$("#patientsList").html(data);
 				}
 			});
 		});

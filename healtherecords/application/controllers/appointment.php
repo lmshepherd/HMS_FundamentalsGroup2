@@ -330,4 +330,106 @@ class Appointment extends CI_Controller
     	//echo 'here';
     	//$this->load->view('appointment_cancelled_view');
     }
+    
+    public function select_patient()
+    {
+    	//get specialization from post
+    	$specialization = $this->input->post('patient');
+    	//pass specializtion to database query in search model
+    	$query = $this->search->doctors_by_specialization($specialization);
+    
+    	//check if a specialization is selected in the box
+    	if ($specialization!='')
+    	{
+    		//check that there is at least one result
+    		if ($query->num_rows()>0)
+    		{
+    			//create table heading
+    			$this->table->set_heading('Name ','Gender ','Experience ', 'Age ', 'Availability ');
+    			//gender placeholder in case missing from database
+    			$gender='';
+    			 
+    			//cycle through doctors of matching specialty
+    			foreach ($query->result() as $row)
+    			{
+    				//get name from userinfo db
+    				$this->db->from('userinfo');
+    				$this->db->where('id',$row->id);
+    				$query2 = $this->db->get();
+    				$row2 = $query2->row();
+    
+    				if ($row->gender=='m')
+    					$gender='Male';
+    				else if($row->gender=='f')
+    					$gender='Female';
+    
+    				$birthday=$row2->dob;
+    				$birthYear=substr($birthday,0,4);
+    				$dayAndMonth=substr($birthday,5);
+    				$birthMonth=substr($dayAndMonth,0,2);
+    				$birthDay=substr($dayAndMonth,3);
+    
+    				$dob=date_create($birthday);
+    				$today=new DateTime('today');
+    				$now=$today->format('Y-m-d H:i:s');
+    
+    				$nowYear=substr($now,0,4);
+    				$nowDayAndMonth=substr($now,5);
+    				$nowMonth=substr($nowDayAndMonth,0,2);
+    				$nowDay=substr($nowDayAndMonth,3);
+    
+    				if($nowMonth>$birthMonth){
+    					$age=$nowYear-$birthYear;
+    				}
+    				else if($nowMonth==$birthMonth){
+    					if($birthDay<$nowDay){
+    						$age=$nowYear-$birthYear-1;
+    					}
+    					else{
+    						$age=$nowYear-$birthYear;
+    					}
+    				}
+    				else{
+    					$age=$nowYear-$birthYear-1;
+    				}
+    
+    				//get schedule from schedule db
+    				$this->db->from('schedule');
+    				$this->db->where('id',$row->id);
+    				$query3 = $this->db->get();
+    				$row3 = $query3->row();
+    
+    				$days=[];
+    				if($row3->sunstart!=-1){
+    					array_push($days, "Su");
+    				}
+    				if($row3->monstart!=-1){
+    					array_push($days, "M");
+    				}
+    				if($row3->tuestart!=-1){
+    					array_push($days, "Tu");
+    				}
+    				if($row3->thustart!=-1){
+    					array_push($days, "W");
+    				}
+    				if($row3->fristart!=-1){
+    					array_push($days, "Th");
+    				}
+    				if($row3->satstart!=-1){
+    					array_push($days, "S");
+    				}
+    
+    				//add doctor to table
+    				$this->table->add_row($row2->firstname . ' ' . $row2->lastname,
+    						$gender,
+    						$row->experience.' years', $age, implode($days),
+    						//add a button to select doctor
+    						'<input id="'.$row->id.'" type="button" value="Select" onclick="select_doctor(this)" />');
+    			}
+    			//generate the table
+    			echo $this->table->generate();
+    		}
+    		else echo '<p>No doctors with that specialty available.</p>';
+    	}
+    }
 }

@@ -167,11 +167,18 @@ class Search extends CI_Model
     	//search doctors table for all matches to specialty
 		$this->db->from('appts');
 		$this->db->where('doctor_id',$id);
-		$query = $this->db->get();
+		$query2 = $this->db->get();
     	$patients=[];
-    	if($query->num_rows()>0){
-    		foreach($query->result() as $row){
-    				array_push($patients, $row->patient_id);
+    	array_push($patients, "Select a patient");
+    	if($query2->num_rows()>0){
+    		foreach($query2->result() as $row){
+    				$patient=$row->patient_id;
+    				$this->db->from('userinfo');
+    				$this->db->where('id',$patient);
+    				$query3 = $this->db->get();
+    				$row3 = $query3->row();
+    				//array_push($patients,$row->patient_id);
+    				array_push($patients, $row3->firstname.' '.$row3->lastname);
     		}
     	}
     	return $patients;
