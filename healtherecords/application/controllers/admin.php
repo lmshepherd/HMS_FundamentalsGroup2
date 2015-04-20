@@ -20,5 +20,10 @@ class Admin extends CI_Controller
 		$this->load->model('admin_search');
 		$this->load->view('admin_view_patients');
 	}
+	
+	public function view_appointments(){
+		$this->load->model('admin_search');
+		$this->load->view('admin_view_appts');
+	}
 }
 

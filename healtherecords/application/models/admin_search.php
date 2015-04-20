@@ -4,12 +4,70 @@ class Admin_search extends CI_Model
 {
 	
 	
+	public function load_appointments(){
+		$query = $this->db->get('appts');
+		
+		if ($query->num_rows() >0){
+			echo '<div class="col-lg-12">';
+			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+					'table_close' => '</table>');
+			$this->table->set_template($table_config);
+			$this->table->set_heading('Doctor name', 'Patient Name', 'Nurse Name', 'Appointment Date', 'Appointment Time');
+			
+			foreach($query->result() as $row){
+				$patientid = $row->patient_id;
+				$doctorid = $row->doctor_id;
+				$nurseid = $row->nurse_id;
+				
+				//grab doctors name from user info table
+				$this->db->where('id', $doctorid);
+				$query2 = $this->db->get('userinfo');
+				$row2 = $query2->row();
+				
+				//grab patients name
+				$this->db->where('id', $patientid);
+				$query3 = $this->db->get('userinfo');
+				$row3 = $query3->row();
+				
+				//grab nurses name
+				$this->db->where('id', $nurseid);
+				$query4 = $this->db->get('userinfo');
+				$row4 = $query4->row();
+				
+				$time = $row->hour;
+				//convert time to nice format
+				if($time==0){
+					$time=($time+12).'am';
+				}
+				else if ($time>12)
+				{
+					$time = ($time%12).'pm';
+				}
+				else
+				{
+					$time = $time.'am';
+				}
+				
+				$this->table->add_row('Dr.'.$row2->firstname.' '.$row2->lastname,
+						$row3->firstname.' '.$row3->lastname,
+						$row4->firstname.' '.$row4->lastname,
+						$row->date,
+						$time
+						);
+			}
+			echo $this->table->generate();
+		}else echo "<p>No appointments found</p>";
+	}
+	
 	public function load_patients(){
 		$this->db->where('role','patient');
 		$query = $this->db->get('userinfo');
 		
 		if($query->num_rows()>0){
-			
+			echo '<div class="col-lg-12">';
+			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+					'table_close' => '</table>');
+			$this->table->set_template($table_config);
 			$this->table->set_heading('Name','Date of Birth');
 			
 			foreach($query->result() as $row){
@@ -29,6 +87,10 @@ class Admin_search extends CI_Model
 		//check that there is at least one result
 		if ($query->num_rows()>0)
 		{
+			echo '<div class="col-lg-12">';
+			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+					'table_close' => '</table>');
+			$this->table->set_template($table_config);
 			//create table heading
 			$this->table->set_heading('Name','Gender','Experience','Specialization','Sunday Start','Sunday End','Monday Start','Monday End','Tuesday Start','Tuesday End','Wednesday Start','Wednesday End','Thursday Start','Thursday End','Friday Start','Firday End','Saturday Start','Saturday End');
 			 
@@ -288,6 +350,10 @@ class Admin_search extends CI_Model
 		//check that there is at least one result
 		if ($query->num_rows()>0)
 		{
+			echo '<div class="col-lg-12">';
+			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+					'table_close' => '</table>');
+			$this->table->set_template($table_config);
 			//create table heading
 			$this->table->set_heading('Name','Department','Sunday Start','Sunday End','Monday Start','Monday End','Tuesday Start','Tuesday End','Wednesday Start','Wednesday End','Thursday Start','Thursday End','Friday Start','Firday End','Saturday Start','Saturday End');
 	
