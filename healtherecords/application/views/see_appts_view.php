@@ -49,7 +49,7 @@ $row = $query->row();
 		});
 	}); 
 
-	function doctor_bill_finish(button){
+	function doctor_bill_setFlag(button){
 		alert('press');
 	}
 
@@ -89,7 +89,6 @@ $row = $query->row();
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
 		$("#patients").change(function(){
-			alert($(this).val());
 			$.ajax({
 				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_patient",
@@ -140,7 +139,7 @@ $row = $query->row();
         
         <?php 
 			$this->load->model('search');
-			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'','id="patients"')
+			echo form_dropdown('patient',$this->search->patients_by_doctor(),'','id="patients"')
 		?>
         
         <div id = "byPatient" ></div>

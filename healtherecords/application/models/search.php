@@ -134,13 +134,13 @@ class Search extends CI_Model
 			foreach ($query->result() as $row)
 			{
 				if($row->patient_id==$patientID){
-				
+				//if($row->patient_id==10){
 					//get name from userinfo db
 					$this->db->from('userinfo');
 					$this->db->where('id',$row->patient_id);
 					$query2 = $this->db->get();
-					$row2 = $query2->row();
-		
+					$row2 = $query2->row();				
+					
 					$time = $row->hour;
 					if ($time<12)
 						$ampm = 'am';
@@ -156,13 +156,10 @@ class Search extends CI_Model
 							'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
 							'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
 							'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
-							,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_finish(this)"/>'
+							,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_setFlag(this)"/>'
 							);
 							//add a button to select doctor
 							//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
-				}
-				else{
-					$this->table->add_row("hello", "this", "doesn't", $patientID, "<-chosen patient...patient for current row->",$row->patient_id);
 				}
 				echo form_close();
 			}

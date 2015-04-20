@@ -338,18 +338,12 @@ class Appointment extends CI_Controller
     	//send notification emails
     	$this->load->model('notify');
     	$this->notify->appt_cancelled_notification($appt_id);
-    }
+    }   
     
-    
-    
-    
-/*
- * THIS IS WHAT IS SUPPOSED TO RETURN THE DATA TO PROPOGATE THE CHOSEN PATIENT'S APPOINTMENT
- */
     public function select_patient()
     {
     	//get specialization from post
-    	$chosenPatientID = $this->input->post('patientsList');
+    	$chosenPatientID = $this->input->post('patient');
     	$this->load->model('search');
     	$this->search->get_doctor_appts($chosenPatientID);
     	 
