@@ -369,7 +369,7 @@ class Appointment extends CI_Controller
     				$row2=$query->row();
     			}
     		}
-    	}/*
+    	}
     	
     	$id=$row2->id;
     	$this->session->set_userdata('currPatient_id', $id);
