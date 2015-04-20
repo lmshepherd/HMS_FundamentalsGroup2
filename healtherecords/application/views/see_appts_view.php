@@ -83,7 +83,6 @@ $row = $query->row();
 			type: "POST"
 			,success: function(data){
 				location.reload();
-				alert("Appointment cancelled!");
 			}
 		});
 	};
@@ -91,11 +90,10 @@ $row = $query->row();
 	//THIS WILL BE USED FOR THE PATIENT DROP DOWN FROM DOCTOR VIEW APPOINTMENTS
 	//Not registering a change for some reason?
 	$(document).ready(function(){
-		
 		//send post when specialty dropdown value changes
 		$("#patients").change(function(){
 			alert('hi');
-			$("#patientsList").show();
+			$("#byPatient").show();
 			$.ajax({
 				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_patient",
@@ -146,7 +144,7 @@ $row = $query->row();
         
         <?php 
 			$this->load->model('search');
-			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'id="patients"')
+			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'','id="patients"')
 		?>
         
         <div id = "byPatient" style="display:none">
