@@ -13,7 +13,7 @@ echo form_submit('nurse_sched_submit', 'View Nurse Schedules');
 echo "</p>";
 echo form_close();
 
-echo form_open('admin/');
+echo form_open('admin/view_patients');
 echo "<p>";
 echo form_submit('patient_submit', 'View Patients');
 echo "</p>";

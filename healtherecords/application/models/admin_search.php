@@ -4,6 +4,24 @@ class Admin_search extends CI_Model
 {
 	
 	
+	public function load_patients(){
+		$this->db->where('role','patient');
+		$query = $this->db->get('userinfo');
+		
+		if($query->num_rows()>0){
+			
+			$this->table->set_heading('Name','Date of Birth');
+			
+			foreach($query->result() as $row){
+				$this->table->add_row(
+						$row->firstname.' '.$row->lastname,
+						$row->dob);
+			}
+			echo $this->table->generate();
+		}
+		else echo "<p>No patients found</p>";
+	}
+	
 	public function get_doctors(){
 		$this->db->where('role','doctor');
 		$query = $this->db->get('userinfo');
