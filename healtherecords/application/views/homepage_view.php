@@ -7,7 +7,15 @@ $row = $query->row();
 $role = $row->role;
 ?>
 
-<?php $this->load->view('header');?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<title>Health E-Records</title>
+</head>
 
 <body>
 <header id="header"><h1>Welcome to Health E-Records</h1></header>

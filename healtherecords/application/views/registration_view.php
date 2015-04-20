@@ -72,8 +72,8 @@ $role = $this->session->userdata('role');
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
 	<meta charset="utf-8">
 	<title>Health E-Records New User Info</title>
 </head>

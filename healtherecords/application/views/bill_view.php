@@ -16,7 +16,6 @@ $query = $this->db->get('appts');
 	
 <head>
     <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
-	<script src="<?= base_url();?>bootstrap/js/jquery.js"></script>
 	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
 	<meta charset="utf-8">
 	<title>Health E-Records</title>	
@@ -33,15 +32,26 @@ $query = $this->db->get('appts');
 	echo $row->lastname;
 	echo '</p>';
 	
+	$this->db->where('id',$id);
+	$ins_query = $this->db->get('patients');
+	$ins_row = $ins_query->row();
+	//$ins_start_year = intval(substr($ins_row->insurancestart,0,4));
+	//$ins_start_month = intval(substr($ins_row->insurancestart,5,7));
+	//$ins_start_day = intval(substr($ins_row->insurancestart,8,10));
+	//$ins_end_year = intval(substr($ins_row->insuranceend,0,4));
+	//$ins_end_month = intval(substr($ins_row->insuranceend,5,7));
+	//$ins_end_day = intval(substr($ins_row->insuranceend,8,10));
+	
 	echo '<div class="col-lg-12">';
 	$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
 							'table_close' => '</table>');
 	$this->table->set_template($table_config);
-	$this->table->set_heading('Date ','Time ','Doctor ','Treatment ','Prescription ','Bill ');
+	$this->table->set_heading('Date ','Time ','Doctor ','Treatment ','Prescription ','Covered ','Bill ');
 	$count = 0;
 	$base_cost = 50;
 	$cost = 0;
 	$total_cost = 0;
+	$covered = 'no';
 	
 	foreach ($query->result() as $row)
 	{
@@ -71,6 +81,14 @@ $query = $this->db->get('appts');
 			$count++;
 			//calculate cost based off of experience
 			$cost = $base_cost*((100+$row3->experience))/100;
+			
+			if (strtotime($row->date)>=strtotime($ins_row->insurancestart) &&
+				strtotime($row->date)<=strtotime($ins_row->insuranceend))
+			{
+				$cost = 20;
+				$covered = 'yes';
+			}
+			
 			//keep track of total cost
 			$total_cost += $cost;
 			//populate table
@@ -80,6 +98,7 @@ $query = $this->db->get('appts');
 					$row2->firstname . ' ' . $row2->lastname,
 					$row->treatment,
 					$row->prescription,
+					$covered,
 					'$'.number_format($cost,2)
 					);
 		}
@@ -87,9 +106,9 @@ $query = $this->db->get('appts');
 	//check if an appt is found
 	if ($count>0)
 	{
-		$this->table->add_row('','','','','Total Cost: ','$'.number_format($total_cost,2));
+		$this->table->add_row('','','','','','Total Cost: ','$'.number_format($total_cost,2));
 		
-		$this->table->add_row('','','','','',form_submit('pay_submit', 'Pay Bill'));
+		$this->table->add_row('','','','','','',form_submit('pay_submit', 'Pay Bill'));
 		echo form_open('bill/pay_bill');
 		echo "<p>";
 		echo $this->table->generate();

@@ -18,6 +18,10 @@ $time_options = array('0'=>'12:00am',
 		'19'=>'7:00pm','20'=>'8:00pm',
 		'21'=>'9:00pm','22'=>'10:00pm',
 		'23'=>'11:00pm','23'=>'11:59pm','-1'=>'none');
+
+$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+		'table_close' => '</table>');
+$this->table->set_template($table_config);
 $this->table->set_heading('','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 $this->table->add_row('Start time:',
 		form_dropdown('sunstart',$time_options,'9','id="sunstart"'),

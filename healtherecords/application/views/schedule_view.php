@@ -64,8 +64,8 @@
 	
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
 	<meta charset="utf-8">
 	<title>Health E-Records</title>
 </head>
@@ -124,6 +124,10 @@
 			echo validation_errors();
 			
 			echo form_open('schedule/set_schedule',$attributes);
+			
+			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+					'table_close' => '</table>');
+			$this->table->set_template($table_config);
 			
 			$this->table->set_heading('','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 			$this->table->add_row('Start time:',
