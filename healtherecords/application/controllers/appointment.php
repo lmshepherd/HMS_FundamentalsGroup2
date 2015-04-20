@@ -324,11 +324,13 @@ class Appointment extends CI_Controller
     
     public function cancel_appt()
     {
+    	//remove appt from database
     	$appt_id = $this->input->post('id');
     	$this->db->where('appt_id',$appt_id);
     	$this->db->delete('appts');
-    	//echo 'here';
-    	//$this->load->view('appointment_cancelled_view');
+    	//send notification emails
+    	$this->load->model('notify');
+    	$this->notify->appt_cancelled_notification($appt_id);
     }
     
     //has id so far.... want to generate resulting table 

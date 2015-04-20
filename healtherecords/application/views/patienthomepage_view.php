@@ -97,4 +97,10 @@ echo form_submit('appointment_submit', 'View Appointments');
 echo "</p>";
 echo form_close();
 
+echo form_open('bill/view_bill');
+echo "<p>";
+echo form_submit('billing_submit', 'Billing');
+echo "</p>";
+echo form_close();
+
 ?>

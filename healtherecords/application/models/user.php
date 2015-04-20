@@ -326,7 +326,12 @@ class User extends CI_Model
 			
 		$query = $this->db->insert('appts', $temp);
 		
+		$appt = $this->db->insert_id();
+		$this->load->model('notify');
+    	$this->notify->appt_created_notification($appt);
+		
 		if($query){
+			
 			return true;
 		}
 		else{

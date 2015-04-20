@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Appointment extends CI_Controller 
+class Bill extends CI_Controller 
 {
 	public function __construct()
 	{
@@ -9,6 +9,15 @@ class Appointment extends CI_Controller
 	
 		//$this->load->helper('form');
 		$this->load->model('search');
+	}
 	
+	public function view_bill()
+	{
+		$this->load->view('bill_view');
+	}
+	
+	public function pay_bill()
+	{
+		
 	}
 }
