@@ -151,4 +151,29 @@ class Search extends CI_Model
 		}
 		else echo '<p>No appointments currently scheduled.</p>';
 	}
+	
+	//generate drop down for doctor's view_appointments to include only patients that he sees
+	public function patients_by_doctor()
+	{    	
+    	$username=$this->session->userdata('username');
+    	
+    	//get id from userinfo db
+    	$this->db->from('userinfo');
+    	$this->db->where('username',$username);
+    	$query = $this->db->get();
+    	$row = $query->row();
+    	$id=$row->id;
+    	
+    	//search doctors table for all matches to specialty
+		$this->db->from('appts');
+		$this->db->where('doctor_id',$id);
+		$query = $this->db->get();
+    	$patients=[];
+    	if($query->num_rows()>0){
+    		foreach($query->result() as $row){
+    				array_push($patients, $row->patient_id);
+    		}
+    	}
+    	return $patients;
+	}
 }

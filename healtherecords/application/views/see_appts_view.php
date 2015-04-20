@@ -87,6 +87,29 @@ $row = $query->row();
 			}
 		});
 	};
+
+	//THIS WILL BE USED FOR THE PATIENT DROP DOWN FROM DOCTOR VIEW APPOINTMENTS
+	//it is not done... just copied for a template from #spec in appointment_view
+	//check that document is loaded
+	$(document).ready(function(){
+		//send post when specialty dropdown value changes
+		$("#byPatient").change(function(){
+			$.ajax({
+				//run select_specialization function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/select_specialization",
+				//set data value of POST to value selected in dropdown box
+				data: {specialization: $(this).val()},
+				type: "POST",
+				//update html inside doctor_list div to be what is returned
+				success: function(data){
+					//update doctor list div
+					$("#doctor_list").html(data);
+					//clear doctor schedule div
+					$("#doctor_schedule").html("");
+				}
+			});
+		});
+	});
 	
 	</script>
 	
@@ -120,7 +143,15 @@ $row = $query->row();
 			</ul>
 		</div>
         <div class="col-md-8">
+        
+        <?php 
+			$this->load->model('search');
+			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'id="patients"')
+		?>
+        
+        <div id = "byPatient" style="display:none">
         	<?php 
+        	
 				$this->load->model('search');
 				$this->search->get_appts();
 				?>
@@ -141,6 +172,7 @@ $row = $query->row();
 						echo form_close();
 					?>
 				</div>
+		</div>
 				
 				<a href = '<?php 
 					echo base_url(),"index.php/main/home"
