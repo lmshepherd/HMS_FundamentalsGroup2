@@ -189,7 +189,9 @@ class Search extends CI_Model
     				$query3 = $this->db->get();
     				$row3 = $query3->row();
     				//array_push($patients,$row->patient_id);
-    				array_push($patients, $row3->firstname.' '.$row3->lastname);
+    				if (!in_array($row3->firstname.' '.$row3->lastname, $patients)){	
+    					array_push($patients, $row3->firstname.' '.$row3->lastname);
+    				}
     		}
     	}
     	return $patients;
