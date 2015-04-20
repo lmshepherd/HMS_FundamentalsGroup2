@@ -92,6 +92,7 @@ $row = $query->row();
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
 		$("#patients").change(function(){
+			$("#byPatient").show();
 			$.ajax({
 				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_patient",
@@ -120,7 +121,7 @@ $row = $query->row();
 <body>
 <header id="header"><h1>Health E-Records: My Appointments</h1></header>
 <div id="container">
-      <div class="row">
+	<div class="row">
         <div class="col-md-4">
      	    <ul>
 			    <li><a href="http://projectsgeek.com/2013/08/hospital-management-system-mini-project-2.html">HMS Info</a></li>
@@ -145,16 +146,38 @@ $row = $query->row();
 			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'','id="patients"')
 		?>
         
-        <div id = "byPatient" ></div>
+        <div id = "byPatient" style="display:none" >
+        	<?php 
+        	
+				$this->load->model('search');
+				$this->search->get_appts();
+			?>
 				
-				<a href = '<?php 
-					echo base_url(),"index.php/main/home"
-					?>'>Back to Home</a>
+			<div id="date_list" style="display: none;">
+			<br>
+			<?php echo 'Date: ' ?>
+			<input type="text" class="date" name="appointment" id="datepicker"><br>
+			</div>
 				
-				<a href = '<?php 
-					echo base_url(),"index.php/main/logout"
-				?>'>Logout</a>
+			<div id="doctor_schedule"></div>
+			<div id="bill" style="display:none">
+				<?php 
+					echo form_open('bill/nurse_schedules');
+					echo "<p>";
+					echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
+					echo "</p>";
+					echo form_close();
+				?>
+			</div>
 		</div>
+				
+		<a href = '<?php 
+			echo base_url(),"index.php/main/home"
+		?>'>Back to Home</a>
+				
+		<a href = '<?php 
+			echo base_url(),"index.php/main/logout"
+		?>'>Logout</a>
 	</div>
 </div>
 </body>

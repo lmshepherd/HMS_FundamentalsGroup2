@@ -363,36 +363,10 @@ class Appointment extends CI_Controller
     	
     	$id=$row2->id;
     	
-    	//this was the stuff from the view that generates the whole table (needs to be specific to patient now)
-    	/*
-             	<?php 
-        	
-				$this->load->model('search');
-				$this->search->get_appts();
-				?>
-				
-				<div id="date_list" style="display: none;">
-				<br>
-				<?php echo 'Date: ' ?>
-				<input type="text" class="date" name="appointment" id="datepicker"><br>
-				</div>
-				
-				<div id="doctor_schedule"></div>
-				<div id="bill" style="display:none">
-					<?php 
-						echo form_open('bill/nurse_schedules');
-						echo "<p>";
-						echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
-						echo "</p>";
-						echo form_close();
-					?>
-
-    	 */
-    	
     	
     	//this is straight from different function.... build table specific to this functionality/adapt
     	//check if a specialization is selected in the box
-    	if ($specialization!='')
+    	if ($chosenPatient!='')
     	{
     		//check that there is at least one result
     		if ($query->num_rows()>0)
