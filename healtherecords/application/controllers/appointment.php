@@ -346,8 +346,10 @@ class Appointment extends CI_Controller
     	//get specialization from post
     	$chosenPatient = $this->input->post('patientsList');
     	$name = explode(" ", $chosenPatient);
-    	$firstname=$name[0];
-    	$lastname=$name[1];
+    	//$firstname=$name[0];
+    	//$lastname=$name[1];
+    	$firstname="Laura";
+    	$lastname="Shepherd";
     	 
     	//get id from userinfo db
     	$this->db->from('userinfo');
@@ -362,29 +364,6 @@ class Appointment extends CI_Controller
     	}
     	
     	$id=$row2->id;
-    	
-    	
-    	//this is straight from different function.... build table specific to this functionality/adapt
-    	//check if a specialization is selected in the box
-    	if ($chosenPatient!='')
-    	{
-    		//check that there is at least one result
-    		if ($query->num_rows()>0)
-    		{
-    			//create table heading
-    			$this->table->set_heading('Name ','Gender ','Experience ', 'Age ', 'Availability ');
-    			//gender placeholder in case missing from database
-    			$gender='';
-    			 
-    			//cycle through doctors of matching specialty
-    			foreach ($query->result() as $row)
-    			{
-    			}
-    			//generate the table
-    			echo $this->table->generate();
-    		}
-    		else echo '<p>This patient does not have any current appointments available</p>';
-    	}
-    	
+    	$this->session->set_userdata('currPatient_id', $id);
     }
 }

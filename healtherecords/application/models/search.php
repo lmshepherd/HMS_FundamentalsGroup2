@@ -104,7 +104,7 @@ class Search extends CI_Model
 		$row = $query->row();
 		$id = $row->id;*/
 	
-		//check appts where this user is the patient
+		//check appts where this user is the doctor
 		$this->db->where('doctor_id',$id);
 		$query = $this->db->get('appts');
 		$row = $query->row();
@@ -118,6 +118,9 @@ class Search extends CI_Model
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
 			{
+				
+				if($row->patient_id==$this->session->currPatient_id){
+				
 				//get name from userinfo db
 				$this->db->from('userinfo');
 				$this->db->where('id',$row->patient_id);
@@ -139,11 +142,12 @@ class Search extends CI_Model
 						'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
 						'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
 						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />',
-						'<input id="'.$row->appt_id.'" type="checkbox" name="apointmentCompmlete" value="done" class="check" onclick="checkChecks(this)"/>'
+						'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="checkChecks(this)"/>'
 						);
 						//add a button to select doctor
 						//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
 				echo form_close();
+				}
 			}
 				
 			//generate the table
