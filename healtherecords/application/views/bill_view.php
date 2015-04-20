@@ -15,9 +15,9 @@ $query = $this->db->get('appts');
 <html lang="en">
 	
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/jquery.js"></script>
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
 	<meta charset="utf-8">
 	<title>Health E-Records</title>	
 </head>
@@ -33,7 +33,11 @@ $query = $this->db->get('appts');
 	echo $row->lastname;
 	echo '</p>';
 	
-	$this->table->set_heading('Date ','Time ','Doctor ', 'Bill ');
+	echo '<div class="col-lg-12">';
+	$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+							'table_close' => '</table>');
+	$this->table->set_template($table_config);
+	$this->table->set_heading('Date ','Time ','Doctor ','Treatment ','Prescription ','Bill ');
 	$count = 0;
 	$base_cost = 50;
 	$cost = 0;
@@ -74,30 +78,33 @@ $query = $this->db->get('appts');
 					$row->date,
 					$time.' '.$ampm,
 					$row2->firstname . ' ' . $row2->lastname,
-					'$'.number_format($cost,2));
-					//$row->experience.' years', $age, implode($days)
-					//add a button to select doctor
-					//'<input id="'.$row->appt_id.'" type="button" value="Select" onclick="select_doctor(this)" />');
+					$row->treatment,
+					$row->prescription,
+					'$'.number_format($cost,2)
+					);
 		}
 	}
 	//check if an appt is found
 	if ($count>0)
 	{
-		echo $this->table->generate();
+		$this->table->add_row('','','','','Total Cost: ','$'.number_format($total_cost,2));
 		
-		echo '<p>Total amount due: ';
-		echo '$'.number_format($total_cost,2);
-		echo '</p>';
-		
+		$this->table->add_row('','','','','',form_submit('pay_submit', 'Pay Bill'));
 		echo form_open('bill/pay_bill');
 		echo "<p>";
-		echo form_submit('pay_submit', 'Pay Bill');
+		echo $this->table->generate();
 		echo "</p>";
 		echo form_close();
+		
+		
+		
+		
 	}
 	//no appts ready to be paid
 	else 
 		echo '<p>No payments currently due.</p>';
+	
+	echo '</div>';
 	?>
 	
 	<a href = '<?php 
