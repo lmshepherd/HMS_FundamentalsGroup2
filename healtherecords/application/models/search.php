@@ -183,4 +183,13 @@ class Search extends CI_Model
     	}
     	return $patients;
 	}
+	
+	public function patientid_by_name($specialization)
+	{
+		//search doctors table for all matches to specialty
+		$this->db->from('doctors');
+		$this->db->where('specialization',$specialization);
+		$query = $this->db->get();
+		return $query;
+	}
 }

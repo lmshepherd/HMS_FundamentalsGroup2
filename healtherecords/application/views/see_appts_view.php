@@ -92,8 +92,6 @@ $row = $query->row();
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
 		$("#patients").change(function(){
-			alert('hi');
-			$("#byPatient").show();
 			$.ajax({
 				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_patient",
@@ -103,7 +101,7 @@ $row = $query->row();
 				//update html inside doctor_list div to be what is returned
 				success: function(data){
 					//update doctor list div
-					$("#patientsList").html(data);
+					$("#byPatient").html(data);
 				}
 			});
 		});
@@ -147,30 +145,7 @@ $row = $query->row();
 			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'','id="patients"')
 		?>
         
-        <div id = "byPatient" style="display:none">
-        	<?php 
-        	
-				$this->load->model('search');
-				$this->search->get_appts();
-				?>
-				
-				<div id="date_list" style="display: none;">
-				<br>
-				<?php echo 'Date: ' ?>
-				<input type="text" class="date" name="appointment" id="datepicker"><br>
-				</div>
-				
-				<div id="doctor_schedule"></div>
-				<div id="bill" style="display:none">
-					<?php 
-						echo form_open('bill/nurse_schedules');
-						echo "<p>";
-						echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
-						echo "</p>";
-						echo form_close();
-					?>
-				</div>
-		</div>
+        <div id = "byPatient" ></div>
 				
 				<a href = '<?php 
 					echo base_url(),"index.php/main/home"
