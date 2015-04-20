@@ -93,7 +93,15 @@ class Search extends CI_Model
 		}
 		else echo '<p>No appointments currently scheduled.</p>';
 	}
+
 	
+	
+	
+	
+	
+/*
+ * THIS SHOULD GENERATE THE TABLE ONCE THE DOCTOR CHOOSES THE PATIENT FROM THE DROP DOWN
+ */
 	public function get_appts_doctor($id)
 	{
 		/*
@@ -118,8 +126,7 @@ class Search extends CI_Model
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
 			{
-				
-				if($row->patient_id==$this->session->currPatient_id){
+				if($row->patient_id==$this->session->userdata('currPatient_id')){
 				
 				//get name from userinfo db
 				$this->db->from('userinfo');
@@ -141,8 +148,8 @@ class Search extends CI_Model
 						$row2->firstname.' '.$row2->lastname,
 						'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
 						'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
-						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />',
-						'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="checkChecks(this)"/>'
+						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
+						,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_finish(this)"/>'
 						);
 						//add a button to select doctor
 						//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');

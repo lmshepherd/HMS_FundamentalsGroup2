@@ -340,12 +340,20 @@ class Appointment extends CI_Controller
     	$this->notify->appt_cancelled_notification($appt_id);
     }
     
-    //has id so far.... want to generate resulting table 
+    
+    
+    
+/*
+ * THIS IS WHAT IS SUPPOSED TO RETURN THE DATA TO PROPOGATE THE CHOSEN PATIENT'S APPOINTMENT
+ */
     public function select_patient()
     {
     	//get specialization from post
     	$chosenPatient = $this->input->post('patientsList');
     	$name = explode(" ", $chosenPatient);
+/*
+ * HARDCODED FOR TESTING PURPOSES
+ */
     	//$firstname=$name[0];
     	//$lastname=$name[1];
     	$firstname="Laura";
@@ -365,5 +373,9 @@ class Appointment extends CI_Controller
     	
     	$id=$row2->id;
     	$this->session->set_userdata('currPatient_id', $id);
+
+    	$this->load->model('search');
+    	$this->search->get_appts();
+    	 
     }
 }

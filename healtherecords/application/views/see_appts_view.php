@@ -49,6 +49,10 @@ $row = $query->row();
 		});
 	}); 
 
+	function doctor_bill_finish(button){
+		alert('press');
+	}
+
 	function change_time(button) 
 	{
 		$.ajax({
@@ -65,14 +69,6 @@ $row = $query->row();
 		});
 	};
 
-	function checkChecks(button) 
-	{
-		$("#bill").hide();
-	    if ($('.check:checked').length == $('.check').length) {
-			$("#bill").show();
-	    }
-	};
-
 	function cancel_appt(button) 
 	{
 		$.ajax({
@@ -87,12 +83,12 @@ $row = $query->row();
 		});
 	};
 
-	//THIS WILL BE USED FOR THE PATIENT DROP DOWN FROM DOCTOR VIEW APPOINTMENTS
-	//Not registering a change for some reason?
+/*
+ * THIS SHOULD ADD SELECTED PATIENT TO SESSION DATA WHICH WILL BE USED TO GENERATE TABLE
+ */
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
 		$("#patients").change(function(){
-			$("#byPatient").show();
 			$.ajax({
 				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_patient",
@@ -146,29 +142,24 @@ $row = $query->row();
 			echo form_dropdown('patientsList',$this->search->patients_by_doctor(),'','id="patients"')
 		?>
         
-        <div id = "byPatient" style="display:none" >
-        	<?php 
-        	
-				$this->load->model('search');
-				$this->search->get_appts();
+        <div id = "byPatient" ></div>
+				
+		<div id="date_list" style="display: none;">
+		<br>
+		<?php echo 'Date: ' ?>
+		<input type="text" class="date" name="appointment" id="datepicker"><br>
+		</div>
+				
+		<div id="doctor_schedule"></div>
+		<div id="bill" style="display:none">
+			<?php 
+				echo form_open('bill/nurse_schedules');
+				echo "<p>";
+				echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
+				echo "</p>";
+				echo form_close();
 			?>
-				
-			<div id="date_list" style="display: none;">
-			<br>
-			<?php echo 'Date: ' ?>
-			<input type="text" class="date" name="appointment" id="datepicker"><br>
-			</div>
-				
-			<div id="doctor_schedule"></div>
-			<div id="bill" style="display:none">
-				<?php 
-					echo form_open('bill/nurse_schedules');
-					echo "<p>";
-					echo form_submit('doctor_finish_flag', 'Patient Treatment Complete');
-					echo "</p>";
-					echo form_close();
-				?>
-			</div>
+		</div>
 		</div>
 				
 		<a href = '<?php 
