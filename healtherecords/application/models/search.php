@@ -45,8 +45,18 @@ class Search extends CI_Model
 		$id = $row->id;
 		if ($row->role=='patient')
 			$this->get_appts_patient($id);
-		else if ($row->role=='doctor'){
-			$this->get_appts_doctor($id);
+	}
+	
+	public function get_doctor_appts($patientID)
+	{
+		$username = $this->session->userdata('username');
+		//get user id
+		$this->db->where('username',$username);
+		$query = $this->db->get('userinfo');
+		$row = $query->row();
+		$doctorID = $row->id;
+		if ($row->role=='doctor'){
+			$this->get_appts_doctor($doctorID, $patientID);
 		}
 	}
 	
@@ -102,16 +112,13 @@ class Search extends CI_Model
 /*
  * THIS SHOULD GENERATE THE TABLE ONCE THE DOCTOR CHOOSES THE PATIENT FROM THE DROP DOWN
  */
-	public function get_appts_doctor($id)
+	public function get_appts_doctor($id, $patientID)
 	{
-		/*
-		$username = $this->session->userdata('username');
-		//get user id
-		$this->db->where('username',$username);
-		$query = $this->db->get('userinfo');
+		//check appts where this user is the doctor
+		$this->db->where('doctor_id',$id);
+		$query = $this->db->get('appts');
 		$row = $query->row();
-		$id = $row->id;*/
-	
+		
 		//check appts where this user is the doctor
 		$this->db->where('doctor_id',$id);
 		$query = $this->db->get('appts');
@@ -126,35 +133,38 @@ class Search extends CI_Model
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
 			{
-				if($row->patient_id==$this->session->userdata('currPatient_id')){
+				if($row->patient_id==$patientID){
 				
-				//get name from userinfo db
-				$this->db->from('userinfo');
-				$this->db->where('id',$row->patient_id);
-				$query2 = $this->db->get();
-				$row2 = $query2->row();
-	
-				$time = $row->hour;
-				if ($time<12)
-					$ampm = 'am';
-				else $ampm = 'pm';
-				$time = $time%12;
-				if ($time==0)
-					$time=12;
-				echo form_open('appointment/doctor_viewPatientRecord');
-				//add doctor to table
-				$this->table->add_row($row->date,
-						$time.' '.$ampm,
-						$row2->firstname.' '.$row2->lastname,
-						'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
-						'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
-						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
-						,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_finish(this)"/>'
-						);
-						//add a button to select doctor
-						//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
-				echo form_close();
+					//get name from userinfo db
+					$this->db->from('userinfo');
+					$this->db->where('id',$row->patient_id);
+					$query2 = $this->db->get();
+					$row2 = $query2->row();
+		
+					$time = $row->hour;
+					if ($time<12)
+						$ampm = 'am';
+					else $ampm = 'pm';
+					$time = $time%12;
+					if ($time==0)
+						$time=12;
+					echo form_open('appointment/doctor_viewPatientRecord');
+					//add doctor to table
+					$this->table->add_row($row->date,
+							$time.' '.$ampm,
+							$row2->firstname.' '.$row2->lastname,
+							'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
+							'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
+							'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
+							,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_finish(this)"/>'
+							);
+							//add a button to select doctor
+							//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
 				}
+				else{
+					$this->table->add_row("hello", "this", "doesn't", $patientID, "<-chosen patient...patient for current row->",$row->patient_id);
+				}
+				echo form_close();
 			}
 				
 			//generate the table

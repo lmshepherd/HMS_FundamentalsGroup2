@@ -349,33 +349,9 @@ class Appointment extends CI_Controller
     public function select_patient()
     {
     	//get specialization from post
-    	$chosenPatient = $this->input->post('patientsList');
-    	$name = explode(" ", $chosenPatient);
-/*
- * HARDCODED FOR TESTING PURPOSES
- */
-    	//$firstname=$name[0];
-    	//$lastname=$name[1];
-    	$firstname="Laura";
-    	$lastname="Shepherd";
-    	 
-    	//get id from userinfo db
-    	$this->db->from('userinfo');
-    	$this->db->where('firstname',$firstname);
-    	$query = $this->db->get();
-    	if($query->num_rows()>0){
-    		foreach($query->result() as $row){
-    			if($row->lastname==$lastname){
-    				$row2=$query->row();
-    			}
-    		}
-    	}
-    	
-    	$id=$row2->id;
-    	$this->session->set_userdata('currPatient_id', $id);
-
+    	$chosenPatientID = $this->input->post('patientsList');
     	$this->load->model('search');
-    	$this->search->get_appts();
+    	$this->search->get_doctor_appts($chosenPatientID);
     	 
     }
 }

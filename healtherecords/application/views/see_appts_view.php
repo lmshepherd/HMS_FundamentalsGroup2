@@ -89,6 +89,7 @@ $row = $query->row();
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
 		$("#patients").change(function(){
+			alert($(this).val());
 			$.ajax({
 				//run select_specialization function of appointment controller
 				url:"<?php echo base_url();?>index.php/appointment/select_patient",
