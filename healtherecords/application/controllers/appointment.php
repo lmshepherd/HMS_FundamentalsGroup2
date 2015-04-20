@@ -12,6 +12,13 @@ class Appointment extends CI_Controller
     
     }
     
+    public function view_patient_appointments()
+    {
+    	$this->session->set_userdata('make_or_change_appt','change');
+    	$this->load->view('see_patient_appts_view');
+    
+    }
+    
     public function view_appointments()
     {
     	$this->session->set_userdata('make_or_change_appt','change');
