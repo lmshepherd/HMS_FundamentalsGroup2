@@ -50,7 +50,18 @@ $row = $query->row();
 	}); 
 
 	function doctor_bill_setFlag(button){
-		alert('press');
+		alert(button.id);
+		$.ajax({
+			//run select_doctor function of appointment controller
+			url:"<?php echo base_url();?>index.php/bill/doctor_bill_flag",
+			//set data value of POST to button clicked
+			data: {apptID: button.id},
+			type: "POST",
+			//hide button after processed flag change
+			success: function(data){
+				$('button').hide();
+			}
+		});
 	}
 
 	function change_time(button) 

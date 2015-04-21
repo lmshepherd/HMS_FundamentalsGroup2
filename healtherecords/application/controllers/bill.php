@@ -11,6 +11,18 @@ class Bill extends CI_Controller
 		$this->load->model('search');
 	}
 	
+	
+	public function doctor_bill_flag()
+	{
+				//remove appt from database
+		$appt_id = $this->input->post('apptID');
+		$this->db->from('appts');
+		$this->db->where('appt_id',$appt_id);
+		$this->db->set('doctor_finish', 1);
+		//send notification emails
+		$this->load->view('bill_view');
+	}
+	
 	public function view_bill()
 	{
 		$this->load->view('bill_view');

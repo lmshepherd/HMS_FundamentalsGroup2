@@ -148,12 +148,13 @@ class Search extends CI_Model
 					$time = $time%12;
 					if ($time==0)
 						$time=12;
-					echo form_open('appointment/doctor_viewPatientRecord');
+					//echo form_open('appointment/doctor_viewPatientRecord');
+					$attributes = array('id' =>"'.$row->appt_id.'");
 					//add doctor to table
 					$this->table->add_row($row->date,
 							$time.' '.$ampm,
 							$row2->firstname.' '.$row2->lastname,
-							'<p>'.form_open('appointment/doctor_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
+							'<p>'.form_open('appointment/doctor_viewPatientRecord', $attributes).form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
 							'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
 							'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
 							,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_setFlag(this)"/>'
