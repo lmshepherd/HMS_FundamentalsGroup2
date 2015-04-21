@@ -13,19 +13,6 @@ class Admin extends CI_Controller
 	
 	}
 	
-	public function bill_patients(){
-		$appt_id = $this->input->post('id');
-		$temp = array('admin_process'=> 1);
-		$this->db->where('appt_id',$appt_id);
-		$query = $this->db->update('appts',$temp);
-		if($query){
-			echo "Patient has been billed";
-		}
-		else{
-			echo "Failure to bill";
-		}
-	}
-	
 	public function select_patient()
 	{
 		//get specialization from post

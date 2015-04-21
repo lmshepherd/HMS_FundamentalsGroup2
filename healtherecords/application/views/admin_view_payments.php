@@ -11,7 +11,7 @@
 	{
 		$.ajax({
 			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/admin/bill_patients",
+			url:"<?php echo base_url();?>index.php/bill/bill_patients",
 			//set data value of POST to button clicked
 			data: {id: $(button).attr('id')},
 			type: "POST"
