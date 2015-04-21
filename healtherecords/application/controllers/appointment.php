@@ -360,12 +360,28 @@ class Appointment extends CI_Controller
     }
     
     public function update_treatments(){
-    	$treatment =$this->input->post('treatments');
-    	$appt_id = $this->session->userdata('appt_id');
+    	$treatment =$this->input->post('treatment');
+    	$appt_id = $this->input->post('id');
     	
     	$this->db->where('appt_id', $appt_id);
     	$temp=array('treatment'=>$treatment);
     	$query=$this->db->update('appts',$temp);
     	$this->load->view('doctor_view_treatments');
+    }
+    
+    public function load_prescriptions()
+    {
+    	$this->session->set_userdata('appt_id', $this->input->post('id'));
+    	$this->load->view('doctor_view_prescriptions');
+    }
+    
+    public function update_prescriptions(){
+    	$prescription =$this->input->post('prescription');
+    	$appt_id = $this->input->post('id');
+    	 
+    	$this->db->where('appt_id', $appt_id);
+    	$temp=array('prescription'=>$prescription);
+    	$query=$this->db->update('appts',$temp);
+    	$this->load->view('doctor_view_prescriptions');
     }
 }

@@ -17,24 +17,23 @@ $row2=$query2->row();
 			echo "</p>";
 			
 			echo "<p>";
-			echo "Current Treatment: ";
-			echo $row->treatment;
+			echo "Current Prescription: ";
+			echo $row->prescription;
 			echo "</p>";
-			/*
-			echo form_open('appointment/update_treatments');
+			
+			/*echo form_open('appointment/update_prescriptions');
 			echo "<p>";
-			echo form_input('treatments');
+			echo form_input('prescriptions');
 			echo "</p>";
 			echo "<p>";
-			echo form_submit('treatment_submit', 'Update Treatment');
+			echo form_submit('prescription_submit', 'Update Prescription');
 			echo "</p>";	
 			echo form_close();*/
-			
-			echo '<input id="new_treatment"type="text"/>';
-			echo '<input id="'.$row->appt_id.'"type="button" value="Update Treatment" onclick="update_treatments(this)" />';
+			echo '<input id="new_prescription"type="text"/>';
+			echo '<input id="'.$row->appt_id.'"type="button" value="Update Prescription" onclick="update_prescriptions(this)" />';
 			
 			echo "<p>";
-			echo "Treatments from Past Appointments: ";
+			echo "Prescriptions from Past Appointments: ";
 			echo "</p>";
 			
 			$this->db->where('patient_id', $patient_id);
@@ -44,7 +43,7 @@ $row2=$query2->row();
 			{
 				if ($row->doctor_finish)
 				{
-					echo "<p> 20".$row->date.': '.$row->treatment;
+					echo "<p> 20".$row->date.': '.$row->prescription;
 					$count++;
 				}
 			}

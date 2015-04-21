@@ -128,7 +128,7 @@ class Search extends CI_Model
 		if ($query->num_rows()>0)
 		{
 			//create table heading
-			$this->table->set_heading('Date','Time','Patient','','','','Appointment Complete','View/Update Treatments');
+			$this->table->set_heading('Date','Time','Patient','','','','View/Update Treatments','Appointment Complete');
 			
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
@@ -156,9 +156,10 @@ class Search extends CI_Model
 							$row2->firstname.' '.$row2->lastname,
 							'<p>'.form_open('appointment/doctor_viewPatientRecord', $attributes).form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
 							'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
-							'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
-							,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_setFlag(this)"/>'
-							,'<input id="'.$row->appt_id.'"type="button" value="Treatments" onclick="load_treatments(this)" />');
+							'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />',
+							'<input id="'.$row->appt_id.'"type="button" value="Treatments" onclick="load_treatments(this)" />',
+							'<input id="'.$row->appt_id.'"type="button" value="Prescriptions" onclick="load_prescriptions(this)" />',
+							'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="Complete" class="check" onclick="doctor_bill_setFlag(this)"/>');
 							//add a button to select doctor
 							//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
 				}
