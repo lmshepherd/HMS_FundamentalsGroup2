@@ -72,10 +72,11 @@ class Search extends CI_Model
 		{
 			//create table heading
 			$this->table->set_heading('Date','Time','Doctor');
-			 
+			 $count=0;
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
 			{
+				if($row->doctor_finish != 1){
 				//get name from userinfo db
 				$this->db->from('userinfo');
 				$this->db->where('id',$row->doctor_id);
@@ -97,9 +98,16 @@ class Search extends CI_Model
 						//add a button to select appt
 						'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
 						'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />');
+				$count++;
+				}
 			}
 			//generate the table
-			echo $this->table->generate();
+			if($count != 0){
+				echo $this->table->generate();
+			}
+			else{
+				echo "No upcoming appointments";
+			}
 		}
 		else echo '<p>No appointments currently scheduled.</p>';
 	}

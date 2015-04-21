@@ -53,6 +53,29 @@ class Bill extends CI_Controller
 	
 	public function pay_bill()
 	{
+		$username = $this->session->userdata('username');
+		
+		$this->db->where('username', $username);
+		$query2= $this->db->get('userinfo');
+		$row2 = $query2->row();
+		
+		$patient_id = $row2->id;
+		
+		$this->db->where('patient_id', $patient_id);
+		$query = $this->db->get('appts');
+		
+		foreach($query->result() as $row){
+			$doc = $row->doctor_finish;
+			$admin = $row->admin_process;
+			$paid = $row->paid;
+			if( ($doc==1) &&($admin==1) && ($paid == 0)){
+				$this->db->where('appt_id',$row->appt_id);
+				$temp=array('paid' => 1);
+				$this->db->update('appts', $temp);
+			}
+		}
+		
+		echo "Bill payed!";
 		
 	}
 }

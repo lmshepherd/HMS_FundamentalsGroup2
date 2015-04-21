@@ -65,7 +65,7 @@ $query = $this->db->get('appts');
 			$time=12;
 		
 		//admin_process check should not be negative check, but needed some things to show up since no admin approval yet
-		if (($row->admin_process) && !($row->paid))
+		if (($row->admin_process == 1) &&($row->doctor_finish==1) &&($row->paid != 1))
 		{
 			$count++;
 			//calculate cost based off of experience
