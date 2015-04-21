@@ -1,4 +1,4 @@
-<?php $this->load->view('header');?>
+<?php $this->load->view('commonViews/header');?>
 
 <body>
 <header id="header"><h1>Health E-Records Appointment Confirmation</h1></header>
@@ -62,6 +62,7 @@
 	</div>
       </div>
 </div>
+<?php $this->load->view('commonViews/footer');?>
 </body>
 </html>
 

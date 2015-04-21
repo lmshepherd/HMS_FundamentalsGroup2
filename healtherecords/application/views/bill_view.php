@@ -11,15 +11,7 @@ $query = $this->db->get('appts');
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-	
-<head>
-    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
-	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
-	<meta charset="utf-8">
-	<title>Health E-Records</title>	
-</head>
+<?php $this->load->view('commonViews/header');?>
 
 <body>
 <header id="header"><h1>Health E-Records: My Appointments</h1></header>
@@ -136,5 +128,6 @@ $query = $this->db->get('appts');
 		echo base_url(),"index.php/main/logout"
 	?>'>Logout</a>
 </div>
+<?php $this->load->view('commonViews/footer');?>
 </body>
 </html>

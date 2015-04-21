@@ -156,5 +156,5 @@ $row3 = $query3->row();
 	?>'>Logout</a>
 
 </div>
-
+<?php $this->load->view('commonViews/footer');?>
 </body>

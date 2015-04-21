@@ -153,5 +153,6 @@
 
 </div>
 
+<?php $this->load->view('commonViews/footer');?>
 </body>
 </html>

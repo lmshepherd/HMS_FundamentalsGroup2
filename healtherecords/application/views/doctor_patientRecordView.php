@@ -23,7 +23,7 @@ $query3 = $this->db->get('patients');
 $row3 = $query3->row();
 ?>
 
-<?php $this->load->view('header');?>
+<?php $this->load->view('commonViews/header');?>
 <header id="header"><h1>Health E-Records: My Patients</h1></header>
 <div id="container">
       <div class="row">
@@ -172,6 +172,6 @@ $row3 = $query3->row();
       </div>
 
 </div>
-
+<?php $this->load->view('commonViews/footer');?>
 </body>
 </html>
