@@ -344,6 +344,7 @@ class Appointment extends CI_Controller
     {
     	//get specialization from post
     	$chosenPatientID = $this->input->post('patient');
+    	$this->session->set_userdata('patient', $chosenPatientID);
     	$this->load->model('search');
     	$this->search->get_doctor_appts($chosenPatientID);
     	 

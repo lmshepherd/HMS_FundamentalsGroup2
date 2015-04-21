@@ -21,6 +21,9 @@ class Bill extends CI_Controller
 		$temp = array('doctor_finish' => 1
 		);
 		$query = $this->db->update('appts',$temp);
+		$chosenPatientID = $this->session->userdata('patient');
+		$this->load->model('search');
+    	$this->search->get_doctor_appts($chosenPatientID);
 		//send notification emails
 		//$this->load->view('bill_view');
 		//$this->load->library('../controllers/appointment');
