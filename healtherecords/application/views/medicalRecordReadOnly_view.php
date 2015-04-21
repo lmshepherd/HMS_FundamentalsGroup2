@@ -10,7 +10,7 @@ $query = $this->db->get('medical_record');
 $row = $query->row();
 ?>
 
-<?php $this->load->view('header');?>
+<?php $this->load->view('commonViews/header');?>
 
 <body>
 <header id="header"><h1>Here is your current medical record</h1></header>
