@@ -7,6 +7,20 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	
 	<script type="text/javascript">
+	function bill_patients(button) 
+	{
+		$.ajax({
+			//run select_doctor function of appointment controller
+			url:"<?php echo base_url();?>index.php/admin/bill_patients",
+			//set data value of POST to button clicked
+			data: {id: $(button).attr('id')},
+			type: "POST"
+			,success: function(data){
+				$("#doctor_schedule").html(data);
+			}
+		});
+	};
+
 	$(document).ready(function(){
 		//send post when specialty dropdown value changes
 		$("#patients").change(function(){
@@ -25,20 +39,6 @@
 			});
 		});
 	});
-
-	function bill_patient(button) 
-	{
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/admin/bill_patients",
-			//set data value of POST to button clicked
-			data: {id: $(button).attr('id')},
-			type: "POST"
-			,success: function(data){
-				$("#doctor_schedule").html(data);
-			}
-		});
-	};
 	</script>
 	
 <head>

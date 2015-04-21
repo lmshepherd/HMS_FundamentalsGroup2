@@ -25,7 +25,6 @@ class Admin_search extends CI_Model
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
 			{
-				if($row->patient_id==$patientID){
 					//if($row->patient_id==10){
 					//get name from userinfo db
 					$this->db->from('userinfo');
@@ -43,7 +42,7 @@ class Admin_search extends CI_Model
 					//echo form_open('appointment/doctor_viewPatientRecord');
 					$attributes = array('id' =>"'.$row->appt_id.'");
 					//add doctor to table
-					if ($row->doctor_finish)
+					if ($row->doctor_finish && !$row->admin_process)
 					{
 						$count++;
 						$this->table->add_row($row->date,
@@ -54,16 +53,15 @@ class Admin_search extends CI_Model
 								);
 						//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
 					}
-				}
 				echo form_close();
 			}
 		
 			//generate the table
 			if ($count>0)
 				echo $this->table->generate();
-			else echo 'No payments with this patient';
+			else echo 'No unprocessed payments with this patient';
 		}
-		else echo '<p>No patients currently scheduled.</p>';
+		else echo '<p>Patient has no appointments found.</p>';
 		
 	}
 	
