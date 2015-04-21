@@ -271,7 +271,7 @@ class Appointment extends CI_Controller
     }
     
     public function doctor_viewPatientRecord(){
-    	$this->load->view('doctor_patientRecordView', $attributes);
+    	$this->load->view('doctor_patientRecordView');
     }
     
     

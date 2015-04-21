@@ -16,9 +16,11 @@ class Bill extends CI_Controller
 	{
 				//remove appt from database
 		$appt_id = $this->input->post('apptID');
-		$this->db->from('appts');
+		//$this->db->from('appts');
 		$this->db->where('appt_id',$appt_id);
-		$this->db->set('doctor_finish', 1);
+		$temp = array('doctor_finish' => 1
+		);
+		$query = $this->db->update('appts',$temp);
 		//send notification emails
 		$this->load->view('bill_view');
 	}
