@@ -94,6 +94,19 @@ $row = $query->row();
 		});
 	};
 
+	function load_treatments(button) 
+	{
+		$.ajax({
+			//run select_doctor function of appointment controller
+			url:"<?php echo base_url();?>index.php/appointment/load_treatments",
+			//set data value of POST to button clicked
+			data: {id: $(button).attr('id')},
+			type: "POST"
+			,success: function(data){
+				$("#doctor_schedule").html(data);
+			}
+		});
+	};
 /*
  * THIS SHOULD ADD SELECTED PATIENT TO SESSION DATA WHICH WILL BE USED TO GENERATE TABLE
  */

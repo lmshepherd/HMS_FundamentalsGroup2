@@ -348,4 +348,24 @@ class Appointment extends CI_Controller
     	$this->search->get_doctor_appts($chosenPatientID);
     	 
     }
+    
+    public function load_treatments(){
+    	//Test to see if button works
+    	//$appt_id = $this->input->post('id');
+    	//$temp=array('treatment'=>'lalala');
+    	//$this->db->where('appt_id',$appt_id);
+    	//$query = $this->db->update('appts',$temp);
+    	$this->session->set_userdata('appt_id', $this->input->post('id'));
+    	$this->load->view('doctor_view_treatments');
+    }
+    
+    public function update_treatments(){
+    	$treatment =$this->input->post('treatments');
+    	$appt_id = $this->session->userdata('appt_id');
+    	
+    	$this->db->where('appt_id', $appt_id);
+    	$temp=array('treatment'=>$treatment);
+    	$query=$this->db->update('appts',$temp);
+    	$this->load->view('doctor_view_treatments');
+    }
 }

@@ -128,7 +128,7 @@ class Search extends CI_Model
 		if ($query->num_rows()>0)
 		{
 			//create table heading
-			$this->table->set_heading('Date','Time','Patient','','','','Appointment Complete');
+			$this->table->set_heading('Date','Time','Patient','','','','Appointment Complete','View/Update Treatments');
 			
 			//cycle through doctors of matching specialty
 			foreach ($query->result() as $row)
@@ -158,7 +158,7 @@ class Search extends CI_Model
 							'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
 							'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />'
 							,'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="done" class="check" onclick="doctor_bill_setFlag(this)"/>'
-							);
+							,'<input id="'.$row->appt_id.'"type="button" value="Treatments" onclick="load_treatments(this)" />');
 							//add a button to select doctor
 							//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
 				}
