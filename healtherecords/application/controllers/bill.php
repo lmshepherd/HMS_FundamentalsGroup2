@@ -22,7 +22,9 @@ class Bill extends CI_Controller
 		);
 		$query = $this->db->update('appts',$temp);
 		//send notification emails
-		$this->load->view('bill_view');
+		//$this->load->view('bill_view');
+		//$this->load->library('../controllers/appointment');
+		//$this->appointment->select_patient();
 	}
 	
 	public function view_bill()

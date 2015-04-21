@@ -11,10 +11,11 @@ $row2=$query2->row();
 ?>
 
         <?php 
+        /*
 			echo "<p>";
 			echo "Patient Name: ";
 			echo $row2->firstname.' '.$row2->lastname;
-			echo "</p>";
+			echo "</p>";*/
 			
 			echo "<p>";
 			echo "Current Treatment: ";
@@ -33,6 +34,7 @@ $row2=$query2->row();
 			echo '<input id="new_treatment"type="text"/>';
 			echo '<input id="'.$row->appt_id.'"type="button" value="Update Treatment" onclick="update_treatments(this)" />';
 			
+			echo '<br>';
 			echo "<p>";
 			echo "Treatments from Past Appointments: ";
 			echo "</p>";
@@ -44,8 +46,16 @@ $row2=$query2->row();
 			{
 				if ($row->doctor_finish)
 				{
-					echo "<p> 20".$row->date.': '.$row->treatment;
-					$count++;
+				$doctor_id = $row->doctor_id;
+					$this->db->where('id',$doctor_id);
+					$query3=$this->db->get('userinfo');
+					$row3=$query3->row();
+					
+					if ($row->treatment != '')
+					{
+						echo "<p> 20".$row->date.': '.$row->treatment.' from Dr. '.$row3->firstname.' '.$row3->lastname;
+						$count++;
+					}
 				}
 			}
 			if ($count==0)

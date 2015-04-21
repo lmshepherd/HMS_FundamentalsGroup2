@@ -49,21 +49,6 @@ $row = $query->row();
 		});
 	}); 
 
-	function doctor_bill_setFlag(button){
-		alert(button.id);
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/bill/doctor_bill_flag",
-			//set data value of POST to button clicked
-			data: {apptID: button.id},
-			type: "POST",
-			//hide button after processed flag change
-			success: function(data){
-				$('button').hide();
-			}
-		});
-	}
-
 	function change_time(button) 
 	{
 		$.ajax({
@@ -165,10 +150,27 @@ $row = $query->row();
 				success: function(data){
 					//update doctor list div
 					$("#byPatient").html(data);
+					$( "#doctor_schedule" ).empty();
 				}
 			});
 		});
 	});
+
+	function doctor_bill_setFlag(button){
+		//alert(button.id);
+		$.ajax({
+			//run select_doctor function of appointment controller
+			url:"<?php echo base_url();?>index.php/bill/doctor_bill_flag",
+			//set data value of POST to button clicked
+			data: {apptID: button.id, patient: $('#patients').val()},
+			type: "POST",
+			//hide button after processed flag change
+			success: function(data){
+				$("#byPatient").html(data);
+				$( "#doctor_schedule" ).empty();
+			}
+		});
+	}
 	
 	</script>
 	
