@@ -138,16 +138,7 @@
 			</div>
 			
 			<div id="doctor_schedule"></div>
-			
-			
-			
-			<a href = '<?php 
-				echo base_url(),"index.php/main/home"
-				?>'><br>Back to Home</a>
-			
-			<a href = '<?php 
-				echo base_url(),"index.php/main/logout"
-			?>'><br>Logout</a>
+			<?php $this->load->view('commonViews/backLinks');?>
 	</div>
       </div>
 

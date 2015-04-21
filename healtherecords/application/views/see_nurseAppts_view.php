@@ -65,13 +65,7 @@ if($query->num_rows()>0){
 				echo $this->table->generate();
 			?>
 			</p>
-			<a href = '<?php
-			echo base_url(),"index.php/main/home"
-			?>'>Back to Home</a>
-	
-			<a href = '<?php
-			echo base_url(),"index.php/main/logout"
-		?>'>Logout</a>
+			<?php $this->load->view('commonViews/backLinks');?>
 		</div>
       </div>
 

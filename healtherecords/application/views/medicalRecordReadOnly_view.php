@@ -15,7 +15,7 @@ $row = $query->row();
 <body>
 <header id="header"><h1>Here is your current medical record</h1></header>
 <div id="container">
-      <div class="row">
+	<div class="row">
         <div class="col-lg-4">
 			<?php $this->load->view('commonViews/links');?>
 		</div>
@@ -69,18 +69,11 @@ $row = $query->row();
 				echo "</p>";
 				
 				echo form_close();	
-		}
-		?>
-	
-		<a href = '<?php 
-			echo base_url(),"index.php/main/home"
-			?>'>Back to Home</a>
-		
-		<a href = '<?php 
-			echo base_url(),"index.php/main/logout"
-		?>'>Logout</a>
+			}
+			$this->load->view('commonViews/backLinks');
+			?>
+		</div>
 	</div>
-      </div>
 
 </div>
 <?php $this->load->view('commonViews/footer');?>

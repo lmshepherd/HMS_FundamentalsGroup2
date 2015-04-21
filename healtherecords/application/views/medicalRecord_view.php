@@ -150,13 +150,7 @@ $username = $this->session->userdata('username');
 			echo form_close();
 			?>
 		
-		<a href = '<?php 
-			echo base_url(),"index.php/main/home"
-			?>'>Back to Home</a>
-		
-		<a href = '<?php 
-			echo base_url(),"index.php/main"
-			?>'><br>Back to Login</a>
+		<?php $this->load->view('commonViews/backLinks');?>
 	</div>
       </div>
 </div>
