@@ -94,7 +94,7 @@ class Admin_search extends CI_Model
 			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
 					'table_close' => '</table>');
 			$this->table->set_template($table_config);
-			$this->table->set_heading('Doctor name', 'Patient Name', 'Nurse Name', 'Appointment Date', 'Appointment Time','Treatment','Presciption');
+			$this->table->set_heading('Doctor name', 'Patient Name', 'Nurse Name', 'Appointment Date', 'Appointment Time','Treatment','Presciption','Paid');
 			
 			foreach($query->result() as $row){
 				$patientid = $row->patient_id;
@@ -137,13 +137,20 @@ class Admin_search extends CI_Model
 					$finish =false;
 				}
 				
+				if($row->paid == 1){
+					$paid='Yes';
+				}
+				else{
+					$paid = 'No';
+				}
 				$this->table->add_row('Dr.'.$row2->firstname.' '.$row2->lastname,
 						$row3->firstname.' '.$row3->lastname,
 						$row4->firstname.' '.$row4->lastname,
 						$row->date,
 						$time,
 						$row->treatment,
-						$row->prescription
+						$row->prescription,
+						$paid
 						);
 			}
 			echo $this->table->generate();
