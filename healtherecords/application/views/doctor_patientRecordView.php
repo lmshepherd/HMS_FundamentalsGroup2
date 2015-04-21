@@ -5,11 +5,7 @@ $query5 = $this->db->get('userinfo');
 $row5 = $query5->row();
 $docid = $row5->id;
 
-$this->db->where('doctor_id',$docid);
-$query4 = $this->db->get('appts');
-$row4 = $query4->row();
-
-$patientid = $row4->patient_id;
+$patientid = $this->session->userdata('patient');
 
 //grab patient medical record
 $this->db->where('id',$patientid);
