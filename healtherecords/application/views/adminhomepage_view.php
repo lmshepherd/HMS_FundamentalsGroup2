@@ -25,7 +25,7 @@ echo form_submit('appoitnment_submit', 'View Appointments');
 echo "</p>";
 echo form_close();
 
-echo form_open('admin/');
+echo form_open('admin/view_processed_payments');
 echo "<p>";
 echo form_submit('Payment_submit', 'View Processed Payments');
 echo "</p>";

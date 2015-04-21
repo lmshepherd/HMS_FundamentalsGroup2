@@ -3,6 +3,90 @@
 class Admin_search extends CI_Model
 {
 	
+	public function get_appts($id){
+		
+		//check appts where this user is the patient
+		$this->db->where('patient_id',$id);
+		$query = $this->db->get('appts');
+		$row = $query->row();
+		
+		
+		//check that there is at least one result
+		if ($query->num_rows()>0)
+		{
+			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+					'table_close' => '</table>');
+			$this->table->set_template($table_config);
+			//create table heading
+			$this->table->set_heading('Date','Time','Process Payment');
+				
+			$count = 0;
+				
+			//cycle through doctors of matching specialty
+			foreach ($query->result() as $row)
+			{
+				if($row->patient_id==$patientID){
+					//if($row->patient_id==10){
+					//get name from userinfo db
+					$this->db->from('userinfo');
+					$this->db->where('id',$row->patient_id);
+					$query2 = $this->db->get();
+					$row2 = $query2->row();
+						
+					$time = $row->hour;
+					if ($time<12)
+						$ampm = 'am';
+					else $ampm = 'pm';
+					$time = $time%12;
+					if ($time==0)
+						$time=12;
+					//echo form_open('appointment/doctor_viewPatientRecord');
+					$attributes = array('id' =>"'.$row->appt_id.'");
+					//add doctor to table
+					if ($row->doctor_finish)
+					{
+						$count++;
+						$this->table->add_row($row->date,
+								$time.' '.$ampm,
+								'<input id="'.$row->appt_id.'" type="button" value="Bill Patient" onclick="bill_patients(this)" />'
+								//$row2->firstname.' '.$row2->lastname,
+								//add a button to select doctor
+								);
+						//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');
+					}
+				}
+				echo form_close();
+			}
+		
+			//generate the table
+			if ($count>0)
+				echo $this->table->generate();
+			else echo 'No payments with this patient';
+		}
+		else echo '<p>No patients currently scheduled.</p>';
+		
+	}
+	
+	public function get_patients(){
+		
+		$query2 = $this->db->get('appts');
+		$patients=[];
+		array_push($patients, "Select a patient");
+		if($query2->num_rows()>0){
+			foreach($query2->result() as $row){
+				$patient=$row->patient_id;
+				$this->db->from('userinfo');
+				$this->db->where('id',$patient);
+				$query3 = $this->db->get();
+				$row3 = $query3->row();
+				//array_push($patients,$row->patient_id);
+				if (!in_array($row3->firstname.' '.$row3->lastname, $patients)){
+					$patients[$row->patient_id]=$row3->firstname.' '.$row3->lastname;
+				}
+			}
+		}
+		return $patients;
+	}
 	
 	public function load_appointments(){
 		$query = $this->db->get('appts');
@@ -12,7 +96,7 @@ class Admin_search extends CI_Model
 			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
 					'table_close' => '</table>');
 			$this->table->set_template($table_config);
-			$this->table->set_heading('Doctor name', 'Patient Name', 'Nurse Name', 'Appointment Date', 'Appointment Time');
+			$this->table->set_heading('Doctor name', 'Patient Name', 'Nurse Name', 'Appointment Date', 'Appointment Time','Treatment','Presciption');
 			
 			foreach($query->result() as $row){
 				$patientid = $row->patient_id;
@@ -48,11 +132,20 @@ class Admin_search extends CI_Model
 					$time = $time.'am';
 				}
 				
+				if($row->doctor_finish == 1){
+					$finish=true;
+				}
+				else{
+					$finish =false;
+				}
+				
 				$this->table->add_row('Dr.'.$row2->firstname.' '.$row2->lastname,
 						$row3->firstname.' '.$row3->lastname,
 						$row4->firstname.' '.$row4->lastname,
 						$row->date,
-						$time
+						$time,
+						$row->treatment,
+						$row->prescription
 						);
 			}
 			echo $this->table->generate();

@@ -70,8 +70,9 @@ $row = $query->row();
 				
 				echo form_close();	
 			}
-			$this->load->view('commonViews/backLinks');
+			//$this->load->view('commonViews/backLinks');
 			?>
+			<?php $this->load->view('commonViews/backLinks');?>
 		</div>
 	</div>
 
