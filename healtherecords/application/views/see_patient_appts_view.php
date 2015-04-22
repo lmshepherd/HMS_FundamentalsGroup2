@@ -113,6 +113,7 @@ $row = $query->row();
 				<?php echo 'Date: ' ?>
 				<input type="text" class="date" name="appointment" id="datepicker"><br>
 			</div>
+			<div id="doctor_schedule"></div>
 				
 			<div id="bill" style="display:none">
 				<?php 
