@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/flick/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<!-- load jquery javascript ajax communication -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= base_url();?>bootstrap/css/generic.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<title>Health E-Records</title>
 	
 	<script type="text/javascript">
 	function bill_patients(button) 
