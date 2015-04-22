@@ -24,7 +24,7 @@
 	});
 
 	function pay_bill(button){
-		alert(button.id);
+		//alert(button.id);
 		$.ajax({
 			url:"<?php echo base_url();?>index.php/bill/pay_bill",
 			data: {total_cost: button.id, amount: $('#amount').val()},
