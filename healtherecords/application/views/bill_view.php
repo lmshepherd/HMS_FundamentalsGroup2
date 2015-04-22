@@ -22,7 +22,7 @@
 			}
 		});
 	});
-
+////
 	function pay_bill(button){
 		//alert(button.id);
 		$.ajax({
