@@ -80,10 +80,10 @@
 <header id="header"><h1>Health E-Records: Scheduling</h1></header>
 <div id="container">
       <div class="row">
-        <div class="col-lg-3", id="left">
+        <div class="col-lg-2", id="left">
 			<?php $this->load->view('commonViews/links');?>
 		</div>
-        <div class="col-lg-9", id="center">
+        <div class="col-lg-10", id="center">
 	        <?php 
 			$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
 			//get session username

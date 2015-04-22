@@ -4,10 +4,10 @@
     <header id="header"><h1>Health E-Records New User Signup</h1></header>
     <div id="container">
     	<div class="row">
-        	<div class="col-lg-3", id="left">
+        	<div class="col-lg-2", id="left">
 				<?php $this->load->view('commonViews/links');?>
 			</div>
-	        <div class="col-lg-9", id="center">
+	        <div class="col-lg-10", id="center">
 	        	<br><br><br><br>
 	        	<?php 
 				$attributes = array('class' => 'form-group', 'role' => 'form', 'id' =>'center', 'class' =>'column');
