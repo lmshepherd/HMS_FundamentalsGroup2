@@ -21,7 +21,7 @@ echo form_close();
 
 echo form_open('admin/view_appointments');
 echo "<p>";
-echo form_submit('appoitnment_submit', 'View Appointments');
+echo form_submit('appoitnment_submit', 'View History');
 echo "</p>";
 echo form_close();
 
