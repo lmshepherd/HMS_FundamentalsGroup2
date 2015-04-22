@@ -2,13 +2,13 @@
 <body>
 	<div id="header"><h1>Health E-Records</h1></div>
 	    <div class="row">
-	        <div class="col-lg-3">
+	        <div class="col-lg-2", id="left">
 				<?php $this->load->view('commonViews/links');?>
 			</div>
-	        <div class="col-lg-6">
+	        <div class="col-lg-8", id="center">
 	        	<?php $this->load->view('commonViews/information_view');?>
 			</div>
-			<div class="col-lg-3" id='right'>
+			<div class="col-lg-2" id='right'>
 			<h3>Login</h3>
 		        <?php 
 				$attributes = array('class' => 'col-lg-3');
@@ -19,7 +19,7 @@
 						'maxlength'   => '100',
 						'size'        => '50',
 						'style'       => 'width:50%',
-						'class' => 'btn-success',
+						'class' => 'btn-primary',
 				);
 				$signup = array(
 						'name'        => 'signup_submit',
@@ -28,7 +28,7 @@
 						'maxlength'   => '100',
 						'size'        => '50',
 						'style'       => 'width:50%',
-						'class' => 'btn-success',
+						'class' => 'btn-primary',
 				);
 				
 				echo form_open('main/verify_login');
