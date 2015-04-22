@@ -1,23 +1,74 @@
-<?php
-$username = $this->session->userdata('username');
-$this->db->where('username',$username);
-$query = $this->db->get('userinfo');
-$row = $query->row();
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= base_url();?>bootstrap/css/generic.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<title>Health E-Records</title>
+	<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/flick/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<!-- load jquery javascript ajax communication -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	
+	<script type="text/javascript">
 
-$id = $row->id;
-$this->db->where('patient_id',$id);
-$query = $this->db->get('appts');
-//$row2 = $query->row();
+	$( document ).ready(function() {
+		$.ajax({
+			url:"<?php echo base_url();?>index.php/bill/load_bill_view",
+			success: function(data){
+				$("#bill_info").html(data);
+				//$( "#payment_info" ).empty();
+			}
+		});
+	});
 
-?>
-
-<?php $this->load->view('commonViews/header');?>
+	function pay_bill(button){
+		alert(button.id);
+		$.ajax({
+			url:"<?php echo base_url();?>index.php/bill/pay_bill",
+			data: {total_cost: button.id, amount: $('#amount').val()},
+			type: "POST",
+			success: function(data){
+				$.ajax({
+					url:"<?php echo base_url();?>index.php/bill/load_bill_view",
+					success: function(data){
+						$("#bill_info").html(data);
+					}
+				});
+				$("#payment_info").html(data);
+			}
+		});
+		
+	}
+	
+	</script>
+	
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<? echo base_url();?>/css/Generic.css">
+	<meta charset="utf-8">
+	<title>Health E-Records</title>	
+</head>
 
 <body>
 <header id="header"><h1>Health E-Records: My Appointments</h1></header>
 <div id="container">
 
+	<div id="bill_info"></div>
 	<?php 
+	/*
+	$username = $this->session->userdata('username');
+	$this->db->where('username',$username);
+	$query = $this->db->get('userinfo');
+	$row = $query->row();
+	
+	$id = $row->id;
+	$this->db->where('patient_id',$id);
+	$query = $this->db->get('appts');
+	//$row2 = $query->row();
+	
 	echo '<p>Billing for: ';
 	echo $row->firstname;
 	echo ' ';
@@ -101,24 +152,24 @@ $query = $this->db->get('appts');
 	if ($count>0)
 	{
 		$this->table->add_row('','','','','','Total Cost: ','$'.number_format($total_cost,2));
-		
-		$this->table->add_row('','','','','','',form_submit('pay_submit', 'Pay Bill'));
-		echo form_open('bill/pay_bill');
+		$this->table->add_row('','','','','','','<input id="amount" type="text" />');
+		$this->table->add_row('','','','','','','<input id=$total_cost type="button" value="Pay Bill" onclick="pay_bill(this)" />');
+		//$this->table->add_row('','','','','','',form_input('payment', ''));
+		//$this->table->add_row('','','','','','',form_submit('pay_submit', 'Pay Bill'));
+		//echo form_open('bill/pay_bill/'.$total_cost);
 		echo "<p>";
 		echo $this->table->generate();
 		echo "</p>";
-		echo form_close();
-		
-		
-		
-		
+		//echo form_close();	
 	}
 	//no appts ready to be paid
 	else 
 		echo '<p>No payments currently due.</p>';
 	
-	echo '</div>';
+	echo '</div>';*/
 	?>
+	
+	<div id='payment_info'></div>
 	
 	<?php $this->load->view('commonViews/backLinks');?>
 </div>
