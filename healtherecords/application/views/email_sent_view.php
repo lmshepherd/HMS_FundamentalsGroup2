@@ -4,10 +4,10 @@
 <header id="header"><h1>Health E-Records: Email Sent!</h1></header>
 <div id="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3", id="left">
         	<?php $this->load->view('commonViews/links');?>
 		</div>
-        <div class="col-lg-8">
+        <div class="col-lg-9", id="center">
         	<p>A link to complete registration has been sent to your email address!</p>
 			<a href = '<?php 
 				echo base_url(),"index.php/main"

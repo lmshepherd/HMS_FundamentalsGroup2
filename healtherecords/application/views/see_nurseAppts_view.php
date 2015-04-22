@@ -56,10 +56,10 @@ if($query->num_rows()>0){
 
 	<h1>Here are your current patients</h1>
 	    <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3", id="left">
 			<?php $this->load->view('commonViews/links');?>
 		</div>
-        <div class="col-lg-8">		
+        <div class="col-lg-9", id="center">		
 	        <p>
 			<?php 
 				echo $this->table->generate();

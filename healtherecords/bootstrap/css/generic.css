@@ -9,7 +9,7 @@
 		}
 		
 		#footer p{
-			color: #fff;
+			color: #BDBDBD;
 		}
 		
 		h1{
@@ -17,12 +17,12 @@
 		}
 		
 		#left {
-			height: 500px;
+			height: 1000px;
 			background: #BDBDBD;
 		}
 		
 		#right {
-		height: 500px;
+		height: 1000px;
 			background: #37B4C8;
 		}
 

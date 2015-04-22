@@ -5,10 +5,10 @@
 <header id="header"><h1>Health E-Records: Doctor Schedules</h1></header>
 <div id="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3", id="left">
         		<?php $this->load->view('commonViews/links');?>
 			</div>
-        <div class="col-lg-8">
+        <div class="col-lg-9", id="center">
         	<?php $this->load->model('admin_search');
         	$this->admin_search->get_doctors(); ?>
         	

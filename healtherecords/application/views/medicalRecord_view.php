@@ -11,10 +11,10 @@ $username = $this->session->userdata('username');
 <header id="header"><h1>Health E-Records: Medical Record</h1></header>
 <div id="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3", id="left">
      	    <?php $this->load->view('commonViews/links');?>
 		</div>
-        <div class="col-lg-8">
+        <div class="col-lg-9", id="center">
         	<p>Please fill in your information:</p>
 			<?php 
 	//***************This is an example of how to add attributes to a form!

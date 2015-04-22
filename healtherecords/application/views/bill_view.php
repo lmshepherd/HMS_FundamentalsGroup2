@@ -29,7 +29,7 @@ $query = $this->db->get('appts');
 	$ins_query = $this->db->get('patients');
 	$ins_row = $ins_query->row();
 	
-	echo '<div class="col-lg-12">';
+	echo '<div class="col-lg-12", id="center">';
 	//configure table id
 	$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
 							'table_close' => '</table>');

@@ -191,10 +191,10 @@ $row = $query->row();
 <header id="header"><h1>Health E-Records: My Appointments</h1></header>
 <div id="container">
 	<div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3", id="left">
 			<?php $this->load->view('commonViews/links');?>
 		</div>
-        <div class="col-md-8">
+        <div class="col-md-9", id="center">
         
         <?php 
 			$this->load->model('search');

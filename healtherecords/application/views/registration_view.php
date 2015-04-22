@@ -87,10 +87,10 @@ $role = $this->session->userdata('role');
 <header id="header"><h1>Health E-Records: New User Info</h1></header>
 <div id="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3", id="left">
 			<?php $this->load->view('commonViews/links');?>
 		</div>
-        <div class="col-lg-8">
+        <div class="col-lg-9", id="center">
         	<p>Please fill in your information:</p>
 			<div id="body">
 				<?php 
