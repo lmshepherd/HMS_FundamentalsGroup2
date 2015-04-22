@@ -9,6 +9,11 @@
 			filter: alpha(opacity=50); /* For IE8 and earlier */
 		}
 		
+		#left, #right, #center{
+			height: 1000px;
+			outline: 2px solid #000;
+		}
+		
 		#footer {
 			clear: both;
 		}
@@ -22,12 +27,10 @@
 		}
 		
 		#left {
-			height: 1000px;
 			background: #BDBDBD;
 		}
 		
 		#right {
-			height: 1000px;
 			background: #37B4C8;
 		}
 
