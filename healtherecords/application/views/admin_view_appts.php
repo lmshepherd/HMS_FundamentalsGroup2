@@ -3,7 +3,7 @@
 $this->load->view('commonViews/header');?>
 
 <body>
-<header id="header"><h1>Health E-Records: Patients</h1></header>
+<header id="header"><h1>Health E-Records: History</h1></header>
 <div id="container">
       <div class="row">
         <div class="col-lg-2", id="left">

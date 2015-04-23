@@ -54,7 +54,7 @@
 </head>
 
 <body>
-<header id="header"><h1>Health E-Records: My Appointments</h1></header>
+<header id="header"><h1>Health E-Records: My Bills</h1></header>
 <div id="container">
 
 	<div id="bill_info"></div>
