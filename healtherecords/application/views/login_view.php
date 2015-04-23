@@ -1,6 +1,6 @@
 <?php $this->load->view('commonViews/header');?>
 <body>
-	<div id="header"><h1>Health E-Records</h1></div>
+	<div id="header"><h1><img src="<?= base_url();?>bootstrap/images/HER.png" alt="logo"></h1></div>
 	    <div class="row">
 	        <div class="col-lg-2", id="left">
 				<?php $this->load->view('commonViews/links');?>

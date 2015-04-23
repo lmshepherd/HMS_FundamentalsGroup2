@@ -1,7 +1,25 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+ 
+body {
+ background-color: #000;
+ font-family: "Roboto Condensed", sans-serif;
+ margin: 30px;
+}
+		
 		#header, #footer {
 			font-size: large;
 			padding: 0.3em;
 			background: #000000;
+		}
+		
+		img{
+			opacity: 0.5;
+			filter: alpha(opacity=50); /* For IE8 and earlier */
+		}
+		
+		#left, #right, #center{
+			height: 1000px;
+			outline: 2px solid #000;
 		}
 		
 		#footer {
@@ -12,20 +30,20 @@
 			color: #37B4C8;
 		}
 		
+		#center{
+			background: #fff;
+		}
+		
 		h1{
 			color: #fff;
 		}
 		
 		#left {
-			height: 1000px;
 			background: #BDBDBD;
 		}
 		
 		#right {
-			height: 1000px;
 			background: #37B4C8;
 		}
 
-		#center {
-			background: #fff;
-		}
+
