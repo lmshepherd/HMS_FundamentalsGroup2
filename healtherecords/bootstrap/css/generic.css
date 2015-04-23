@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
  
 body {
- background-color: #fff;
+ background-color: #000;
  font-family: "Roboto Condensed", sans-serif;
  margin: 30px;
 }
@@ -28,6 +28,10 @@ body {
 		
 		#footer p{
 			color: #37B4C8;
+		}
+		
+		#center{
+			background: #fff;
 		}
 		
 		h1{
