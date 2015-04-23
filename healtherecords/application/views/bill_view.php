@@ -24,7 +24,8 @@
 	});
 
 	function pay_bill(button){
-		//alert(button.id);
+		if(button.id!=$('#amount').val())
+			alert('Amount entered does not match amount owed.');
 		$.ajax({
 			url:"<?php echo base_url();?>index.php/bill/pay_bill",
 			data: {total_cost: button.id, amount: $('#amount').val()},
