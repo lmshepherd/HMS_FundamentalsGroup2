@@ -136,7 +136,7 @@ class Bill extends CI_Controller
 		$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
 				'table_close' => '</table>');
 		$this->table->set_template($table_config);
-		$this->table->set_heading('Date ','Time ','Doctor ','Treatment ','Prescription ','Covered ','Bill ');
+		$this->table->set_heading('Date ','Time ','Doctor ','Nurse','Duration','Treatment ','Prescription ','Covered ','Bill ');
 		//billing variables
 		$count = 0;
 		$base_cost = 50;
