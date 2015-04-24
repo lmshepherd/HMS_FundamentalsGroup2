@@ -98,13 +98,6 @@ class Bill extends CI_Controller
 		$id = $row->id;
 		$this->db->where('patient_id',$id);
 		$query = $this->db->get('appts');
-		//$row2 = $query->row();
-		
-		/*echo '<p>Billing for: ';
-		echo $row->firstname;
-		echo ' ';
-		echo $row->lastname;
-		echo '</p><br>';*/
 		
 		//get insurance info
 		$this->db->where('id',$id);
@@ -112,20 +105,38 @@ class Bill extends CI_Controller
 		$ins_row = $ins_query->row();
 		
 		echo '<div class="col-lg-12", id="center">';
-		//configure table id
+		//configure table options
+		$table_config = array ( 'table_open'  => '<table class="table" style="width:auto;">',
+				'table_close' => '</table>');
+		$this->table->set_template($table_config);
+		
+		//table for health e-records info
+		$this->table->set_heading('Health E-Records');
+		$this->table->add_row('University of Iowa');
+		$this->table->add_row('Iowa City, IA');
+		$this->table->add_row('319-335-3500');
+		echo $this->table->generate();
+		echo '<br>';
+		
+		
+		//table for patient info
+		$this->table->set_heading('Patient Name','Patient ID','Billing Date');
+		//$this->load->helper('date');
+		$this->table->add_row($row->firstname.' '.$row->lastname,$row->id,'20'.date('y-m-d'));
+		echo $this->table->generate();
+		echo '<br>';
+		
+		//table for insurance info
+		$this->table->set_heading('Insurance Provider','Start date','End date');
+		$this->table->add_row($ins_row->insuranceprovider,$ins_row->insurancestart,$ins_row->insuranceend);
+		echo $this->table->generate();
+		echo '<br>';
+		
+		//table for appointment info
 		$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
 				'table_close' => '</table>');
 		$this->table->set_template($table_config);
-		$this->table->add_row('Patient Name','Patient ID','Billing Date');
-		$this->load->helper('date');
-		$datestring = "Year: %Y Month: %m Day: %d - %h:%i %a";
-		$this->table->add_row($row->firstname.' '.$row->lastname,$row->id,'20'.date('y-m-d'));
-		$this->table->add_row('','','');
-		$this->table->add_row('Insurance Provider','Start date','End date');
-		$this->table->add_row($ins_row->insuranceprovider,$ins_row->insurancestart,$ins_row->insuranceend);
-		$this->table->add_row('','','','','','','');
-		$this->table->add_row('Date','Time','Doctor','Nurse','Duration','Treatment','Prescription','Covered','Bill');
-		//$this->table->set_heading('Date ','Time ','Doctor ','Treatment ','Prescription ','Covered ','Bill ');
+		$this->table->set_heading('Date ','Time ','Doctor ','Treatment ','Prescription ','Covered ','Bill ');
 		//billing variables
 		$count = 0;
 		$base_cost = 50;
