@@ -48,5 +48,10 @@ class Admin extends CI_Controller
 		$this->load->model('admin_search');
 		$this->load->view('admin_view_appts');
 	}
+	
+	public function view_payroll()
+	{
+		$this->load->view('admin_view_payroll');
+	}
 }
 

@@ -30,3 +30,9 @@ echo "<p>";
 echo form_submit('Payment_submit', 'View Processed Payments');
 echo "</p>";
 echo form_close();
+
+echo form_open('admin/view_payroll');
+echo "<p>";
+echo form_submit('Payroll_submit', 'View Payroll Information');
+echo "</p>";
+echo form_close();
