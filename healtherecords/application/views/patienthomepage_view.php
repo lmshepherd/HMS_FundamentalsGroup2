@@ -103,4 +103,11 @@ echo form_submit('billing_submit', 'Billing');
 echo "</p>";
 echo form_close();
 
+echo form_open('update/update_patient_info');
+echo "<p>";
+echo form_submit('update_submit', 'Update Your Information');
+echo "</p>";
+echo form_close();
+
+
 ?>
