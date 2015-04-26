@@ -17,7 +17,12 @@ $role = $row->role;
 	<meta charset="utf-8">
 	<title>Health E-Records</title>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  
+  		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
+		<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/Cupertino/jquery-ui.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/Lab8Stylesheet.css">
+  
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
