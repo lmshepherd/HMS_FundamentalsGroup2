@@ -36,4 +36,10 @@ echo "<p>";
 echo form_submit('Payroll_submit', 'View Payroll Information');
 echo "</p>";
 echo form_close();
+
+echo form_open('salary/viewSalary');
+echo "<p>";
+echo form_submit('salary_view', 'View Admin Salary');
+echo "</p>";
+echo form_close();
 ?>
