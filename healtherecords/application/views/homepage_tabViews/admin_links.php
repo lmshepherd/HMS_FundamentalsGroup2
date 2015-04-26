@@ -1,4 +1,4 @@
-<?php
+<?php 
 $attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
 
 echo form_open('admin/doctor_schedules');
@@ -36,3 +36,4 @@ echo "<p>";
 echo form_submit('Payroll_submit', 'View Payroll Information');
 echo "</p>";
 echo form_close();
+?>

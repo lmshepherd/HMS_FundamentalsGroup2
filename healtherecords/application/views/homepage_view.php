@@ -38,8 +38,8 @@ $role = $row->role;
         <div id="tabs">
   <ul>
     <li><a href="#tabs-1">User Info</a></li>
-    <li><a href="#tabs-2">Medical Record</a></li>
-    <li><a href="#tabs-3">Other Links</a></li>
+    <li><a href="#tabs-2">Other Info</a></li>
+    <li><a href="#tabs-3">Useful Links</a></li>
   </ul>
   <div id="tabs-1">
   	        <?php 
@@ -80,25 +80,25 @@ $role = $row->role;
   <div id="tabs-2">
   	<?php 
   				if($role=='patient')
-				$this->load->view('patienthomepage_view');
+				$this->load->view('homepage_tabViews/patienthomepage_view');
 			else if($role=='nurse')
-				$this->load->view('nursehomepage_view');
+				$this->load->view('homepage_tabViews/nursehomepage_view');
 			else if($role=='doctor')
-				$this->load->view('doctorhomepage_view');
+				$this->load->view('homepage_tabViews/doctorhomepage_view');
 			else if($role=='admin')
-				$this->load->view('adminhomepage_view');
+				$this->load->view('homepage_tabViews/adminhomepage_view');
 		?>  
   </div>
   <div id="tabs-3">
     		<?php 
     		if($role=='patient')
-				$this->load->view('patient_links');
-			//else if($role=='nurse')
-				//$this->load->view('nursehomepage_view');
-			//else if($role=='doctor')
-				//$this->load->view('doctorhomepage_view');
-			//else if($role=='admin')
-				//$this->load->view('adminhomepage_view');  
+				$this->load->view('homepage_tabViews/patient_links');
+			else if($role=='nurse')
+				$this->load->view('homepage_tabViews/nurse_links');
+			else if($role=='doctor')
+				$this->load->view('homepage_tabViews/doctor_links');
+			else if($role=='admin')
+				$this->load->view('homepage_tabViews/admin_links');  
 			?>
   </div>
 </div>
