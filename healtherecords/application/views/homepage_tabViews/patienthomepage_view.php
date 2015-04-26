@@ -12,6 +12,8 @@ $this->db->where('id',$id);
 $query = $this->db->get('patients');
 $row = $query->row();
 
+echo '<h2>Medical Record <br></h2>';
+
 echo '<p>Gender: ';
 if($row->gender == 'm'){
 	echo 'Male';
