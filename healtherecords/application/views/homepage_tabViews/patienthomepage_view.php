@@ -12,7 +12,7 @@ $this->db->where('id',$id);
 $query = $this->db->get('patients');
 $row = $query->row();
 
-echo '<h2>Medical Record <br></h2>';
+echo '<h2> Patient Information <br></h2>';
 
 echo '<p>Gender: ';
 if($row->gender == 'm'){
@@ -61,14 +61,6 @@ echo '</p>';
 
 echo '<p>Insurance Provider: ';
 echo $row->insuranceprovider;
-echo '</p>';
-
-echo '<p>Medical Record: ';
-echo $row->record;
-echo '</p>';
-
-echo '<p>Treatments: ';
-echo $row->treatments;
 echo '</p>';
 
 echo '<p>Allergies: ';

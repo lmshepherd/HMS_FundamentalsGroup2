@@ -24,43 +24,37 @@
 			$row1 = $query1->row();
 			$role = $row1->role;
 		
-			echo form_open('update/change_username');
-			echo '<p>Username: ';
-			echo $row1->username;
-			echo '    ';
-			echo form_input('username',$this->input->post('username'));
-			echo form_submit('username_change', 'Change Username');
-			echo '</p>';
-			echo form_close();
+			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+					'table_close' => '</table>');
+			$this->table->set_template($table_config);
+			$this->table->set_heading('Category','Information ','  New Info','Change Button');
 			
-			echo form_open('update/change_email');
-			echo '<p>Email: ';
-			echo $row1->email;
-			echo '    ';
-			echo form_input('email',$this->input->post('email'));
-			echo form_submit('username_change', 'Change Email');
-			echo '</p>';
-			echo form_close();
+			$this->table->add_row('Username ',
+								$row1->username,
+								form_open('update/change_username').form_input('username',$this->input->post('username')),
+								form_submit('username_change', 'Change Username').form_close());
 			
-			echo form_open('update/change_homephone');
-			echo '<p>Home Phone: ';
-			echo $row1->homephone;
-			echo '    ';
-			echo form_input('homephone',$this->input->post('homephone'));
-			echo form_submit('homephone_change', 'Change Home Number');
-			echo '</p>';
-			echo form_close();
+			$this->table->add_row('Email ',
+								$row1->email,
+								form_open('update/change_email').form_input('email',$this->input->post('email')),
+								form_submit('username_change', 'Change Email').form_close()
+					);
 			
-			echo form_open('update/change_workphone');
-			echo '<p>Work Phone: ';
-			echo $row1->workphone;
-			echo '    ';
-			echo form_input('workphone',$this->input->post('workphone'));
-			echo form_submit('workphone_change', 'Change Work Number');
-			echo '</p>';
-			echo form_close();
+			$this->table->add_row('Home Phone ',
+								$row1->homephone,
+								form_open('update/change_homephone').form_input('homephone',$this->input->post('homephone')),
+								form_submit('homephone_change', 'Change Home Number').form_close()
+					);
 			
-			$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
+			$this->table->add_row('Work Phone ',
+								$row1->workphone,
+								form_open('update/change_workphone').form_input('workphone',$this->input->post('workphone')),
+								form_submit('workphone_change', 'Change Work Number').form_close()
+					);
+			
+			
+			//echo $this->table->generate();
+			
 			$username = $this->session->userdata('username');
 			
 			$this->db->where('username',$username);
@@ -74,123 +68,87 @@
 			
 			
 			$gender_options=array('m'=>'Male','f'=>'Female');
-			echo form_open('update/change_gender');
-			echo '<p>Gender: ';
 			if($row->gender == 'm'){
-				echo 'Male';
+				$gender =  'Male';
 			}
 			else{
-				echo 'Female';
+				$gender =  'Female';
 			}
-			echo '    ';
-			echo form_dropdown('gender', $gender_options,'m');
-			echo form_submit('gender_change', 'Change Gender');
-			echo '</p>';
-			echo form_close();
 			
+			$this->table->add_row('Gender',
+								$gender,
+								form_open('update/change_gender').form_dropdown('gender', $gender_options,'m'),
+								form_submit('gender_change', 'Change Gender').form_close()
+					);
+		
 			
 			$marital_options = array('single'=>'Single',
 					'married'=>'Married',
 					'divorced'=>'Divorced',
 					'widowed'=>'Widowed');
-			echo form_open('update/change_marriage');
-			echo '<p>Marital Status: ';
-			echo $row->maritalstatus;
-			echo '    ';
-			echo form_dropdown('maritalstatus',$marital_options,'single');
-			echo form_submit('marriage_change', 'Change Marital Status');
-			echo '</p>';
-			echo form_close();
 			
-			echo form_open('update/change_al1');
-			echo '<p>Address: ';
-			echo $row->addressline1;
-			echo '    ';
-			echo form_input('addressline1',$this->input->post('addressline1'));
-			echo form_submit('addline1_change', 'Change Address Line 1');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_al2');
-			echo '<p>Line 2: ';
-			echo $row->addressline2;
-			echo '    ';
-			echo form_input('addressline2',$this->input->post('addressline2'));
-			echo form_submit('addline2_change', 'Change Address Line 2');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_city');
-			echo '<p>City: ';
-			echo $row->city;
-			echo '    ';
-			echo form_input('city',$this->input->post('city'));
-			echo form_submit('city_change', 'Change City');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_zip');
-			echo '<p>Zipcode: ';
-			echo $row->zipcode;
-			echo '    ';
-			echo form_input('zipcode',$this->input->post('zipcode'));
-			echo form_submit('zip_change', 'Change Zipcode');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_ecname');
-			echo '<p>Emergency Contact Name: ';
-			echo $row->ecname;
-			echo '    ';
-			echo form_input('ecname',$this->input->post('ecname'));
-			echo form_submit('ecn_change', 'Change Emergency Contact Name');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_ecphone');
-			echo '<p>Emergency Contact Phone Number:';
-			echo $row->ecphone;
-			echo '    ';
-			echo form_input('ecphone',$this->input->post('ecphone'));
-			echo form_submit('ecp_change', 'Change Emergency Contact Phone #');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_insurancestart');
-			echo '<p> Insurance Start: ';
-			echo $row->insurancestart;
-			echo '    ';
-			echo form_input('insurancestart',$this->input->post('insurancestart'));
-			echo form_submit('iss_change', 'Change Insurance Start Date');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_insuranceend');
-			echo '<p>Insurance End: ';
-			echo $row->insuranceend;
-			echo '    ';
-			echo form_input('insuranceend',$this->input->post('insuranceend'));
-			echo form_submit('ise_change', 'Change Insurance End Date');
-			echo '</p>';
-			echo form_close();
-			
-			echo form_open('update/change_insurancepolicy');
-			echo '<p>Insurance Provider: ';
-			echo $row->insuranceprovider;
-			echo '    ';
-			echo form_input('insuranceprovider',$this->input->post('insuranceprovider'));
-			echo form_submit('isp_change', 'Change Insurance Provider');
-			echo '</p>';
-			echo form_close();
+			$this->table->add_row('Marital Status',
+									$row->maritalstatus,
+									form_open('update/change_marriage').form_dropdown('maritalstatus',$marital_options,'single'),
+									form_submit('marriage_change', 'Change Marital Status').form_close());
 
-			echo form_open('update/change_allergies');
-			echo '<p>Allergies: ';
-			echo $row->allergies;
-			echo '    ';
-			echo form_input('allergies',$this->input->post('allergies'));
-			echo form_submit('aller_change', 'Change Allergies');
-			echo '</p>';
-			echo form_close();
+			$this->table->add_row('Address',
+								$row->addressline1,
+								form_open('update/change_al1').form_input('addressline1',$this->input->post('addressline1')),
+								form_submit('addline1_change', 'Change Address Line 1').form_close());
+			
+			$this->table->add_row('Line 2',
+									$row->addressline2,
+									form_open('update/change_al2').form_input('addressline2',$this->input->post('addressline2')),
+									form_submit('addline2_change', 'Change Address Line 2').form_close());
+			
+			$this->table->add_row('City',
+									$row->city,
+									form_open('update/change_city').form_input('city',$this->input->post('city')),
+									form_submit('city_change', 'Change City').form_close());
+			
+			$this->table->add_row('Zipcode',
+								$row->zipcode,
+								form_open('update/change_zip').form_input('zipcode',$this->input->post('zipcode')),
+									form_submit('zip_change', 'Change Zipcode').form_close()
+							);
+			
+			$this->table->add_row('Emergency Contact Name',
+								$row->ecname,
+								form_open('update/change_ecname').form_input('ecname',$this->input->post('ecname')),
+								form_submit('ecn_change', 'Change Emergency Contact Name').form_close()
+							);
+			
+			$this->table->add_row('Emergency Contact Phone',
+									$row->ecphone,
+									form_open('update/change_ecphone').form_input('ecphone',$this->input->post('ecphone')),
+									form_submit('ecp_change', 'Change Emergency Contact Phone #').form_close());
+			
+			$this->table->add_row('Insurance Start',
+								$row->insurancestart,
+								form_open('update/change_insurancestart').form_input('insurancestart',$this->input->post('insurancestart')),
+								form_submit('iss_change', 'Change Insurance Start Date').form_close()
+							);
+			
+			$this->table->add_row('Insurance End',
+								$row->insuranceend,
+								form_open('update/change_insuranceend').form_input('insuranceend',$this->input->post('insuranceend')),
+								form_submit('ise_change', 'Change Insurance End Date').form_close()
+							);
+			
+			$this->table->add_row('Insurance Provider',
+								$row->insuranceprovider,
+							form_open('update/change_insurancepolicy').form_input('insuranceprovider',$this->input->post('insuranceprovider')),
+							form_submit('isp_change', 'Change Insurance Provider').form_close()
+					);
+
+			$this->table->add_row('Allergies',
+								$row->allergies,
+								form_open('update/change_allergies').form_input('allergies',$this->input->post('allergies')),
+								form_submit('aller_change', 'Change Allergies').form_close()
+					);
+			
+			echo $this->table->generate();
 		?>
 		<?php $this->load->view('commonViews/backLinks');?>
 	</div>
