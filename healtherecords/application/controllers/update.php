@@ -9,6 +9,37 @@ class Update extends CI_Controller
 		$this->load->model('update_info');
 	}
 	
+	public function password_recovery(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		//$this->form_validation->set_rules('username','Username','required|trim|');
+		//check password field
+		$this->form_validation->set_rules('password','Password','required|trim');
+		//check cpassword field and make sure it matches password
+		$this->form_validation->set_rules('cpassword','Confirm_Password','required|trim|matches[password]');
+		//check email field
+		$this->form_validation->set_rules('email','Email','required|trim|valid_email');
+		
+		$this->form_validation->set_rules('homephone','Home Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+		
+		if($this->form_validation->run()){
+			if($this->update_info->password_change()){
+				$this->load->view('login_view');
+			}
+			else{
+				echo "Could not change password, your information provided did not match anything in our database";
+			}
+		}
+		else{
+			$this->load->view('password_change_view');
+		}
+	}
+	
+	public function change_password(){
+		$this->load->view('password_change_view');
+	}
+	
 	public function update_admin_info(){
 		$this->load->view('admin_update_information');
 	}

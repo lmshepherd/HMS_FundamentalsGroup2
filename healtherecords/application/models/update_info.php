@@ -1,6 +1,28 @@
 <?php
 class Update_info extends CI_Model
 {
+	public function password_change(){
+		$username = $this->input->post('username');
+		$this->db->where('username', $username);
+		$query = $this->db->get('userinfo');
+		$row = $query->row();
+		
+		$hphone = $this->input->post('homephone');
+		$email = $this->input->post('email');
+		$pw = $this->input->post('password');
+		if(($hphone == $row->homephone)&&( $email == $row->email)){
+			$pww = md5($pw);
+			$temp = array('password' => $pww);
+			$this->db->where('username',$username);
+			$query = $this->db->update('userinfo', $temp);
+			return $query;
+		}
+		else{
+			return false;
+		}
+		
+	}
+	
 	public function experience_change(){
 		$newxp = $this->input->post('experience');
 		$temp = array('experience' => $newxp);

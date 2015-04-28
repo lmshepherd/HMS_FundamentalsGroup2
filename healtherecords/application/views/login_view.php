@@ -30,6 +30,15 @@
 						'style'       => 'width:50%',
 						'class' => 'btn-primary',
 				);
+				$pwchange = array(
+						'name'        => 'pwchange_submit',
+						'id'          => 'pwchange_submit',
+						'value'       => 'Forgot Password?',
+						'maxlength'   => '100',
+						'size'        => '50',
+						'style'       => 'width:75%',
+						'class' => 'btn-primary',
+				);
 				
 				echo form_open('main/verify_login');
 			
@@ -53,6 +62,14 @@
 		
 				echo "<p>";
 				echo form_submit($signup, 'signup_submit', 'Sign Up');
+				echo "</p>";
+				
+				echo form_close();
+				
+				echo form_open('update/change_password');
+				
+				echo "<p>";
+				echo form_submit($pwchange);
 				echo "</p>";
 				
 				echo form_close();
