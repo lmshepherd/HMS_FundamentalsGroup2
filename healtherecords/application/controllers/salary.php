@@ -14,4 +14,13 @@ class Salary extends CI_Controller
 	{
 		$this->payroll->view_payroll();
 	}
+	
+	//function called when distribute paycheck button is clicked by admin
+	public function send_paycheck()
+	{
+		$data = array('sent' => true);
+		$this->db->where('paycheck_id',$this->input->post('paycheck_id'));
+		$this->db->update('paychecks',$data);
+		echo '<br><p>Paycheck sent!</p>';
+	}
 }

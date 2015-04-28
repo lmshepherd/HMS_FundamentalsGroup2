@@ -43,7 +43,7 @@ class Payroll extends CI_Model
 				
 				$total=0;
 				$count=0;
-				
+				$paycheck_id = $row2->paycheck_id;
 				
 				if (!$row2->sent)
 				{	
@@ -100,7 +100,7 @@ class Payroll extends CI_Model
 					}
 					else if ($row->role=='nurse')
 					{
-						$exp_pay = 25;
+						$extra_pay = 25;
 						
 						$this->db->from('appts');
 						$this->db->where('nurse_id',$row->id);
@@ -119,8 +119,8 @@ class Payroll extends CI_Model
 								$query4 = $this->db->get();
 								$row4 = $query4->row();
 								
-								$this->table->add_row('20'.$row3->date,$row4->firstname.' '.$row4->lastname,number_format($exp_pay,2));
-								$total += $exp_pay;
+								$this->table->add_row('20'.$row3->date,$row4->firstname.' '.$row4->lastname,number_format($extra_pay,2));
+								$total += $extra_pay;
 								$count += 1;
 							}
 						}
@@ -128,16 +128,24 @@ class Payroll extends CI_Model
 					if ($count>0)
 						echo $this->table->generate();
 					else if ($row->role!='admin')
-						echo 'None during this period.';
+						echo '<p>None during this period.</p>';
 
 					echo 'Total Pay: $'.number_format($total,2);
 					echo '</div>
 						<div class="panel-footer">
-							<input id="something" type="button" value="Distribute Paycheck" onclick="send_paycheck(this)" />
+							<input id='.$paycheck_id.' type="button" value="Distribute Paycheck" onclick="send_paycheck(this)" />
 						</div>
 						</div>';
+					
+					$data = array('amount' => $total);
+					$this->db->where('paycheck_id',$paycheck_id);
+					$this->db->update('paychecks',$data);
+					
 				}
 			}
 		}
 	}
+	
+	
+	
 }

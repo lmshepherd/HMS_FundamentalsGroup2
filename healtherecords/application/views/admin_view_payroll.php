@@ -24,6 +24,30 @@
 			});
 		});
 	});
+
+	//'distribute paycheck' button clicked
+	function send_paycheck(button){
+		//confirm send
+		if(window.confirm("Distribute Paycheck?"))
+		{
+			$.ajax({
+				url:"<?php echo base_url();?>index.php/salary/send_paycheck",
+				data: {paycheck_id: button.id},
+				type: "POST",
+				success: function(data){
+					$("#paycheck_info").html(data);
+					//refresh payroll info div to remove distributed paycheck
+					$.ajax({
+						url:"<?php echo base_url();?>index.php/salary/view_payroll",
+						data: {year: $("#year").val(), month: $("#month").val()},
+						type: "POST",
+						success: function(data){
+							$("#payroll_info").html(data);}
+					});
+				}
+			});	
+		}
+	}
 	</script>
 
 
@@ -57,9 +81,10 @@
         	?>
         </div>
         
+        <div id='paycheck_info'></div>
+        
 		<div id="payroll_info"></div>
 		
-		<div id='paycheck_info'></div>
 	
 	<?php $this->load->view('commonViews/backLinks');?>
 	</div>
