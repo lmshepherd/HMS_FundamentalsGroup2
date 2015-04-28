@@ -17,4 +17,10 @@ echo "<p>";
 echo form_submit('salary_view', 'View Doctor Salary');
 echo "</p>";
 echo form_close();
+
+echo form_open('update/update_doctor_info');
+echo "<p>";
+echo form_submit('update_submit', 'Update Your Information');
+echo "</p>";
+echo form_close();
 ?>

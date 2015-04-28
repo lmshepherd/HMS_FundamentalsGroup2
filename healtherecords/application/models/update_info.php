@@ -1,6 +1,21 @@
 <?php
 class Update_info extends CI_Model
 {
+	public function experience_change(){
+		$newxp = $this->input->post('experience');
+		$temp = array('experience' => $newxp);
+		
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+		
+		$this->db->where('id', $id);
+		$query = $this->db->update('doctors',$temp);
+		
+		return $query;
+	}
+	
 	public function username_change(){
 		$newusername = $this->input->post('username');
 		$temp = array('username' => $newusername);

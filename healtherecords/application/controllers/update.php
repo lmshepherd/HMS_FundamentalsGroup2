@@ -9,6 +9,312 @@ class Update extends CI_Controller
 		$this->load->model('update_info');
 	}
 	
+	public function update_admin_info(){
+		$this->load->view('admin_update_information');
+	}
+	
+
+	public function change_username_admin(){
+	
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('username','Username','required|trim|is_unique[userinfo.username]');
+	
+		//change message shown when username is already taken
+		$this->form_validation->set_message('is_unique','That username is already in use.');
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->username_change()){
+				$newuser = $this->input->post('username');
+				$this->session->set_userdata('username', $newuser);
+				$this->load->view('admin_update_information');
+			}
+			else{
+				echo "Could not change username";
+			}
+		}
+		else{
+			$this->load->view('admin_update_information');
+		}
+	}
+	
+	public function change_email_admin(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('email','Email','required|trim|valid_email');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->email_change()){
+				$this->load->view('admin_update_information');
+			}
+			else{
+				echo "Could not change email";
+			}
+		}
+		else{
+			$this->load->view('admin_update_information');
+		}
+	}
+	
+	
+	public function change_homephone_admin(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('homephone','Home Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->homephone_change()){
+				$this->load->view('admin_update_information');
+			}
+			else{
+				echo "Could not change homephone";
+			}
+		}
+		else{
+			$this->load->view('admin_update_information');
+		}
+	}
+	
+	public function change_workphone_admin(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('workphone','Work Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->workphone_change()){
+				$this->load->view('admin_update_information');
+			}
+			else{
+				echo "Could not change homephone";
+			}
+		}
+		else{
+			$this->load->view('admin_update_information');
+		}
+	}
+	
+	public function update_doctor_info(){
+		$this->load->view('doctor_update_information');
+	}
+	
+	public function change_experience_doctor(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('experience','Experience','required|trim');
+		
+		//change message shown when username is already taken
+		$this->form_validation->set_message('is_unique','That username is already in use.');
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->experience_change()){
+				$this->load->view('doctor_update_information');
+			}
+			else{
+				echo "Could not change expereience";
+			}
+		}
+		else{
+			$this->load->view('doctor_update_information');
+		}
+	}
+	
+	public function change_username_doctor(){
+	
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('username','Username','required|trim|is_unique[userinfo.username]');
+	
+		//change message shown when username is already taken
+		$this->form_validation->set_message('is_unique','That username is already in use.');
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->username_change()){
+				$newuser = $this->input->post('username');
+				$this->session->set_userdata('username', $newuser);
+				$this->load->view('doctor_update_information');
+			}
+			else{
+				echo "Could not change username";
+			}
+		}
+		else{
+			$this->load->view('doctor_update_information');
+		}
+	}
+	
+	public function change_email_doctor(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('email','Email','required|trim|valid_email');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->email_change()){
+				$this->load->view('doctor_update_information');
+			}
+			else{
+				echo "Could not change email";
+			}
+		}
+		else{
+			$this->load->view('doctor_update_information');
+		}
+	}
+	
+	
+	public function change_homephone_doctor(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('homephone','Home Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->homephone_change()){
+				$this->load->view('doctor_update_information');
+			}
+			else{
+				echo "Could not change homephone";
+			}
+		}
+		else{
+			$this->load->view('doctor_update_information');
+		}
+	}
+	
+	public function change_workphone_doctor(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('workphone','Work Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->workphone_change()){
+				$this->load->view('doctor_update_information');
+			}
+			else{
+				echo "Could not change homephone";
+			}
+		}
+		else{
+			$this->load->view('doctor_update_information');
+		}
+	}
+	
+	public function update_nurse_info(){
+		$this->load->view('nurse_update_information');
+	}
+	
+	public function change_username_nurse(){
+	
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('username','Username','required|trim|is_unique[userinfo.username]');
+	
+		//change message shown when username is already taken
+		$this->form_validation->set_message('is_unique','That username is already in use.');
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->username_change()){
+				$newuser = $this->input->post('username');
+				$this->session->set_userdata('username', $newuser);
+				$this->load->view('nurse_update_information');
+			}
+			else{
+				echo "Could not change username";
+			}
+		}
+		else{
+			$this->load->view('nurse_update_information');
+		}
+	}
+	
+	public function change_email_nurse(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('email','Email','required|trim|valid_email');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->email_change()){
+				$this->load->view('nurse_update_information');
+			}
+			else{
+				echo "Could not change email";
+			}
+		}
+		else{
+			$this->load->view('nurse_update_information');
+		}
+	}
+	
+	
+	public function change_homephone_nurse(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('homephone','Home Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->homephone_change()){
+				$this->load->view('nurse_update_information');
+			}
+			else{
+				echo "Could not change homephone";
+			}
+		}
+		else{
+			$this->load->view('nurse_update_information');
+		}
+	}
+	
+	public function change_workphone_nurse(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check email field
+		$this->form_validation->set_rules('workphone','Work Phone','required|trim|regex_match[/^[0-9]{3}-[0-9]{3}-[0-9]{4}/]');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->workphone_change()){
+				$this->load->view('nurse_update_information');
+			}
+			else{
+				echo "Could not change homephone";
+			}
+		}
+		else{
+			$this->load->view('nurse_update_information');
+		}
+	}
+	
 	public function update_patient_info(){
 		$this->load->view('patient_update_information');
 	}

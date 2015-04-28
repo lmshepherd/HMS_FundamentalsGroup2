@@ -42,4 +42,10 @@ echo "<p>";
 echo form_submit('salary_view', 'View Admin Salary');
 echo "</p>";
 echo form_close();
+
+echo form_open('update/update_admin_info');
+echo "<p>";
+echo form_submit('update_submit', 'Update Your Information');
+echo "</p>";
+echo form_close();
 ?>
