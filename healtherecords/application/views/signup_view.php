@@ -10,7 +10,7 @@
 	        <div class="col-lg-10", id="center">
 	        	<br><br><br><br>
 	        	<?php 
-				$attributes = array('class' => 'form-group', 'role' => 'form', 'id' =>'center', 'class' =>'column');
+				$attributes = array('class' => 'form-group', 'role' => 'form');
 				
 				echo form_open('main/verify_signup', $attributes);
 				

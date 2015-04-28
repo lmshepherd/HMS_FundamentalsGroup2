@@ -21,7 +21,6 @@ $row = $query->row();
 		</div>
         <div class="col-lg-10", id="center">
     	    <?php
-			$attributes = array('class' => 'form-group', 'role' => 'form','id'=>'center', 'class'=>'column');
 			
 			if($row!=NULL){
 				echo '<p>Height: ';
@@ -62,7 +61,7 @@ $row = $query->row();
 				echo $row->other;
 				echo '</p>';
 				
-				echo form_open('main/complete_medicalRecord', $attributes);
+				echo form_open('main/complete_medicalRecord');
 				
 				echo "<p>";
 				echo form_submit('medicalRecord_submit', 'Update Your Medical Record');
@@ -70,7 +69,7 @@ $row = $query->row();
 				
 				echo form_close();	
 			}
-			//$this->load->view('commonViews/backLinks');
+			
 			?>
 			<?php $this->load->view('commonViews/backLinks');?>
 		</div>

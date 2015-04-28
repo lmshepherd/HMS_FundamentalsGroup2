@@ -18,7 +18,7 @@ body {
 		}
 		
 		#left, #right, #center{
-			height: 1000px;
+			height: 800px;
 			outline: 2px solid #000;
 			border-radius: 15px;
 		}

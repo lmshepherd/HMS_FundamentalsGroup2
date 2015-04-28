@@ -19,7 +19,7 @@ $username = $this->session->userdata('username');
 			<?php 
 	//***************This is an example of how to add attributes to a form!
 			$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
-			$data = array('class' => 'btn-lg', 'id' => 'submitMedicalRecord');
+			$data = array('id' => 'submitMedicalRecord');
 			$height = array(
 					'name'        => 'height',
 					'id'          => 'height',
