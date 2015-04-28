@@ -7,16 +7,21 @@
 	<script type="text/javascript">
 
 	$(document).ready(function(){
-		$.ajax({
-			//run select_specialization function of appointment controller
-			url:"<?php echo base_url();?>index.php/salary/view_payroll",
-			//set data value of POST to value selected in dropdown box
-			//update html inside doctor_list div to be what is returned
-			success: function(data){
-				//update doctor list div
-				$("#payroll_info").html(data);
-				//$( "#doctor_schedule" ).empty();
-			}
+		$("#year").change(function(){
+			$("#month").val('0');
+			$("#payroll_info").empty();
+			$( "#paycheck_info" ).empty();
+		});
+		
+		$("#month").change(function(){
+			$.ajax({
+				url:"<?php echo base_url();?>index.php/salary/view_payroll",
+				data: {year: $("#year").val(), month: $(this).val()},
+				type: "POST",
+				success: function(data){
+					$("#payroll_info").html(data);
+					$( "#paycheck_info" ).empty();}
+			});
 		});
 	});
 	</script>
@@ -33,22 +38,22 @@
         <div class="col-md-10", id="center">
 		
 		<br>
-        <div id = "year">
+        <div id = "period">
         	<?php 
         	$options = array('2015' => '2015',
         					'2014' => '2014');
-        	echo form_dropdown('year',$options,'','id="year"');
+        	echo form_dropdown('selected_year',$options,'2015','id="year"');
         	?>
-        </div>
-        <div id = "period">
+
         	<?php 
-        	$options = array('jan' => 'January','feb' => 'February',
-        					'mar' => 'March','apr' => 'April',
-							'may' => 'Mayy','jun' => 'June',
-							'jul' => 'July','aug' => 'August',
-							'sep' => 'September','oct' => 'October',
-							'nov' => 'November','dec' => 'December',);
-        	echo form_dropdown('month',$options,'','id="month"');
+        	$options = array('0' => 'Choose Month',
+							'1' => 'January','2' => 'February',
+        					'3' => 'March','4' => 'April',
+							'5' => 'May','6' => 'June',
+							'7' => 'July','8' => 'August',
+							'9' => 'September','10' => 'October',
+							'11' => 'November','12' => 'December',);
+        	echo form_dropdown('selected_month',$options,'0','id="month"');
         	?>
         </div>
         
