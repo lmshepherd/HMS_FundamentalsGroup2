@@ -56,32 +56,38 @@ $row = $query->row();
 
 	function change_time(button) 
 	{
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/change_appt_time",
-			//set data value of POST to button clicked
-			data: {id: $(button).attr('id')},
-			type: "POST",
-			//update html inside doctor_schedule div to be what is returned
-			success: function(data){
-				$("#doctor_schedule").html(data);
-				$("#date_list").show();
-			}
-		});
+		if(window.confirm("Are you sure?"))
+		{
+			$.ajax({
+				//run select_doctor function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/change_appt_time",
+				//set data value of POST to button clicked
+				data: {id: $(button).attr('id')},
+				type: "POST",
+				//update html inside doctor_schedule div to be what is returned
+				success: function(data){
+					$("#doctor_schedule").html(data);
+					$("#date_list").show();
+				}
+			});
+		}
 	};
 
 	function cancel_appt(button) 
 	{
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/cancel_appt",
-			//set data value of POST to button clicked
-			data: {id: $(button).attr('id')},
-			type: "POST"
-			,success: function(data){
-				location.reload();
-			}
-		});
+		if(window.confirm("Are you sure?"))
+		{
+			$.ajax({
+				//run select_doctor function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/cancel_appt",
+				//set data value of POST to button clicked
+				data: {id: $(button).attr('id')},
+				type: "POST"
+				,success: function(data){
+					location.reload();
+				}
+			});
+		}
 	};
 //button press for doctor to view treatment info
 	function load_treatments(button) 
@@ -100,16 +106,19 @@ $row = $query->row();
 	//button press for doctor to update treatment info
 	function update_treatments(button) 
 	{
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/update_treatments",
-			//set data value of POST to button clicked
-			data: {id: $(button).attr('id'), treatment:$('#new_treatment').val()},
-			type: "POST"
-			,success: function(data){
-				$("#doctor_schedule").html(data);
-			}
-		});
+		if(window.confirm("Are you sure?"))
+		{
+			$.ajax({
+				//run select_doctor function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/update_treatments",
+				//set data value of POST to button clicked
+				data: {id: $(button).attr('id'), treatment:$('#new_treatment').val()},
+				type: "POST"
+				,success: function(data){
+					$("#doctor_schedule").html(data);
+				}
+			});
+		}
 	};
 	//button press for doctor to view prescription info for that appt
 	function load_prescriptions(button) 
@@ -128,16 +137,19 @@ $row = $query->row();
 	//button press for doctor to update prescription info
 	function update_prescriptions(button) 
 	{
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/update_prescriptions",
-			//set data value of POST to button clicked
-			data: {id: $(button).attr('id'), prescription:$('#new_prescription').val()},
-			type: "POST"
-			,success: function(data){
-				$("#doctor_schedule").html(data);
-			}
-		});
+		if(window.confirm("Are you sure?"))
+		{
+			$.ajax({
+				//run select_doctor function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/update_prescriptions",
+				//set data value of POST to button clicked
+				data: {id: $(button).attr('id'), prescription:$('#new_prescription').val()},
+				type: "POST"
+				,success: function(data){
+					$("#doctor_schedule").html(data);
+				}
+			});
+		}
 	};
 /*
  * THIS SHOULD ADD SELECTED PATIENT TO SESSION DATA WHICH WILL BE USED TO GENERATE TABLE
@@ -162,19 +174,21 @@ $row = $query->row();
 	});
 
 	function doctor_bill_setFlag(button){
-		//alert(button.id);
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/bill/doctor_bill_flag",
-			//set data value of POST to button clicked
-			data: {apptID: button.id, patient: $('#patients').val()},
-			type: "POST",
-			//hide button after processed flag change
-			success: function(data){
-				$("#byPatient").html(data);
-				$( "#doctor_schedule" ).empty();
-			}
-		});
+		if(window.confirm("Are you sure?"))
+		{
+			$.ajax({
+				//run select_doctor function of appointment controller
+				url:"<?php echo base_url();?>index.php/bill/doctor_bill_flag",
+				//set data value of POST to button clicked
+				data: {apptID: button.id, patient: $('#patients').val()},
+				type: "POST",
+				//hide button after processed flag change
+				success: function(data){
+					$("#byPatient").html(data);
+					$( "#doctor_schedule" ).empty();
+				}
+			});
+		}
 	}
 	
 	</script>
