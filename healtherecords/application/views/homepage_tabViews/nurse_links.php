@@ -11,7 +11,7 @@ echo form_submit('appointment_submit', 'View Patient Appointments');
 echo "</p>";
 echo form_close();
 
-echo form_open('salary/viewSalary');
+echo form_open('salary/view_salary');
 echo "<p>";
 echo form_submit('salary_view', 'View Nurse Salary');
 echo "</p>";

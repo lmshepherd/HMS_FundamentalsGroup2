@@ -12,7 +12,7 @@ echo form_submit('appointment_submit', 'View Appointments');
 echo "</p>";
 echo form_close();
 
-echo form_open('salary/viewSalary');
+echo form_open('salary/view_salary');
 echo "<p>";
 echo form_submit('salary_view', 'View Doctor Salary');
 echo "</p>";

@@ -23,4 +23,9 @@ class Salary extends CI_Controller
 		$this->db->update('paychecks',$data);
 		echo '<br><p>Paycheck sent!</p>';
 	}
+	
+	public function view_salary()
+	{
+		$this->load->view('salary_view');
+	}
 }
