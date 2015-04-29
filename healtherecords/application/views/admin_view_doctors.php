@@ -6,8 +6,8 @@
 <div id="container">
       <div class="row">
         <div class="col-lg-2", id="left">
-        		<?php $this->load->view('commonViews/links');?>
-			</div>
+        	<?php $this->load->view('commonViews/links');?>
+		</div>
         <div class="col-lg-10", id="center">
         	<?php $this->load->model('admin_search');
         	$this->admin_search->get_doctors(); ?>

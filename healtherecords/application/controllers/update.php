@@ -15,7 +15,7 @@ class Update extends CI_Controller
 		//check username field and ensure uniqueness in database
 		//$this->form_validation->set_rules('username','Username','required|trim|');
 		//check password field
-		$this->form_validation->set_rules('password','Password','required|trim');
+		$this->form_validation->set_rules('password','Password','required|trim|callback_verify_password');
 		//check cpassword field and make sure it matches password
 		$this->form_validation->set_rules('cpassword','Confirm_Password','required|trim|matches[password]');
 		//check email field
@@ -90,6 +90,16 @@ class Update extends CI_Controller
 		else{
 			$this->load->view('admin_update_information');
 		}
+	}
+	
+	//calls user function to check username and password in database
+	public function verify_password($str)
+	{
+		if (preg_match('#[0-9]#', $str) && preg_match('#[a-zA-Z]#', $str) && strlen($str)>5) {
+			return TRUE;
+		}
+		$this->form_validation->set_message('verify_password','Your password must have a length of at least 6, and contain at least one number');
+		return false;
 	}
 	
 	

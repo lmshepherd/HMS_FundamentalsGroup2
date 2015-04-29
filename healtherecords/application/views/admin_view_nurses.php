@@ -1,12 +1,12 @@
-<?php
-$this->load->view('commonViews/header');?>
+
+<?php $this->load->view('commonViews/header');?>
 
 <body>
 <header id="header"><h1>Health E-Records: Nurse Schedules</h1></header>
 <div id="container">
       <div class="row">
         <div class="col-lg-2", id="left">
-        	<?php $this->load->view('commonViews/backlinks');?>
+        	<?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10", id="center">
         	<?php $this->load->model('admin_search');
