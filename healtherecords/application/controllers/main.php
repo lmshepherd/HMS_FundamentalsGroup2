@@ -16,8 +16,8 @@ class Main extends CI_Controller
 		//set form rules to ensure login fields are not empty
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('username','Username','required|callback_verify_userinfo');
-		$this->form_validation->set_rules('password','Password','required');
+		$this->form_validation->set_rules('username','Username','required');
+		$this->form_validation->set_rules('password','Password','required|callback_verify_password');
 		$this->form_validation->set_message('password','You must enter a password');
 		
 		//if login form entries pass validation test
@@ -59,15 +59,14 @@ class Main extends CI_Controller
 	}
 	
 	//calls user function to check username and password in database
-	/*public function verify_password($str)
+	public function verify_password($str)
 	{
-		
-		if (preg_match('#[0-9]#', $str) && preg_match('#[a-zA-Z]#', $str)) {
+		if (preg_match('#[0-9]#', $str) && preg_match('#[a-zA-Z]#', $str) && strlen($str)>5) {
 			return TRUE;
 		}
-		$this->form_validation->set_message('password','Your password have a length of at least 6, and contain at least one number');
+		$this->form_validation->set_message('verify_password','Your password must have a length of at least 6, and contain at least one number');
 		return false;
-	}*/
+	}
 	
 	
 	//attempt to access user homepage
@@ -102,8 +101,8 @@ class Main extends CI_Controller
 		$this->form_validation->set_rules('username','Username','required|trim|is_unique[userinfo.username]');
 		$this->form_validation->set_message('username','This username has already been taken');
 		//check password field
-		//$this->form_validation->set_rules('password','Password','required|trim|min_length[6]','callback_verify_password');
-		$this->form_validation->set_rules('password','Password','required|trim|min_length[6]');
+		$this->form_validation->set_rules('password','Password','required|trim|callback_verify_password');
+		//$this->form_validation->set_rules('password','Password','required|trim|min_length[6]');
 		//check cpassword field and make sure it matches password
 		$this->form_validation->set_rules('cpassword','Confirm_Password','required|trim|matches[password]');
 		$this->form_validation->set_message('cpassword','Your password does not match');
