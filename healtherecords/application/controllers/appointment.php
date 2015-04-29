@@ -123,6 +123,10 @@ class Appointment extends CI_Controller
 		    			array_push($days, "S");
 		    		}
 		    		
+		    		$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+		    				'table_close' => '</table>');
+		    		$this->table->set_template($table_config);
+		    		
 		    		//add doctor to table
 		    		$this->table->add_row($row2->firstname . ' ' . $row2->lastname,
 		    				$gender,
