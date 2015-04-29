@@ -47,4 +47,8 @@ body {
 			background: #6EBAD4;
 		}
 
+		div .error{
+			size: 8px;
+			color: red;
+		}
 
