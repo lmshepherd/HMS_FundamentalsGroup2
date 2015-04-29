@@ -9,6 +9,19 @@ class Update extends CI_Controller
 		$this->load->model('update_info');
 	}
 	
+	public function update_medicalRecord(){
+		$this->load->view('update_medical_view');
+	}
+	
+	public function verify_password($str)
+	{
+		if (preg_match('#[0-9]#', $str) && preg_match('#[a-zA-Z]#', $str) && strlen($str)>5) {
+			return TRUE;
+		}
+		$this->form_validation->set_message('verify_password','Your password must have a length of at least 6, and contain at least one number');
+		return false;
+	}
+	
 	public function password_recovery(){
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -44,7 +57,212 @@ class Update extends CI_Controller
 		$this->load->view('admin_update_information');
 	}
 	
-
+	public function change_height(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('height','Height','required|trim');
+		
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->height_change()){
+				
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change height";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+		
+	}
+	
+	public function change_weight(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('weight','weight','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->weight_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change weight";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	
+	public function change_surgery(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('surgery','Surgery','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->surgery_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change surgery history";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	
+	public function change_family(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('family','Family','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->family_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change family history";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	
+	public function change_religion(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('religion','Religion','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->religion_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change religion";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	
+	public function change_career(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('career','Career','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->career_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change career";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	//
+	public function change_alcohol(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('alcohol','Alcohol','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->alcohol_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change alcohol use";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	public function change_smoking(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('smoker','Smoker','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->smoking_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change smoking use";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	public function change_other(){
+		//load form validation functions
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		//check username field and ensure uniqueness in database
+		$this->form_validation->set_rules('other','Other','required|trim');
+	
+		if ($this->form_validation->run())
+		{
+			if($this->update_info->other_change()){
+	
+				$this->load->view('update_medical_view');
+			}
+			else{
+				echo "Could not change other notes";
+			}
+		}
+		else{
+			$this->load->view('update_medical_view');
+		}
+	
+	}
+	
+	
 	public function change_username_admin(){
 	
 		//load form validation functions
@@ -90,16 +308,6 @@ class Update extends CI_Controller
 		else{
 			$this->load->view('admin_update_information');
 		}
-	}
-	
-	//calls user function to check username and password in database
-	public function verify_password($str)
-	{
-		if (preg_match('#[0-9]#', $str) && preg_match('#[a-zA-Z]#', $str) && strlen($str)>5) {
-			return TRUE;
-		}
-		$this->form_validation->set_message('verify_password','Your password must have a length of at least 6, and contain at least one number');
-		return false;
 	}
 	
 	

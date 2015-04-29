@@ -23,6 +23,142 @@ class Update_info extends CI_Model
 		
 	}
 	
+	public function height_change(){
+		$newh = $this->input->post('height');
+		$temp = array('height' => $newh);
+		
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+		
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+		
+		return $query;
+	}
+	
+	public function weight_change(){
+		$newh = $this->input->post('weight');
+		$temp = array('weight' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	
+	public function surgery_change(){
+		$newh = $this->input->post('surgery');
+		$temp = array('surgery' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	
+	public function family_change(){
+		$newh = $this->input->post('family');
+		$temp = array('family' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	
+	public function religion_change(){
+		$newh = $this->input->post('religion');
+		$temp = array('religion' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	
+	public function career_change(){
+		$newh = $this->input->post('career');
+		$temp = array('career' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	//
+	public function alcohol_change(){
+		$newh = $this->input->post('alcohol');
+		$temp = array('alcohol' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	
+	public function smoking_change(){
+		$newh = $this->input->post('smoker');
+		$temp = array('smoker' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	
+	public function other_change(){
+		$newh = $this->input->post('other');
+		$temp = array('other' => $newh);
+	
+		$this->db->where('username', $this->session->userdata('username'));
+		$query2 = $this->db->get('userinfo');
+		$row = $query2->row();
+		$id=$row->id;
+	
+		$this->db->where('id', $id);
+		$query = $this->db->update('medical_record',$temp);
+	
+		return $query;
+	}
+	
+	
 	public function experience_change(){
 		$newxp = $this->input->post('experience');
 		$temp = array('experience' => $newxp);

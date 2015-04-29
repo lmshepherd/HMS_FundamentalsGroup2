@@ -140,7 +140,7 @@ class Search extends CI_Model
 					'table_close' => '</table>');
 			$this->table->set_template($table_config);
 			//create table heading
-			$this->table->set_heading('Date','Time','','','','View/Update Treatments','Prescriptions','Appointment Complete');
+			$this->table->set_heading('Date','Time','Name','','','View/Update Treatments','Prescriptions','Appointment Complete');
 			
 			$count = 0;
 			
@@ -171,11 +171,11 @@ class Search extends CI_Model
 						$this->table->add_row($row->date,
 								$time.' '.$ampm,
 								//$row2->firstname.' '.$row2->lastname,
-								'<p>'.form_open('appointment/doctor_viewPatientRecord', $attributes).form_submit('view_patient_info', 'View Patient Information').form_close().'</p>',
+								'<p>'.form_open('appointment/doctor_viewPatientRecord', $attributes).form_submit('view_patient_info', 'Patient Info').form_close().'</p>',
 								'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
-								'<input id="'.$row->appt_id.'" type="button" value="Cancel Appointment" onclick="cancel_appt(this)" />',
-								'<input id="'.$row->appt_id.'"type="button" value="Treatments" onclick="load_treatments(this)" />',
-								'<input id="'.$row->appt_id.'"type="button" value="Prescriptions" onclick="load_prescriptions(this)" />',
+								'<input id="'.$row->appt_id.'" type="button" value="Cancel Appt" onclick="cancel_appt(this)" />',
+								'<input id="'.$row->appt_id.'"type="button" value="Treatment" onclick="load_treatments(this)" />',
+								'<input id="'.$row->appt_id.'"type="button" value="Prescription" onclick="load_prescriptions(this)" />',
 								'<input id="'.$row->appt_id.'" type="button" name="apointmentCompmlete" value="Complete" class="check" onclick="doctor_bill_setFlag(this)"/>');
 								//add a button to select doctor
 								//'<input id="'.$row->appt_id.'" type="button" value="View Patient Information" onclick="" />');

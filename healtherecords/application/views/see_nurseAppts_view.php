@@ -11,6 +11,7 @@ $this->db->where('nurse_id', $id);
 $query = $this->db->get('appts');
 $row = $query->row();
 
+$count =0;
 //generate table to be displayed
 if($query->num_rows()>0){
 	$this->table->set_heading('Patient','Doctor','Next Appointment Date', 'Next Appointment Time');
@@ -37,15 +38,16 @@ if($query->num_rows()>0){
 		$time = $time%12;
 		if ($time==0)
 			$time=12;
-		
-		//need form open and form close
-		$this->table->add_row($patientname,
-				$doctorname,
-				$row->date,
-				$time.' '.$ampm,
-				'<p>'.form_open('appointment/nurse_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>'
-		);
-		
+		if($row->doctor_finish != 1){
+			$count = $count + 1;
+			//need form open and form close
+			$this->table->add_row($patientname,
+					$doctorname,
+					$row->date,
+					$time.' '.$ampm,
+					'<p>'.form_open('appointment/nurse_viewPatientRecord').form_submit('view_patient_info', 'View Patient Information').form_close().'</p>'
+			);
+		}
 	}
 }
 
@@ -62,7 +64,12 @@ if($query->num_rows()>0){
         <div class="col-lg-10", id="center">		
 	        <p>
 			<?php 
-				echo $this->table->generate();
+				if($count != 0){
+					echo $this->table->generate();
+				}
+				else{
+					echo "No current appointments";
+				}
 			?>
 			</p>
 			<?php $this->load->view('commonViews/backLinks');?>

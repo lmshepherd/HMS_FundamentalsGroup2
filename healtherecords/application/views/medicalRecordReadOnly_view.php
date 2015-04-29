@@ -61,7 +61,7 @@ $row = $query->row();
 				echo $row->other;
 				echo '</p>';
 				
-				echo form_open('main/complete_medicalRecord');
+				echo form_open('update/update_medicalRecord');
 				
 				echo "<p>";
 				echo form_submit('medicalRecord_submit', 'Update Your Medical Record');

@@ -32,7 +32,13 @@ $row3 = $query3->row();
 <body>
 <header id="header"><h1>View Patients</h1></header>
 <div id="container">
+<div class="col-lg-2" id="left">
+     	    <?php $this->load->view('commonViews/links');?>
+		</div>
+        <div class="col-lg-10" id="center">
 	<?php 
+		echo "Here is your pateints information:";
+		echo "<br>";
 		//read from userinfo table
 		echo '<p>Name: ';
 		echo $row2->firstname;
@@ -103,9 +109,12 @@ $row3 = $query3->row();
 	
 	?>
 	<br>
-	<h1>Here is your patients medical record</h1>
+	
 	<?php
 	if($row!=NULL){
+		echo "Here is your patients medical record:";
+		echo "<br>";
+		
 		echo '<p>Height: ';
 		echo $row->height;
 		echo " inches";
@@ -148,7 +157,7 @@ $row3 = $query3->row();
 	?>
 	
 	<?php $this->load->view('commonViews/backLinks');?>
-
+</div>
 </div>
 <?php $this->load->view('commonViews/footer');?>
 </body>
