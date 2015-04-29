@@ -209,7 +209,7 @@ class Appointment extends CI_Controller
 	    	$this->load->model('search');
 	    	for($hours=$start; $hours<$end; $hours++) // the interval for hours is '1'
 	    	{
-	    		if ($hours>12)
+	    		if ($hours>11)
 	    		{
 	    			$hours12 = $hours%12;
 					$ampm = 'pm';
@@ -311,8 +311,22 @@ class Appointment extends CI_Controller
     	$appt = $this->session->userdata('appt_id');
     	//$date = $this->session->userdata('aptdate');
     	
+    	$this->db->from('appts');
+    	$this->db->where('appt_id',$appt);
+    	$appt_query = $this->db->get();
+    	$appt_row = $appt_query->row();
+    	
+    	$this->db->from('nurses');
+    	$this->db->where('id',$appt_row->nurse_id);
+    	$nurse_query = $this->db->get();
+    	$nurse_row = $nurse_query->row();
+    	$department = $nurse_row->department;
+    	
+    	$this->load->model('user');
     	$temp = array('date' => $this->session->userdata('aptdate'),
-    			'hour' => $this->input->post('hours'));
+    			'hour' => $this->input->post('hours'),
+    			'nurse_id' => $this->user->assign_nurse($department,$this->session->userdata('aptdate'),$this->input->post('hours')));
+    	
     	$this->db->where('appt_id',$appt);	
     	$this->db->update('appts', $temp);
     	
@@ -327,6 +341,7 @@ class Appointment extends CI_Controller
     	$this->session->unset_userdata('selected_doctor');
     	$this->session->unset_userdata('appt_id');
     }
+    
     
     public function cancel_appt()
     {

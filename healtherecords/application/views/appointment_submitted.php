@@ -8,6 +8,7 @@
 			<?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10" id="center">
+        	<br>
 		    <p>Your appointment has been made!</p>
 			<p>Appointment information: </p>
 		
@@ -35,12 +36,13 @@
 			if ($hour12==0)
 				$hour12 = $hour12 + 12;
 			//echo 'Appointment confirmed for: '.$aptdate;
-			echo $aptdate.' at '.$hour12.' '.$ampm.' with Dr. '.$row->lastname;
+			echo '20'.$aptdate.' at '.$hour12.' '.$ampm.' with Dr. '.$row->lastname;
 			?>
 		
-			<br>
+			
 			<?php $this->load->view('commonViews/backLinks');?>
 	</div>
+	<br>
       </div>
 </div>
 <?php $this->load->view('commonViews/footer');?>

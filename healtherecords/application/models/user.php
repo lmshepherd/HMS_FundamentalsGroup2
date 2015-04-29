@@ -311,12 +311,14 @@ class User extends CI_Model
 		else if ($specialization == 'neurologist'){
 			$department = 'neurology';
 		}
-		
+		/*
 		$this->db->select('id');
 		$this->db->where('department', $department);
 		$query3 = $this->db->get('nurses');
 		$row3 = $query3->row();
-		$nurse_id = $row3->id;
+		$nurse_id = $row3->id;*/
+		
+		$nurse_id = $this->assign_nurse($department,$date,$this->input->post('hours'));
 		
 		
 		$temp = array('patient_id' => $id,
@@ -345,6 +347,39 @@ class User extends CI_Model
 		else{
 			return false;
 		}
+	}
+	
+	public function assign_nurse($department,$date,$hour)
+	{
+		$current_count = 0;
+		$previous_count = 0;
+		$selected_nurse = '';
+		 
+		$this->db->from('nurses');
+		$this->db->where('department',$department);
+		$nurse_query = $this->db->get();
+		 
+		foreach ($nurse_query->result() as $nurse_row)
+		{
+			$this->db->from('appts');
+			$this->db->where('nurse_id',$nurse_row->id);
+			$this->db->where('date',$date);
+			$this->db->where('hour',$hour);
+			$appts_query = $this->db->get();
+	
+			$current_count = 0;
+	
+			foreach ($appts_query->result() as $appt_row)
+				$current_count += 1;
+	
+			if ($selected_nurse == '' || $current_count < $previous_count)
+			{
+				$selected_nurse = $nurse_row->id;
+				$previous_count = $current_count;
+			}
+		}
+		 
+		return $selected_nurse;
 	}
 	
 	public function reg_validation()
