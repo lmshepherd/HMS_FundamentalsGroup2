@@ -6,7 +6,27 @@
 				<?php $this->load->view('commonViews/links');?>
 			</div>
 	        <div class="col-lg-8", id="center">
-	        	<?php $this->load->view('commonViews/information_view');?>
+	        <br>
+	        	<?php 
+	        	/*testing for nurse assignment checking nurse schedule
+	        	$day = strtolower(date('D', strtotime('2015-4-29')));
+	        	$daystart = $day.'start';
+	        	$dayend = $day.'end';
+	        	$hour = 13;
+	        	echo $daystart.' '.$dayend.' ';
+	        	
+	        	$this->db->from('schedule');
+	        	$this->db->where('id', 42);
+	        	$schedule_query = $this->db->get();
+	        	$schedule_row = $schedule_query->row();
+	        	//check if nurse is scheduled to work
+	        	echo $schedule_row->$daystart.' '.$schedule_row->$dayend.' ';
+	        	if ($schedule_row->$daystart!=-1 && $schedule_row->$daystart<=$hour && $schedule_row->$dayend>$hour)
+	        		echo 'yes';
+	        	else echo 'no';
+	        	*/
+	        	
+	        	$this->load->view('commonViews/information_view');?>
 			</div>
 			<div class="col-lg-2" id='right'>
 			<h3>Login</h3>

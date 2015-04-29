@@ -53,7 +53,7 @@ class Bill extends CI_Controller
 	
 	public function pay_bill()
 	{
-	echo '<br><p>';
+		echo '<br><p>';
 		if ($this->input->post('amount')==$this->input->post('total_cost'))
 		{
 			$username = $this->session->userdata('username');

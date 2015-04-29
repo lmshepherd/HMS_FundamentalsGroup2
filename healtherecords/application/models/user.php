@@ -351,31 +351,52 @@ class User extends CI_Model
 	
 	public function assign_nurse($department,$date,$hour)
 	{
+		//variables to track which nurse has fewest appts at appt time/date
 		$current_count = 0;
 		$previous_count = 0;
 		$selected_nurse = '';
+		
+		//get day of the week for querying schedule table
+		$day = strtolower(date('D', strtotime('20'.$date)));
+		$daystart = $day.'start';
+		$dayend = $day.'end';
 		 
+		//get all nurses from selected department
 		$this->db->from('nurses');
 		$this->db->where('department',$department);
 		$nurse_query = $this->db->get();
 		 
+		//cycle through nurses in the department
 		foreach ($nurse_query->result() as $nurse_row)
 		{
-			$this->db->from('appts');
-			$this->db->where('nurse_id',$nurse_row->id);
-			$this->db->where('date',$date);
-			$this->db->where('hour',$hour);
-			$appts_query = $this->db->get();
-	
-			$current_count = 0;
-	
-			foreach ($appts_query->result() as $appt_row)
-				$current_count += 1;
-	
-			if ($selected_nurse == '' || $current_count < $previous_count)
+			//query current nurse's schedule
+			$this->db->from('schedule');
+			$this->db->where('id', $nurse_row->id);
+			$schedule_query = $this->db->get();
+			$schedule_row = $schedule_query->row();
+			//check if nurse is scheduled to work
+			if ($schedule_row->$daystart!=-1 && $schedule_row->$daystart<=$hour && $schedule_row->$dayend>$hour)
 			{
-				$selected_nurse = $nurse_row->id;
-				$previous_count = $current_count;
+				//get appts at this date/time that current nurse has scheduled
+				$this->db->from('appts');
+				$this->db->where('nurse_id',$nurse_row->id);
+				$this->db->where('date',$date);
+				$this->db->where('hour',$hour);
+				$appts_query = $this->db->get();
+				
+				//initialize counter
+				$current_count = 0;
+		
+				//count appts
+				foreach ($appts_query->result() as $appt_row)
+					$current_count += 1;
+				
+				//see if this nurse has less appts 
+				if ($selected_nurse == '' || $current_count < $previous_count)
+				{
+					$selected_nurse = $nurse_row->id;
+					$previous_count = $current_count;
+				}
 			}
 		}
 		 
