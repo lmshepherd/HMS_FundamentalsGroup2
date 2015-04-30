@@ -8,10 +8,10 @@
 			    </ul>
 			    <h3>Doctor Links</h3>
 			    <ul>
-				    <li><a href="#">Link 1</a></li>
-				    <li><a href="#">Link 2</a></li>
-			    	<li><a href="#">Link 3</a></li>
-				    <li><a href="#">Link 4</a></li>
-				    <li><a href="#">Link 5</a></li>
+				    <li><a href="http://www.ama-assn.org/ama">American Medical Assoication</a></li>
+				    <li><a href="http://www.physicianresources.org/">Physician Resources</a></li>
+			    	<li><a href="http://grad-schools.usnews.rankingsandreviews.com/best-graduate-schools/top-medical-schools">Top Medical Schools</a></li>
+				    <li><a href="http://en.wikipedia.org/wiki/Dr._Mario">Dr. Mario</a></li>
+				    <li><a href="http://www.drugs.com/">Drugs database</a></li>
 			    </ul>
 			    <br>
