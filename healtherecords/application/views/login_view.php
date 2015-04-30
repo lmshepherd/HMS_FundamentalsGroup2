@@ -1,4 +1,16 @@
-<?php $this->load->view('commonViews/header');?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= base_url();?>bootstrap/css/generic.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<title>Health E-Records</title>
+</head>
 <body>
 	<div id="header"><h1><img src="<?= base_url();?>bootstrap/images/HER.png" alt="logo"></h1></div>
 	    <div class="row">

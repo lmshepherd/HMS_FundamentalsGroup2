@@ -49,7 +49,7 @@ class Appointment extends CI_Controller
     		if ($query->num_rows()>0)
     		{
     			//create table heading
-    			$this->table->set_heading('Name ','Gender ','Experience ', 'Age ', 'Availability ');
+    			$this->table->set_heading('Name ','Gender ','Experience ', 'Age', 'Availability','');
     			//gender placeholder in case missing from database
     			$gender='';
     			
@@ -113,11 +113,14 @@ class Appointment extends CI_Controller
 		    		if($row3->tuestart!=-1){
 		    			array_push($days, "Tu");
 		    		}
-		    		if($row3->thustart!=-1){
+		    		if($row3->wedstart!=-1){
 		    			array_push($days, "W");
 		    		}
-		    		if($row3->fristart!=-1){
+		    		if($row3->thustart!=-1){
 		    			array_push($days, "Th");
+		    		}
+		    		if($row3->fristart!=-1){
+		    			array_push($days, "F");
 		    		}
 		    		if($row3->satstart!=-1){
 		    			array_push($days, "S");

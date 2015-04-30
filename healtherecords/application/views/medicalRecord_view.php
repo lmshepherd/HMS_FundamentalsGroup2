@@ -15,6 +15,7 @@ $username = $this->session->userdata('username');
      	    <?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10", id="center">
+        <br>
         	<p>Please fill in your information:</p>
 			<?php 
 	//***************This is an example of how to add attributes to a form!

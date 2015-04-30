@@ -124,13 +124,12 @@ if (!$this->session->userdata('is_logged_in'))
 			<?php echo form_close(); ?>
 			
 			<div id="date_list" style="display: none;">
-			<br>
 			<?php echo 'Date: ' ?>
-			<input type="text" class="date" name="appointment" id="datepicker"><br>
+			<input type="text" class="date" name="appointment" id="datepicker"><p></p>
 			</div>
 			
 			<div id="doctor_schedule"></div>
-			<?php $this->load->view('commonViews/backLinks');?><br>
+			<?php $this->load->view('commonViews/backLinks');?><p></p>
 	</div>
       </div>
 

@@ -9,6 +9,7 @@
 		</div>
         <div class="col-lg-10", id="center">
     	    <?php
+    	    	echo '<br>';
 	    	    echo validation_errors();
 	    	    $username = $this->session->userdata('username');
 	    	    
@@ -21,7 +22,7 @@
 	    	    $query = $this->db->get('medical_record');
 	    	    $row =$query->row();
 	    	    
-	    	    $table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+	    	    $table_config = array ( 'table_open'  => '<table class="table table-hover">',
 	    	    		'table_close' => '</table>');
 	    	    $this->table->set_template($table_config);
 	    	    $this->table->set_heading('Category','Information ','  New Info','Change Button');
@@ -79,6 +80,7 @@
 			
 			?>
 			<?php $this->load->view('commonViews/backLinks');?>
+			<p></p>
 		</div>
 	</div>
 

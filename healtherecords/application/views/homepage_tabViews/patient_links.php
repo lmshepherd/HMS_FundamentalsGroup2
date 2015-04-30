@@ -1,4 +1,5 @@
 <?php 
+/*
 echo form_open('main/complete_medicalRecord');
 echo "<p>";
 echo form_submit('medicalRecord_submit', 'Fill out Medical Record');
@@ -6,6 +7,12 @@ echo "</p>";
 echo form_close();
 
 echo form_open('main/view_medicalRecord');
+echo "<p>";
+echo form_submit('medicalRecordReadOnly_submit', 'View Medical Record');
+echo "</p>";
+echo form_close();*/
+
+echo form_open('update/update_medicalRecord');
 echo "<p>";
 echo form_submit('medicalRecordReadOnly_submit', 'View Medical Record');
 echo "</p>";

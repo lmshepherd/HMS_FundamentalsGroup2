@@ -47,6 +47,7 @@ if (!$this->session->userdata('is_logged_in'))
      	    <?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10", id="center">
+        <br>
         <div id="tabs">
   <ul>
     <li><a href="#tabs-1">User Info</a></li>
@@ -114,12 +115,12 @@ if (!$this->session->userdata('is_logged_in'))
 			?>
   </div>
 </div>
+<br>
 
 			
-			<a href = '<?php 
+			<p><a href = '<?php 
 				echo base_url(),"index.php/main/logout"
-			?>'>Logout</a>
-	<br>
+			?>'>Logout</a></p>
 	</div>
       </div>
 
