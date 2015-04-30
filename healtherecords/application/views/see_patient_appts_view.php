@@ -63,32 +63,38 @@ $row = $query->row();
 
 	function change_time(button) 
 	{
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/change_appt_time",
-			//set data value of POST to button clicked
-			data: {id: $(button).attr('id')},
-			type: "POST",
-			//update html inside doctor_schedule div to be what is returned
-			success: function(data){
-				$("#doctor_schedule").html(data);
-				$("#date_list").show();
-			}
-		});
+		if(window.confirm("Are you sure?"))
+		{
+			$.ajax({
+				//run select_doctor function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/change_appt_time",
+				//set data value of POST to button clicked
+				data: {id: $(button).attr('id')},
+				type: "POST",
+				//update html inside doctor_schedule div to be what is returned
+				success: function(data){
+					$("#doctor_schedule").html(data);
+					$("#date_list").show();
+				}
+			});
+		}
 	};
 
 	function cancel_appt(button) 
 	{
-		$.ajax({
-			//run select_doctor function of appointment controller
-			url:"<?php echo base_url();?>index.php/appointment/cancel_appt",
-			//set data value of POST to button clicked
-			data: {id: $(button).attr('id')},
-			type: "POST"
-			,success: function(data){
-				location.reload();
-			}
-		});
+		if(window.confirm("Are you sure?"))
+		{
+			$.ajax({
+				//run select_doctor function of appointment controller
+				url:"<?php echo base_url();?>index.php/appointment/cancel_appt",
+				//set data value of POST to button clicked
+				data: {id: $(button).attr('id')},
+				type: "POST"
+				,success: function(data){
+					location.reload();
+				}
+			});
+		}
 	};
 	
 	</script>

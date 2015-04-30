@@ -21,6 +21,8 @@
 	<script type="text/javascript">
 	function bill_patients(button) 
 	{
+		if(window.confirm("Send Bill?"))
+		{
 		$.ajax({
 			//run select_doctor function of appointment controller
 			url:"<?php echo base_url();?>index.php/bill/bill_patients",
@@ -30,19 +32,7 @@
 			success: function(data){
 				$( "#byPatient" ).empty();
 				$("#doctor_schedule").html(data);}
-		});
-		/*$.ajax({
-			//run select_specialization function of appointment controller
-			url:"<?php echo base_url();?>index.php/admin/select_patient",
-			//set data value of POST to value selected in dropdown box
-			data: {patient: $('#patients').val()},
-			type: "POST",
-			//update html inside doctor_list div to be what is returned
-			success: function(data){
-				$( "#byPatient" ).empty();
-				//update doctor list div
-				$("#byPatient").html(data);}
-		});*/
+		});}
 	};
 
 	$(document).ready(function(){
