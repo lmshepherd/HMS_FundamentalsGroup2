@@ -91,6 +91,7 @@
 			<?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10", id="center">
+        <br>
 	        <?php 
 			$attributes = array('class' => 'form-group', 'role' => 'form','class'=>'column');
 			//get session username
@@ -157,7 +158,7 @@
 			echo form_close();
 			?>
 			
-			<?php $this->load->view('commonViews/backLinks');?>
+			<?php $this->load->view('commonViews/backLinks');?><p></p>
 		</div>
       </div>
 </div>

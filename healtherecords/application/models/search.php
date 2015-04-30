@@ -143,7 +143,7 @@ class Search extends CI_Model
 					'table_close' => '</table>');
 			$this->table->set_template($table_config);
 			//create table heading
-			$this->table->set_heading('Date','Time','Name','','','View/Update Treatments','Prescriptions','Appointment Complete');
+			$this->table->set_heading('Date','Time','','','','View/Update Treatments','Prescriptions','Appointment Complete');
 			
 			$count = 0;
 			

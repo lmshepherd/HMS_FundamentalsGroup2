@@ -13,7 +13,7 @@ class Payroll extends CI_Model
 		
 		foreach ($query_all->result() as $row)
 		{
-			if ($row->role != 'patient')
+			if ($row->role != 'patient' && $row->id != 0)
 			{
 				//check if paycheck for current month/year already exists
 				$this->db->from('paychecks');

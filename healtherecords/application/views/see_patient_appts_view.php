@@ -125,7 +125,7 @@ $row = $query->row();
 				?>
 			</div>
 			
-			<?php $this->load->view('commonViews/backLinks');?><br>
+			<?php $this->load->view('commonViews/backLinks');?><p></p>
 		</div>
 	</div>
 </div>

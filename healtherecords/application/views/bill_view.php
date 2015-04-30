@@ -49,7 +49,7 @@
 	
 	<div id='payment_info'></div>
 	
-	<?php $this->load->view('commonViews/backLinks');?>
+	<?php $this->load->view('commonViews/backLinks');?></div>
 </div>
 <?php $this->load->view('commonViews/footer');?>
 </body>

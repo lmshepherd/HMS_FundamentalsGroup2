@@ -209,11 +209,12 @@ if (!$this->session->userdata('is_logged_in'))
 			<?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-md-10", id="center">
+        <br>
         
         <?php 
 			$this->load->model('search');
 			echo form_dropdown('patient',$this->search->patients_by_doctor(),'','id="patients"')
-		?>
+		?><p></p>
         
         <div id = "byPatient" ></div>
 				
@@ -233,10 +234,10 @@ if (!$this->session->userdata('is_logged_in'))
 				echo form_close();
 			?>
 		</div>
-		</div>
+		
 				
-		<?php $this->load->view('commonViews/backLinks');?>
-	</div>
+		<?php $this->load->view('commonViews/backLinks');?><p></p>
+	</div></div>
 </div>
 <?php $this->load->view('commonViews/footer');?>
 </body>

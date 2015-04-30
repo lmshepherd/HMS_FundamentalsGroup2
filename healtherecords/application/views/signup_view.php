@@ -1,4 +1,16 @@
-<?php $this->load->view('commonViews/header');?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= base_url();?>bootstrap/css/generic.css" rel="stylesheet">
+	<script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<title>Health E-Records</title>
+</head>
 
 <body>
     <header id="header"><h1>Health E-Records New User Signup</h1></header>
@@ -8,7 +20,7 @@
 				<?php $this->load->view('commonViews/links');?>
 			</div>
 	        <div class="col-lg-10", id="center">
-	        	<br><br><br><br>
+	        	<br>
 	        	<?php 
 				$attributes = array('class' => 'form-group', 'role' => 'form');
 				
@@ -51,7 +63,7 @@
 				
 				<a href = '<?php 
 				echo base_url(),"index.php/main"
-				?>'>Back to Login</a>
+				?>'>Back to Login</a><p></p>
 			</div>
     	</div>  
 	</div>

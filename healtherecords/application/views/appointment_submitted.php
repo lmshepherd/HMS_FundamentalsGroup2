@@ -39,7 +39,7 @@
 			echo '20'.$aptdate.' at '.$hour12.' '.$ampm.' with Dr. '.$row->lastname;
 			?>
 		
-			<br>
+			<br><p></p>
 			<?php $this->load->view('commonViews/backLinks');?><p></p>
 	</div>
 	<br>

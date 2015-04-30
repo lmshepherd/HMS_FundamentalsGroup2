@@ -230,6 +230,8 @@ class Bill extends CI_Controller
 		else
 			echo '<p>No payments currently due.</p>';
 		
-		echo '</div>';
+		
+		
+		//echo '</div>';
 	}
 }
