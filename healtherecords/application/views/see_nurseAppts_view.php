@@ -54,6 +54,11 @@ if($query->num_rows()>0){
 ?>
 <?php $this->load->view('commonViews/header');?>
 
+<?php 
+if (!$this->session->userdata('is_logged_in'))
+	redirect('/main/logout');
+?>
+
 <div id="container">
 
 	<h1>Here are your current patients</h1>

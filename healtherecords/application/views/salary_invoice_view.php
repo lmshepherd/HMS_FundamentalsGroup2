@@ -1,5 +1,10 @@
 <?php $this->load->view('commonViews/header')?>
 
+<?php 
+if (!$this->session->userdata('is_logged_in'))
+	redirect('/main/logout');
+?>
+
 <body>
 <header id="header"><h1>Health E-Records: Paycheck Invoice</h1></header>
 <div id="container">

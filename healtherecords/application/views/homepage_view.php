@@ -10,6 +10,12 @@ $role = $row->role;
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<?php 
+if (!$this->session->userdata('is_logged_in'))
+	redirect('/main/logout');
+?>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?= base_url();?>bootstrap/css/generic.css" rel="stylesheet">
@@ -34,6 +40,7 @@ $role = $row->role;
 </head>
 <body>
 <header id="header"><h1>Welcome to Health E-Records</h1></header>
+
 <div id="container">
 	      <div class="row">
         <div class="col-lg-2", id="left">

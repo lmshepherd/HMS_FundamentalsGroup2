@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	
+	<?php 
+	if (!$this->session->userdata('is_logged_in'))
+		redirect('/main/logout');
+	?>
+	
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?= base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?= base_url();?>bootstrap/css/generic.css" rel="stylesheet">

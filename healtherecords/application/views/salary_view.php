@@ -1,4 +1,10 @@
 <?php $this->load->view('commonViews/header')?>
+
+<?php 
+if (!$this->session->userdata('is_logged_in'))
+	redirect('/main/logout');
+?>
+
 	<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/flick/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<!-- load jquery javascript ajax communication -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
