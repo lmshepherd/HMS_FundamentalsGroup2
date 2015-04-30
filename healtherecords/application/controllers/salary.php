@@ -28,4 +28,9 @@ class Salary extends CI_Controller
 	{
 		$this->load->view('salary_view');
 	}
+	
+	public function load_paycheck_view()
+	{
+		$this->load->view('salary_invoice_view');
+	}
 }

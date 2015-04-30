@@ -119,7 +119,7 @@ $row = $query->row();
 				?>
 			</div>
 			
-			<?php $this->load->view('commonViews/backLinks');?>
+			<?php $this->load->view('commonViews/backLinks');?><br>
 		</div>
 	</div>
 </div>

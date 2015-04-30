@@ -79,14 +79,17 @@
 							'11' => 'November','12' => 'December',);
         	echo form_dropdown('selected_month',$options,'0','id="month"');
         	?>
+        	
         </div>
         
         <div id='paycheck_info'></div>
         
 		<div id="payroll_info"></div>
+		<br>
 		
 	
 	<?php $this->load->view('commonViews/backLinks');?>
+	<br>
 	</div>
 </div>
 <?php $this->load->view('commonViews/footer');?>

@@ -94,6 +94,7 @@
 				
 				echo form_close();
 				?>
+				<br>
 			</div>
 		</div>
 			

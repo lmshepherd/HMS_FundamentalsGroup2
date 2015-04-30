@@ -24,13 +24,15 @@
         <div id='salary_history'>
         
         <?php 
+        //echo form_open('salary/load_paycheck_view');
         $this->load->model('payroll');
         $this->payroll->salary_history();
+        //echo form_close();
         ?>
         
         </div>
 	
-	<?php $this->load->view('commonViews/backLinks');?>
+	<p><?php $this->load->view('commonViews/backLinks');?></p>
 	</div>
 </div>
 <?php $this->load->view('commonViews/footer');?>

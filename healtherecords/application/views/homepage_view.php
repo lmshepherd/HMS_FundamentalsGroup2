@@ -112,6 +112,7 @@ $role = $row->role;
 			<a href = '<?php 
 				echo base_url(),"index.php/main/logout"
 			?>'>Logout</a>
+	<br>
 	</div>
       </div>
 

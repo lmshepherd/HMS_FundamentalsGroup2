@@ -186,11 +186,11 @@ class Admin_search extends CI_Model
 		if ($query->num_rows()>0)
 		{
 			echo '<div class="col-lg-12">';
-			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+			$table_config = array ( 'table_open'  => '<table class="table table-hover">',
 					'table_close' => '</table>');
 			$this->table->set_template($table_config);
 			//create table heading
-			$this->table->set_heading('Name','Gender','Experience','Specialization','Sunday Start','Sunday End','Monday Start','Monday End','Tuesday Start','Tuesday End','Wednesday Start','Wednesday End','Thursday Start','Thursday End','Friday Start','Firday End','Saturday Start','Saturday End');
+			$this->table->set_heading('Name','Gender','Experience','Specialization','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 			 
 			
 			foreach ($query->result() as $row)
@@ -413,26 +413,41 @@ class Admin_search extends CI_Model
 					$satend = $satend.'am';
 				}
 				
+				if ($sunend!='off')
+					$sunend = '-'.$sunend;
+				else $sunend = '';
+				if ($monend!='off')
+					$monend = '-'.$monend;
+				else $monend = '';
+				if ($tueend!='off')
+					$tueend = '-'.$tueend;
+				else $tueend = '';
+				if ($wedend!='off')
+					$wedend = '-'.$wedend;
+				else $wedend = '';
+				if ($thuend!='off')
+					$thuend = '-'.$thuend;
+				else $thuend = '';
+				if ($friend!='off')
+					$friend = '-'.$friend;
+				else $friend = '';
+				if ($satend!='off')
+					$satend = '-'.$satend;
+				else $satend = '';
+				
 				//add doctor to table
 				$this->table->add_row($row->firstname . ' ' . $row->lastname,
 						$gender,
 						$row2->experience.' years',
 						//add a button to select doctor
 						$row2->specialization,
-						$sunstart,
-						$sunend,
-						$monstart,
-						$monend,
-						$tuestart,
-						$tueend,
-						$wedstart,
-						$wedend,
-						$thustart,
-						$thuend,
-						$fristart,
-						$friend,
-						$satstart,
-						$satend
+						$sunstart.$sunend,
+						$monstart.$monend,
+						$tuestart.$tueend,
+						$wedstart.$wedend,
+						$thustart.$thuend,
+						$fristart.$friend,
+						$satstart.$satend
 						);
 			}
 			//generate the table
@@ -449,12 +464,11 @@ class Admin_search extends CI_Model
 		if ($query->num_rows()>0)
 		{
 			echo '<div class="col-lg-12">';
-			$table_config = array ( 'table_open'  => '<table class="table table-hover table-bordered">',
+			$table_config = array ( 'table_open'  => '<table class="table table-hover">',
 					'table_close' => '</table>');
 			$this->table->set_template($table_config);
 			//create table heading
-			$this->table->set_heading('Name','Department','Sunday Start','Sunday End','Monday Start','Monday End','Tuesday Start','Tuesday End','Wednesday Start','Wednesday End','Thursday Start','Thursday End','Friday Start','Firday End','Saturday Start','Saturday End');
-	
+			$this->table->set_heading('Name','Department','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 				
 			foreach ($query->result() as $row)
 			{
@@ -675,26 +689,41 @@ class Admin_search extends CI_Model
 					$satend = $satend.'am';
 				}
 				
+				if ($sunend!='off')
+					$sunend = '-'.$sunend;
+				else $sunend = '';
+				if ($monend!='off')
+					$monend = '-'.$monend;
+				else $monend = '';
+				if ($tueend!='off')
+					$tueend = '-'.$tueend;
+				else $tueend = '';
+				if ($wedend!='off')
+					$wedend = '-'.$wedend;
+				else $wedend = '';
+				if ($thuend!='off')
+					$thuend = '-'.$thuend;
+				else $thuend = '';
+				if ($friend!='off')
+					$friend = '-'.$friend;
+				else $friend = '';
+				if ($satend!='off')
+					$satend = '-'.$satend;
+				else $satend = '';
+				
 				//add doctor to table
 				$this->table->add_row($row->firstname . ' ' . $row->lastname,
 						//$gender,
 						//$row2->experience.' years',
 						//add a button to select doctor
 						$row2->department,
-						$sunstart,
-						$sunend,
-						$monstart,
-						$monend,
-						$tuestart,
-						$tueend,
-						$wedstart,
-						$wedend,
-						$thustart,
-						$thuend,
-						$fristart,
-						$friend,
-						$satstart,
-						$satend);
+						$sunstart.$sunend,
+						$monstart.$monend,
+						$tuestart.$tueend,
+						$wedstart.$wedend,
+						$thustart.$thuend,
+						$fristart.$friend,
+						$satstart.$satend);
 			}
 			//generate the table
 			echo $this->table->generate();

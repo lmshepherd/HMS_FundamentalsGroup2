@@ -96,7 +96,7 @@
         <div class="col-lg-2", id="left">
 			<?php $this->load->view('commonViews/links') ?>
 		</div>
-        <div class="col-lg-10", id="center">
+        <div class="col-lg-10", id="center"><br>
 		    <?php
 			//store dropdown box options as an array
 			$specialization = array(''=>'Select Specialization',
@@ -124,7 +124,7 @@
 			</div>
 			
 			<div id="doctor_schedule"></div>
-			<?php $this->load->view('commonViews/backLinks');?>
+			<?php $this->load->view('commonViews/backLinks');?><br>
 	</div>
       </div>
 

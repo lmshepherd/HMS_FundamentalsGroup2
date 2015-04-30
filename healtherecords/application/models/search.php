@@ -92,6 +92,9 @@ class Search extends CI_Model
 				if ($time==0)
 					$time=12;
 				
+				$table_config = array ( 'table_open'  => '<table class="table table-hover ">',
+						'table_close' => '</table>');
+				$this->table->set_template($table_config);
 				//add doctor to table
 				$this->table->add_row($row->date,
 						$time.' '.$ampm,
@@ -171,7 +174,7 @@ class Search extends CI_Model
 						$this->table->add_row($row->date,
 								$time.' '.$ampm,
 								//$row2->firstname.' '.$row2->lastname,
-								'<p>'.form_open('appointment/doctor_viewPatientRecord', $attributes).form_submit('view_patient_info', 'Patient Info').form_close().'</p>',
+								form_open('appointment/doctor_viewPatientRecord', $attributes).form_submit('view_patient_info', 'Patient Info').form_close(),
 								'<input id="'.$row->appt_id.'" type="button" value="Change Time" onclick="change_time(this)" />',
 								'<input id="'.$row->appt_id.'" type="button" value="Cancel Appt" onclick="cancel_appt(this)" />',
 								'<input id="'.$row->appt_id.'"type="button" value="Treatment" onclick="load_treatments(this)" />',

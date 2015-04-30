@@ -49,3 +49,4 @@ echo form_submit('update_submit', 'Update Your Information');
 echo "</p>";
 echo form_close();
 ?>
+<br>
