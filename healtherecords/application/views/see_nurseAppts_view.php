@@ -14,6 +14,9 @@ $row = $query->row();
 $count =0;
 //generate table to be displayed
 if($query->num_rows()>0){
+	$table_config = array ( 'table_open'  => '<table class="table table-hover">',
+			'table_close' => '</table>');
+	$this->table->set_template($table_config);
 	$this->table->set_heading('Patient','Doctor','Next Appointment Date', 'Next Appointment Time');
 	
 	foreach($query->result() as $row){
@@ -77,7 +80,7 @@ if (!$this->session->userdata('is_logged_in'))
 				}
 			?>
 			</p>
-			<?php $this->load->view('commonViews/backLinks');?>
+			<?php $this->load->view('commonViews/backLinks');?><p></p>
 		</div>
       </div>
 

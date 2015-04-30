@@ -74,13 +74,16 @@
 			<?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-md-10", id="center">
-        
+        <br>
+        <p>
         <?php 
  			$this->load->model('admin_search');
 			echo form_dropdown('patient',$this->admin_search->get_patients(),'','id="patients"')
 		?>
+		</p>
         
         <div id = "byPatient" ></div>
+        
 				
 		<div id="date_list" style="display: none;">
 		<br>
@@ -92,9 +95,10 @@
 		<div id="bill" style="display:none">
 		
 		</div>
-		</div>
-				
-		<?php $this->load->view('commonViews/backLinks');?>
+		
+			
+		<?php $this->load->view('commonViews/backLinks');?><p></p>
+	</div>
 	</div>
 </div>
 <?php $this->load->view('commonViews/footer');?>

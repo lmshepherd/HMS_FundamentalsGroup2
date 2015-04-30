@@ -15,6 +15,7 @@
 <div id="container">
 
 	<div class="col-lg-10", id="center">
+	<br>
 		<?php 
 			echo validation_errors();
 			$username = $this->session->userdata('username');
@@ -55,7 +56,7 @@
 		
 			echo $this->table->generate();
 		?>
-		<?php $this->load->view('commonViews/backLinks');?>
+		<?php $this->load->view('commonViews/backLinks');?><p></p>
 	</div>
 
 	

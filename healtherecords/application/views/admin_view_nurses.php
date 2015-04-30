@@ -13,7 +13,7 @@
         	<?php $this->load->model('admin_search');
         	$this->admin_search->get_nurses(); ?>
         	
-        	<?php $this->load->view('commonViews/backLinks');?><br>
+        	<?php $this->load->view('commonViews/backLinks');?><p></p>
 		</div>
 	</div>
 </div>

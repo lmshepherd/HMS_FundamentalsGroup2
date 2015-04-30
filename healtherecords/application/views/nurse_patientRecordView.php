@@ -36,9 +36,9 @@ $row3 = $query3->row();
      	    <?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10" id="center">
-	<?php 
-		echo "Here is your pateints information:";
-		echo "<br>";
+        <br>
+		<?php 
+		echo "<p><h3>Patient Information:</h3></p>";
 		//read from userinfo table
 		echo '<p>Name: ';
 		echo $row2->firstname;
@@ -107,13 +107,8 @@ $row3 = $query3->row();
 		echo $row3->allergies;
 		echo '</p>';
 	
-	?>
-	<br>
-	
-	<?php
 	if($row!=NULL){
-		echo "Here is your patients medical record:";
-		echo "<br>";
+		echo "<p><h3>Patient's Medical Record:</h3></p>";
 		
 		echo '<p>Height: ';
 		echo $row->height;
@@ -156,7 +151,7 @@ $row3 = $query3->row();
 	}
 	?>
 	
-	<?php $this->load->view('commonViews/backLinks');?>
+	<?php $this->load->view('commonViews/backLinks');?><p></p>
 </div>
 </div>
 <?php $this->load->view('commonViews/footer');?>

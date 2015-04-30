@@ -9,10 +9,11 @@ $this->load->view('commonViews/header');?>
         	<?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10", id="center">
+        <br>
         	<?php $this->load->model('admin_search');
         	$this->admin_search->load_patients() ?>
         	
-        	<?php $this->load->view('commonViews/backLinks');?>
+        	<?php $this->load->view('commonViews/backLinks');?><p></p>
         	
 		</div>
 	</div>
