@@ -20,7 +20,7 @@ class Bill extends CI_Controller
 		$this->load->model('admin_search');
 		$this->admin_search->get_appts($chosenPatientID);
 		if($query){
-			echo "Patient has been billed";
+			echo "<p> Patient has been billed</p>";
 		}
 		else{
 			echo "Failure to bill";

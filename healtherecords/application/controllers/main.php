@@ -17,7 +17,7 @@ class Main extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('username','Username','required');
-		$this->form_validation->set_rules('password','Password','required');
+		$this->form_validation->set_rules('password','Password','required|callback_verify_userinfo');
 		$this->form_validation->set_message('password','You must enter a password');
 		
 		//if login form entries pass validation test
