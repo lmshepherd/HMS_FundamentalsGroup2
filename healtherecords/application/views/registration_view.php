@@ -85,6 +85,7 @@ $role = $this->session->userdata('role');
 			<?php $this->load->view('commonViews/links');?>
 		</div>
         <div class="col-lg-10", id="center">
+        <br>
         	<p>Please fill in your information:</p>
 			<div id="body">
 				<?php 
@@ -134,7 +135,7 @@ $role = $this->session->userdata('role');
 	
 			<a href = '<?php 
 			echo base_url(),"index.php/main"
-			?>'>Back to Login</a>
+			?>'>Back to Login</a><p></p>
 		</div>
       </div>
 </div>

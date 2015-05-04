@@ -16,8 +16,8 @@ class Main extends CI_Controller
 		//set form rules to ensure login fields are not empty
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('username','Username','required');
-		$this->form_validation->set_rules('password','Password','required|callback_verify_userinfo');
+		$this->form_validation->set_rules('username','Username','required|callback_verify_userinfo');
+		$this->form_validation->set_rules('password','Password','required');
 		$this->form_validation->set_message('password','You must enter a password');
 		
 		//if login form entries pass validation test
@@ -53,7 +53,7 @@ class Main extends CI_Controller
 			return true;
 		}
 		else {
-			$this->form_validation->set_message('username','The information you entered is invalid');
+			$this->form_validation->set_message('verify_userinfo','The information you entered is invalid');
 			return false;
 		}
 	}

@@ -44,7 +44,7 @@ echo $this->table->generate();
 //echo form_input('availability',$this->input->post('availability'));
 echo "</p>";
 
-$department = array(''=>'Select Deparment',
+$department = array(''=>'Select Department',
 		'cardiology'=>'Cardiology',
 		'endocrinology'=>'Endocrinology',
 		'general'=>'General Patient Care',
