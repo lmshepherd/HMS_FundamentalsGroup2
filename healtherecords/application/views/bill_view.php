@@ -17,7 +17,7 @@
 	});
 
 	function pay_bill(button){
-		if(button.id!=$('#amount').val())
+		if(parseFloat(button.id).toFixed(2) != parseFloat($('#amount').val()).toFixed(2))
 			alert('Amount entered does not match amount owed.');
 		else
 		{
