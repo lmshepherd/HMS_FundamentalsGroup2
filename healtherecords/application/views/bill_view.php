@@ -19,20 +19,23 @@
 	function pay_bill(button){
 		if(button.id!=$('#amount').val())
 			alert('Amount entered does not match amount owed.');
-		$.ajax({
-			url:"<?php echo base_url();?>index.php/bill/pay_bill",
-			data: {total_cost: button.id, amount: $('#amount').val()},
-			type: "POST",
-			success: function(data){
-				$.ajax({
-					url:"<?php echo base_url();?>index.php/bill/load_bill_view",
-					success: function(data){
-						$("#bill_info").html(data);
-					}
-				});
-				$("#payment_info").html(data);
-			}
-		});
+		else
+		{
+			$.ajax({
+				url:"<?php echo base_url();?>index.php/bill/pay_bill",
+				data: {total_cost: button.id, amount: $('#amount').val()},
+				type: "POST",
+				success: function(data){
+					$.ajax({
+						url:"<?php echo base_url();?>index.php/bill/load_bill_view",
+						success: function(data){
+							$("#bill_info").html(data);
+						}
+					});
+					$("#payment_info").html(data);
+				}
+			});
+		}
 		
 	}
 	
